@@ -11,7 +11,7 @@ export const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(operations.register({ email, password }));
+    dispatch(operations.logIn({ email, password }));
   };
 
   const handleChange = ({ target: { name, value } }) => {
