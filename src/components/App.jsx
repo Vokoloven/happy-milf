@@ -7,10 +7,12 @@ import { RegistrationPage } from 'Pages/RegistrationPage';
 import { DiaryPage } from 'Pages/DiaryPage';
 import { CalculatorPage } from 'Pages/CalculatorPage';
 import { PrivateRoute, PublicRoute } from './Routes/Routes';
+import { Global } from 'styles/global';
 
 export const App = () => {
   return (
     <>
+      <Global />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
