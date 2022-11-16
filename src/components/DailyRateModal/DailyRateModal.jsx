@@ -16,7 +16,10 @@ import {
 } from './DailyRateModal.styled';
 import closeIcon from './closeIcon.svg';
 
-export const DailyRateModal = ({ handleBackdropClose }) => {
+export const DailyRateModal = ({
+  handleBackdropClose,
+  handleClickOnCloseBtn,
+}) => {
   const dailyRate = useSelector(selectorDailyRate);
   const notAllowedProducts = useSelector(selectorNotAllowedProducts);
   const secondNotAllowedProducts = notAllowedProducts.slice(0, 6);
@@ -24,8 +27,8 @@ export const DailyRateModal = ({ handleBackdropClose }) => {
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
-        <CloseBtn>
-          <img src={closeIcon} alt="X" />
+        <CloseBtn onClick={handleClickOnCloseBtn}>
+          <img style={{ pointerEvents: 'none' }} src={closeIcon} alt="X" />
         </CloseBtn>
         <ModalTitle>
           Your recommended daily calorie intake is

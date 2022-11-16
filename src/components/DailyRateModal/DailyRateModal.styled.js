@@ -26,7 +26,7 @@ export const CloseBtn = styled.button`
   background: none;
   border: none;
   outline: none;
-  position: relative;
+  position: absolute;
   right: 14px;
   top: 14px;
   padding: 10px;
@@ -69,6 +69,8 @@ export const CalText = styled.span`
 `;
 
 export const InfoBox = styled.div`
+border-top 1px solid #E0E0E0;
+padding-top: 12px;
   display: block;
   width: 330px;
   margin: auto;

@@ -2,19 +2,32 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PagesLinks } from './Layout.styled';
 import Logo from './Logo.png';
+import {
+  Header,
+  LogoLink,
+  SingInLink,
+  LogoImg,
+  ExitBox,
+  NicName,
+  ExitBtn,
+} from './Layout.styled';
 
 export const Layout = () => {
   return (
     <>
-      <header style={{ display: 'flex', gap: '15px' }}>
-        <Link to="/">
-          <img src={Logo} alt="Logo" />
-        </Link>
-        <PagesLinks to="/login">Sing in</PagesLinks>
+      <Header>
+        <LogoLink to="/">
+          <LogoImg src={Logo} alt="Logo" />
+        </LogoLink>
+        <SingInLink to="/login">Sing in</SingInLink>
         <PagesLinks to="/registration">Registration</PagesLinks>
         <PagesLinks to="/diary">diary</PagesLinks>
         <PagesLinks to="/calculator">calculator</PagesLinks>
-      </header>
+        <ExitBox>
+          <NicName>Nic</NicName>
+          <ExitBtn>Exit</ExitBtn>
+        </ExitBox>
+      </Header>
       <Outlet />
     </>
   );
