@@ -1,8 +1,20 @@
-import { Backdrop, Modal } from './DailyRateModal.styled';
 import { useSelector } from 'react-redux';
 import { selectorDailyRate } from 'reduxx/DailyRate/Selector';
 import { selectorNotAllowedProducts } from 'reduxx/DailyRate/Selector';
-import { Link } from 'react-router-dom';
+import {
+  Backdrop,
+  CloseBtn,
+  Modal,
+  ModalTitle,
+  DailyRateNumber,
+  CalText,
+  ModalInfo,
+  InfoBox,
+  InfoItem,
+  InfoList,
+  ModalBtn,
+} from './DailyRateModal.styled';
+import closeIcon from './closeIcon.svg';
 
 export const DailyRateModal = ({ handleBackdropClose }) => {
   const dailyRate = useSelector(selectorDailyRate);
@@ -12,21 +24,26 @@ export const DailyRateModal = ({ handleBackdropClose }) => {
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
-        <h2>
+        <CloseBtn>
+          <img src={closeIcon} alt="X" />
+        </CloseBtn>
+        <ModalTitle>
           Your recommended daily calorie intake is
-          <span>
+          <DailyRateNumber>
             {dailyRate}
-            <span>cal</span>
-          </span>
-        </h2>
-        <h3>Foods you should not eat</h3>
-        <ul>
-          {secondNotAllowedProducts.map(item => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+            <CalText>cal</CalText>
+          </DailyRateNumber>
+        </ModalTitle>
+        <InfoBox>
+          <ModalInfo>Foods you should not eat</ModalInfo>
+          <InfoList>
+            {secondNotAllowedProducts.map(item => (
+              <InfoItem key={item}>{item}</InfoItem>
+            ))}
+          </InfoList>
+        </InfoBox>
+        <ModalBtn to="/registration">Start losing weight</ModalBtn>
       </Modal>
-      <Link>Start losing weight</Link>
     </Backdrop>
   );
 };
