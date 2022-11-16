@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'reduxx/DailyRateApi';
+import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 
 export const HomePage = () => {
   const [height, setHeight] = useState('');
@@ -9,6 +10,7 @@ export const HomePage = () => {
   const [bloodType, setBloodType] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleHeight = e => {
@@ -61,7 +63,6 @@ export const HomePage = () => {
     }
   };
 
-  console.log(isModalOpen);
   const reset = () => {
     setHeight('');
     setWeight('');
@@ -69,6 +70,7 @@ export const HomePage = () => {
     setBloodType('');
     setDesiredWeight('');
   };
+
   return (
     <section style={{ paddingTop: '30px' }}>
       <form
@@ -163,11 +165,7 @@ export const HomePage = () => {
         <button>Start losing weight</button>
       </form>
       {isModalOpen && (
-        <div onClick={handleBackdropClose}>
-          <div
-            style={{ width: '100px', height: '100px', backgroundColor: 'grey' }}
-          ></div>
-        </div>
+        <DailyRateModal handleBackdropClose={handleBackdropClose} />
       )}
     </section>
   );

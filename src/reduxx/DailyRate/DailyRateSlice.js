@@ -9,6 +9,8 @@ const initialState = {
     desiredWeight: null,
     bloodType: null,
   },
+  dailyRate: '',
+  notAllowedProducts: [],
 };
 
 export const dailyRateSlice = createSlice({
@@ -17,6 +19,8 @@ export const dailyRateSlice = createSlice({
   extraReducers: {
     [getDailyRate.fulfilled](state, action) {
       state.user = action.payload.user;
+      state.dailyRate = action.payload.dailyRate;
+      state.notAllowedProducts = action.payload.notAllowedProducts;
     },
   },
 });

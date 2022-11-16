@@ -7,7 +7,7 @@ export const Layout = () => {
     <>
       <header style={{ display: 'flex', gap: '15px' }}>
         <Link to="/">
-          <>Logo</>
+          <img src="/src/images/Logo.png" alt="Logo" />
         </Link>
         <PagesLinks to="/login">Sing in</PagesLinks>
         <PagesLinks to="/registration">Registration</PagesLinks>
