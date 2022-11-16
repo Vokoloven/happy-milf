@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDailyRate } from 'redux/DailyRateApi';
+import { getDailyRate } from 'redux0/DailyRateApi';
 
 const initialState = {
   user: {
