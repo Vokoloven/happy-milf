@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getDailyRate } from 'reduxx/DailyRateApi';
 
 export const HomePage = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [age, setAge] = useState('');
-  const [blood, setBlood] = useState('');
-  const [currWeight, setCurrWeight] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [desiredWeight, setDesiredWeight] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
@@ -17,23 +21,53 @@ export const HomePage = () => {
     setAge(e.currentTarget.value);
   };
   const handleCurrWeight = e => {
-    setCurrWeight(e.currentTarget.value);
+    setDesiredWeight(e.currentTarget.value);
   };
   const handleBlood = e => {
-    setBlood(e.target.value);
+    setBloodType(e.target.value);
   };
 
   const handleStartWeightLosing = e => {
     e.preventDefault();
-    console.log(height, weight, age, blood, currWeight);
+    const user = {
+      weight: Number(weight),
+      height: Number(height),
+      age: Number(age),
+      desiredWeight: Number(desiredWeight),
+      bloodType: Number(bloodType),
+    };
+    dispatch(getDailyRate(user));
+    setIsModalOpen(true);
     reset();
   };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyModalClose);
+    return () => {
+      window.removeEventListener('keydown', handleKeyModalClose);
+    };
+  }, []);
+
+  const handleKeyModalClose = e => {
+    if (e.code === 'Escape') {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleBackdropClose = e => {
+    console.log(e.target);
+    if (e.target === e.currentTarget) {
+      setIsModalOpen(false);
+    }
+  };
+
+  console.log(isModalOpen);
   const reset = () => {
     setHeight('');
     setWeight('');
     setAge('');
-    setBlood('');
-    setCurrWeight('');
+    setBloodType('');
+    setDesiredWeight('');
   };
   return (
     <section style={{ paddingTop: '30px' }}>
@@ -122,12 +156,19 @@ export const HomePage = () => {
             type="number"
             name="desiredWeight"
             required
-            value={currWeight}
+            value={desiredWeight}
             onChange={handleCurrWeight}
           />
         </label>
         <button>Start losing weight</button>
       </form>
+      {isModalOpen && (
+        <div onClick={handleBackdropClose}>
+          <div
+            style={{ width: '100px', height: '100px', backgroundColor: 'grey' }}
+          ></div>
+        </div>
+      )}
     </section>
   );
 };

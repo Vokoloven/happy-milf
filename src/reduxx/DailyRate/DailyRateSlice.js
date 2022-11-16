@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDailyRate } from 'redux0/DailyRateApi';
+import { getDailyRate } from 'reduxx/DailyRateApi';
 
 const initialState = {
   user: {
@@ -20,3 +20,5 @@ export const dailyRateSlice = createSlice({
     },
   },
 });
+
+export const dailyRateSliceReducer = dailyRateSlice.reducer;
