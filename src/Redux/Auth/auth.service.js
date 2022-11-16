@@ -7,7 +7,7 @@ export const register = createAsyncThunk(
     try {
       const response = await configAxios.post('auth/register', data);
 
-      return response.data;
+      return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

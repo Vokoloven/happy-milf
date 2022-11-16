@@ -11,12 +11,20 @@ export const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
   },
-  extraReducers: {
-    [operations.register.fulfilled](state, action) {
-      console.log(action.payload);
+  extraReducers: builder => {
+    builder.addCase(operations.register.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
+    });
   },
 });
+
+// extraReducers: {
+//   [operations.register.fulfilled](state, action) {
+//     console.log(action.payload);
+//     state.user = action.payload.user;
+//     state.token = action.payload.token;
+//     state.isLoggedIn = true;
+//   },
+// },
