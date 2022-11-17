@@ -2,6 +2,8 @@ import { Outlet } from 'react-router-dom';
 import { PagesLinks } from './Layout.styled';
 import Logo from './Logo.png';
 import { useSelector } from 'react-redux';
+import operations from 'Redux/Auth/auth.service';
+import { useDispatch } from 'react-redux';
 import {
   Header,
   LogoLink,
@@ -13,6 +15,14 @@ import {
 } from './Layout.styled';
 
 export const Layout = () => {
+  const dispatch = useDispatch();
+  const TOKEN = useSelector(state => state.auth.accessToken);
+  const NAME = useSelector(state => state.auth.user.username);
+  console.log(TOKEN);
+  console.log(NAME);
+  const handleLogOut = () => {
+    dispatch(operations.logOut());
+  };
   return (
     <>
       <Header>
@@ -21,12 +31,19 @@ export const Layout = () => {
         </LogoLink>
         <SingInLink to="/login">Sing in</SingInLink>
         <PagesLinks to="/registration">Registration</PagesLinks>
-        <PagesLinks to="/diary">diary</PagesLinks>
-        <PagesLinks to="/calculator">calculator</PagesLinks>
-        <ExitBox>
-          <NicName>Nic</NicName>
-          <ExitBtn>Exit</ExitBtn>
-        </ExitBox>
+        {TOKEN && (
+          <>
+            <PagesLinks to="/diary">diary</PagesLinks>
+            <PagesLinks to="/calculator">calculator</PagesLinks>
+          </>
+        )}
+
+        {TOKEN && (
+          <ExitBox>
+            <NicName>{NAME}</NicName>
+            <ExitBtn onClick={handleLogOut}>Exit</ExitBtn>
+          </ExitBox>
+        )}
       </Header>
       <Outlet />
     </>
