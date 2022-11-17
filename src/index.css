@@ -29,4 +29,5 @@ code {
     url(./components//HomePageForm/img/shit.svg);
   background-repeat: no-repeat;
   background-position: 782px 0px, 350px 20px, 920px 506px, 678px 34px;
+  position: relative;
 }

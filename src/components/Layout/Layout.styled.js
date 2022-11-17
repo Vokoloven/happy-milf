@@ -54,7 +54,7 @@ export const Header = styled.header`
   @media screen and (max-width: 1279px) {
     padding: 20px 20px 16px;
   }
-  padding: 80px 16px 147px;
+  padding: 80px 16px 0px;
   width: 1280px;
   margin: auto;
   align-items: baseline;
@@ -96,6 +96,8 @@ export const LogoImgS = styled.img`
 export const ExitBox = styled.div`
   display: flex;
   margin-left: auto;
+  position: relative;
+  z-index: 10;
 `;
 
 export const NicName = styled.p`
