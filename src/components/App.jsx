@@ -15,7 +15,14 @@ export const App = () => {
       <Global />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route
+            index
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/login"
             element={

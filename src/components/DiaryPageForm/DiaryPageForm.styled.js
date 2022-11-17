@@ -64,6 +64,7 @@ export const StartBtn = styled.button`
   display: block;
   margin-left: auto;
   margin-top: 103px;
+  margin-bottom: 111px;
   width: 210px;
   height: 43px;
   background: #fc842d;
@@ -89,4 +90,19 @@ export const StartBtn = styled.button`
     background: #f5f5f5;
     color: #fc842d;
   }
+`;
+
+export const Aside = styled.aside`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 517px;
+  height: 100%;
+  background-color: #f0f1f3;
+`;
+
+export const Section = styled.section`
+  display: flex;
+  background-color: white;
+  padding-top: 147px;
 `;
