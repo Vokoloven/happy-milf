@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Form = styled.form`
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -35,14 +36,16 @@ export const RadioBtnBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'Verdana';
+  font-family: 'Gotham Pro';
   font-style: normal;
   font-weight: 700;
-  font-size: 34px;
-  line-height: 41px;
-  width: 608px;
-  color: #212121;
-  margin-bottom: 64px;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #fc842d;
+  margin-bottom: 60px;
 `;
 
 export const Input = styled.input`
@@ -60,12 +63,11 @@ export const Input = styled.input`
   padding-left: 20px;
 `;
 
-export const StartBtn = styled.button`
+export const RegistertBtn = styled.button`
   display: block;
-  margin-left: auto;
-  margin-top: 103px;
-  margin-bottom: 111px;
-  width: 210px;
+  margin-top: 60px;
+  margin-bottom: 255px;
+  width: 182px;
   height: 43px;
   background: #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
@@ -90,4 +92,43 @@ export const StartBtn = styled.button`
     background: #f5f5f5;
     color: #fc842d;
   }
+`;
+export const LoginBtn = styled(Link)`
+  position: absolute;
+  bottom: 254px;
+  left: 213px;
+  display: block;
+  width: 182px;
+  height: 43px;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  border: none;
+  position: absolute;
+
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #fc842d;
+  justify-content: center;
+  transition: 250ms;
+  border: 1px solid #fc842d;
+
+  &:hover,
+  &:focus {
+    background: #fc842d;
+    color: white;
+  }
+`;
+
+export const Section = styled.section`
+  display: flex;
+  background-color: white;
+  padding-top: 147px;
 `;
