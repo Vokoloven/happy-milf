@@ -25,6 +25,7 @@ export const authSlice = createSlice({
     refreshToken: null,
     sid: null,
     isLoggedIn: false,
+    isLoading: true,
   },
   extraReducers: builder => {
     builder.addCase(operations.register.fulfilled, (state, { payload }) => {
@@ -57,22 +58,24 @@ export const authSlice = createSlice({
       state.sid = null;
       state.isLoggedIn = false;
     });
-    builder.addCase(
-      operations.fetchCurrentUser.fulfilled,
-      (state, { payload }) => {
+    builder
+      // .addCase(operations.fetchCurrentUser.pending, state => {
+      //   state.isLoading = true;
+      // })
+      .addCase(operations.fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.accessToken = payload.newAccessToken;
         state.refreshToken = payload.newRefreshToken;
         state.sid = payload.sid;
         state.isLoggedIn = true;
-      }
-    );
+        state.isLoading = false;
+      });
   },
 });
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken'],
+  whitelist: ['sid', 'accessToken', 'refreshToken', 'user'],
 };
 
 export const persistedReducer = persistReducer(
