@@ -2,10 +2,15 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
+import { useSelector } from 'react-redux';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const TOKEN = useSelector(state => state.auth.accessToken);
+  const ID = useSelector(state => state);
+  console.log(TOKEN);
+  console.log(ID);
 
   const dispatch = useDispatch();
 

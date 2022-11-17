@@ -28,7 +28,7 @@ const logIn = createAsyncThunk('login/auth', async (authData, thunkAPI) => {
     const { data } = await configAxios.post('auth/login', authData);
 
     token.set(data.accessToken);
-    console.log(configAxios.defaults.headers.common.Authorization);
+    // console.log(configAxios.defaults.headers.common.Authorization);
 
     return data;
   } catch (e) {

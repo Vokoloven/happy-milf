@@ -1,13 +1,17 @@
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const PublicRoute = ({ children }) => {
-  if (1 === 0) {
+  const TOKEN = useSelector(state => state.auth.accessToken);
+  if (TOKEN) {
     return <Navigate to="/diary" />;
   }
   return children;
 };
 export const PrivateRoute = ({ children }) => {
-  if (1 === 0) {
+  const TOKEN = useSelector(state => state.auth.accessToken);
+
+  if (!TOKEN) {
     return <Navigate to="/" />;
   }
 
