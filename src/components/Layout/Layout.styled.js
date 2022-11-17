@@ -53,7 +53,7 @@ export const Header = styled.header`
   gap: 15px;
   /* height: 80px; */
   padding: 80px 16px 147px;
-  width: 1280px;
+  // width: 1280px;
   margin: auto;
   align-items: baseline;
 `;

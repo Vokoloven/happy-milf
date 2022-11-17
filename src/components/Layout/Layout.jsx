@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { PagesLinks } from './Layout.styled';
 import Logo from './Logo.png';
+import { useSelector } from 'react-redux';
 import {
   Header,
   LogoLink,

@@ -23,7 +23,6 @@ export const DailyRateModal = ({
   const dailyRate = useSelector(selectorDailyRate);
   const notAllowedProducts = useSelector(selectorNotAllowedProducts);
   const secondNotAllowedProducts = notAllowedProducts.slice(0, 6);
-
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
