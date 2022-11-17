@@ -1,3 +1,5 @@
+import { Container } from 'components/Container/Container';
+import { DiaryDateСalendar } from 'components/DiaryDateСalendar/DiaryDateСalendar';
 // import { useSelector } from 'react-redux';
 
 export const DiaryPage = () => {
@@ -5,5 +7,11 @@ export const DiaryPage = () => {
   // const ID = useSelector(state => state);
   // console.log(TOKEN);
   // console.log(ID);
-  return <>Сторінка diary</>;
+  return (
+    <>
+      <Container>
+        <DiaryDateСalendar />
+      </Container>
+    </>
+  );
 };
