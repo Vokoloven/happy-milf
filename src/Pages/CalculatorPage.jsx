@@ -1,3 +1,9 @@
+import { CalculatorDateCalendar } from 'components/ CalculatorDateСalendar';
+
 export const CalculatorPage = () => {
-  return <>Сторінка калькулятор</>;
+  return (
+    <>
+      <CalculatorDateCalendar />
+    </>
+  );
 };
