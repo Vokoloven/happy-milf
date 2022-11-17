@@ -124,7 +124,7 @@ export const HomePageForm = () => {
             type="number"
             name="inputBloodNumber"
             required
-            value={Number(bloodType)}
+            value={Number(bloodType) || ''}
             readOnly
             style={{ pointerEvents: 'none' }}
           />

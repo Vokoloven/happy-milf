@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'reduxx/DailyRateApi';
 import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
+import { DiaryAside } from './DiaryAside/DiaryAside';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import {
   Form,
@@ -127,7 +128,7 @@ export const DiaryPageForm = () => {
               type="number"
               name="inputBloodNumber"
               required
-              value={Number(bloodType)}
+              value={Number(bloodType) || ''}
               readOnly
               style={{ pointerEvents: 'none' }}
             />
@@ -184,7 +185,7 @@ export const DiaryPageForm = () => {
           handleClickOnCloseBtn={handleClickOnCloseBtn}
         />
       )} */}
-      <Aside></Aside>
+      <DiaryAside />
     </Section>
   );
 };

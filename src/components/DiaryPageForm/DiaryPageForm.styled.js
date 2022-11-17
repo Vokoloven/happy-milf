@@ -92,15 +92,6 @@ export const StartBtn = styled.button`
   }
 `;
 
-export const Aside = styled.aside`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 517px;
-  height: 100%;
-  background-color: #f0f1f3;
-`;
-
 export const Section = styled.section`
   display: flex;
   background-color: white;

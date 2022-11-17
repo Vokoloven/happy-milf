@@ -49,11 +49,11 @@ const logOut = createAsyncThunk('logout/auth', async (_, thunkAPI) => {
 const fetchCurrentUser = createAsyncThunk(
   'refresh/auth',
   async (sid, thunkAPI) => {
-    console.log(sid);
+    // console.log(sid);
     try {
       const response = await configAxios.post('auth/refresh', sid);
 
-      console.log(response);
+      // console.log(response);
 
       return response;
     } catch (e) {
