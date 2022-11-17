@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { PagesLinks } from './Layout.styled';
-import Logo from './Logo.png';
+import LogoB from './LogoB.png';
+import LogoS from './LogoS.png';
 import { useSelector } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
 import { useDispatch } from 'react-redux';
@@ -8,7 +9,8 @@ import {
   Header,
   LogoLink,
   SingInLink,
-  LogoImg,
+  LogoImgB,
+  LogoImgS,
   ExitBox,
   NicName,
   ExitBtn,
@@ -27,17 +29,21 @@ export const Layout = () => {
     <>
       <Header>
         <LogoLink to="/">
-          <LogoImg src={Logo} alt="Logo" />
+          <LogoImgB src={LogoB} alt="Logo" />
+          <LogoImgS src={LogoS} alt="Logo" />
         </LogoLink>
-        <SingInLink to="/login">Sing in</SingInLink>
-        <PagesLinks to="/registration">Registration</PagesLinks>
+        {!TOKEN && (
+          <>
+            <SingInLink to="/login">Sing in</SingInLink>
+            <PagesLinks to="/registration">Registration</PagesLinks>
+          </>
+        )}
         {TOKEN && (
           <>
             <PagesLinks to="/diary">diary</PagesLinks>
             <PagesLinks to="/calculator">calculator</PagesLinks>
           </>
         )}
-
         {TOKEN && (
           <ExitBox>
             <NicName>{NAME}</NicName>

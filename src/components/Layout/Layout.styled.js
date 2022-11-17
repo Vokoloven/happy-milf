@@ -51,7 +51,9 @@ export const SingInLink = styled(NavLink)`
 export const Header = styled.header`
   display: flex;
   gap: 15px;
-  /* height: 80px; */
+  @media screen and (max-width: 1279px) {
+    padding: 20px 20px 16px;
+  }
   padding: 80px 16px 147px;
   // width: 1280px;
   margin: auto;
@@ -74,10 +76,21 @@ export const LogoLink = styled(Link)`
   }
 `;
 
-export const LogoImg = styled.img`
+export const LogoImgB = styled.img`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   width: 167px;
   position: relative;
   bottom: -4px;
+`;
+export const LogoImgS = styled.img`
+  height: 44px;
+  position: relative;
+  bottom: -4px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export const ExitBox = styled.div`
