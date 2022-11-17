@@ -24,9 +24,20 @@ const logIn = createAsyncThunk('login/auth', async (authData, thunkAPI) => {
   }
 });
 
+const logOut = createAsyncThunk('logout/auth', async (authData, thunkAPI) => {
+  try {
+    const { data } = await configAxios.post('auth/logout', authData);
+
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
 const operations = {
   register,
   logIn,
+  logOut,
 };
 
 export default operations;
