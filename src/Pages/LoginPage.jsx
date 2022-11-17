@@ -27,6 +27,10 @@ export const LoginPage = () => {
     }
   };
 
+  const handleLogOut = () => {
+    dispatch(operations.logOut());
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -58,6 +62,10 @@ export const LoginPage = () => {
 
         <button type="submit">Log In</button>
       </form>
+
+      <button type="button" onClick={handleLogOut}>
+        Log Out
+      </button>
     </>
   );
 };

@@ -35,5 +35,14 @@ export const authSlice = createSlice({
       state.sid = payload.sid;
       state.isLoggedIn = true;
     });
+    builder.addCase(operations.logOut.fulfilled, (state, { payload }) => {
+      state.user.email = null;
+      state.user.username = null;
+      state.user.id = null;
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.sid = null;
+      state.isLoggedIn = false;
+    });
   },
 });
