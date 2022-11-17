@@ -5,7 +5,7 @@ const Section = styled.section`
   padding: 147px 16px 0px 16px;
   width: 1280px;
   margin: auto;
-  height: 594px;
+  // height: 594px;
 `;
 
 export const HomePage = () => {
