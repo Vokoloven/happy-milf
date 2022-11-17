@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'reduxx/DailyRateApi';
-import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
+// import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 import { DiaryAside } from './DiaryAside/DiaryAside';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import {
@@ -14,6 +14,7 @@ import {
   Section,
   // RadioBtnBox,
 } from './DiaryPageForm.styled';
+import { addUserData } from 'Redux/Auth/authSlice';
 
 export const DiaryPageForm = () => {
   const [height, setHeight] = useState('');
@@ -48,6 +49,7 @@ export const DiaryPageForm = () => {
       bloodType: Number(bloodType),
     };
     dispatch(getDailyRate(user));
+    dispatch(addUserData(user));
     setIsModalOpen(true);
     reset();
   };

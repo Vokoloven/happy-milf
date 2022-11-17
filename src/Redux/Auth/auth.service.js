@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { configAxios } from './config.axios';
+import { configAxios } from 'Redux/config.axios';
 
 const token = {
   set(token) {
