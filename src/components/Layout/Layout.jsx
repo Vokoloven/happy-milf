@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { PagesLinks } from './Layout.styled';
-import LogoB from './LogoB.png';
-import LogoS from './LogoS.png';
+import LogoB from './img/LogoB.png';
+import LogoS from './img/LogoS.png';
 import { useSelector } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
 import { useDispatch } from 'react-redux';
@@ -20,8 +20,6 @@ export const Layout = () => {
   const dispatch = useDispatch();
   const TOKEN = useSelector(state => state.auth.accessToken);
   const NAME = useSelector(state => state.auth.user.username);
-  console.log(TOKEN);
-  console.log(NAME);
   const handleLogOut = () => {
     dispatch(operations.logOut());
   };

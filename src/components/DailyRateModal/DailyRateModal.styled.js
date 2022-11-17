@@ -131,5 +131,5 @@ export const ModalBtn = styled(Link)`
   &:focus {
     background: #f5f5f5;
     color: #fc842d;
-    
+  }
 `;
