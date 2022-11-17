@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import operations from './auth.service';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -35,10 +37,21 @@ export const authSlice = createSlice({
       state.sid = payload.sid;
       state.isLoggedIn = true;
     });
-    builder.addCase(operations.logOut.fulfilled, (state, { payload }) => {
-      state.user.email = null;
-      state.user.username = null;
-      state.user.id = null;
+    builder.addCase(operations.logOut.fulfilled, state => {
+      state.user = {
+        email: null,
+        username: null,
+        id: null,
+        userData: {
+          notAllowedProducts: [],
+          weight: 0,
+          height: 0,
+          age: 0,
+          bloodType: 0,
+          desiredWeight: 0,
+          dailyRate: 0,
+        },
+      };
       state.accessToken = null;
       state.refreshToken = null;
       state.sid = null;
@@ -46,3 +59,14 @@ export const authSlice = createSlice({
     });
   },
 });
+
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['sid'],
+};
+
+export const persistedReducer = persistReducer(
+  persistConfig,
+  authSlice.reducer
+);
