@@ -55,7 +55,7 @@ export const Header = styled.header`
     padding: 20px 20px 16px;
   }
   padding: 80px 16px 147px;
-  // width: 1280px;
+  width: 1280px;
   margin: auto;
   align-items: baseline;
 `;

@@ -2,7 +2,15 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'reduxx/DailyRateApi';
 import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
-import { Form, Label, Title } from './HomePageForm.styled';
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import {
+  Form,
+  Label,
+  Title,
+  Input,
+  StartBtn,
+  // RadioBtnBox,
+} from './HomePageForm.styled';
 
 export const HomePageForm = () => {
   const [height, setHeight] = useState('');
@@ -67,13 +75,14 @@ export const HomePageForm = () => {
     setBloodType('');
     setDesiredWeight('');
   };
+
   return (
     <>
       <Title>Calculate your daily calorie intake right now</Title>
       <Form onSubmit={handleStartWeightLosing}>
         <Label>
           <span>Height</span>
-          <input
+          <Input
             min="100"
             max="250"
             type="number"
@@ -85,7 +94,7 @@ export const HomePageForm = () => {
         </Label>
         <Label>
           <span>Desired weight *</span>
-          <input
+          <Input
             min="20"
             max="500"
             type="number"
@@ -97,7 +106,7 @@ export const HomePageForm = () => {
         </Label>
         <Label>
           <span>Age *</span>
-          <input
+          <Input
             min="18"
             max="100"
             type="number"
@@ -109,45 +118,51 @@ export const HomePageForm = () => {
         </Label>
         <Label>
           Blood type *
-          <div style={{ display: 'flex' }}>
-            <input
+          <Input
+            min="1"
+            max="4"
+            type="number"
+            name="inputBloodNumber"
+            required
+            value={Number(bloodType)}
+            readOnly
+            style={{ pointerEvents: 'none' }}
+          />
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            name="radio-buttons-group"
+            style={{ display: 'block' }}
+          >
+            <FormControlLabel
               onChange={handleBlood}
-              type="radio"
-              id="contactChoice1"
-              name="bloodType"
               value="1"
+              control={<Radio />}
+              label="1"
             />
-            <Label htmlFor="contactChoice1">1</Label>
-            <input
+            <FormControlLabel
               onChange={handleBlood}
-              type="radio"
-              id="contactChoice2"
-              name="bloodType"
               value="2"
+              control={<Radio />}
+              label="2"
             />
-            <Label htmlFor="contactChoice2">2</Label>
-            <input
+            <FormControlLabel
               onChange={handleBlood}
-              type="radio"
-              id="contactChoice3"
-              name="bloodType"
               value="3"
+              control={<Radio />}
+              label="3"
             />
-            <Label htmlFor="contactChoice3">3</Label>
-            <input
+            <FormControlLabel
               onChange={handleBlood}
-              type="radio"
-              id="contactChoice4"
-              name="bloodType"
               value="4"
+              control={<Radio />}
+              label="4"
             />
-            <Label htmlFor="contactChoice4">4</Label>
-          </div>
+          </RadioGroup>
         </Label>
 
         <Label>
           <span>Current weight *</span>
-          <input
+          <Input
             min="20"
             max="500"
             type="number"
@@ -157,7 +172,7 @@ export const HomePageForm = () => {
             onChange={handleCurrWeight}
           />
         </Label>
-        <button>Start losing weight</button>
+        <StartBtn>Start losing weight</StartBtn>
       </Form>
       {isModalOpen && (
         <DailyRateModal
