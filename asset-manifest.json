@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/happy-milf/static/css/main.7acaea2f.css",
-    "main.js": "/happy-milf/static/js/main.c34da74a.js",
+    "main.css": "/happy-milf/static/css/main.75322f90.css",
+    "main.js": "/happy-milf/static/js/main.4b1f1b42.js",
+    "static/media/LogoB.png": "/happy-milf/static/media/LogoB.40d0abb6166acda86bbd.png",
     "index.html": "/happy-milf/index.html",
-    "main.7acaea2f.css.map": "/happy-milf/static/css/main.7acaea2f.css.map",
-    "main.c34da74a.js.map": "/happy-milf/static/js/main.c34da74a.js.map"
+    "static/media/closeIcon.svg": "/happy-milf/static/media/closeIcon.8b0b169a772dfb2ec183581943cf2094.svg",
+    "main.75322f90.css.map": "/happy-milf/static/css/main.75322f90.css.map",
+    "main.4b1f1b42.js.map": "/happy-milf/static/js/main.4b1f1b42.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.c34da74a.js"
+    "static/css/main.75322f90.css",
+    "static/js/main.4b1f1b42.js"
   ]
 }
