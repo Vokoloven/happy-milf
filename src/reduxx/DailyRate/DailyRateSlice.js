@@ -16,12 +16,11 @@ const initialState = {
 export const dailyRateSlice = createSlice({
   name: 'dailyRate',
   initialState,
-  extraReducers: {
-    [getDailyRate.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.dailyRate = action.payload.dailyRate;
-      state.notAllowedProducts = action.payload.notAllowedProducts;
-    },
+  extraReducers: builder => {
+    builder.addCase(getDailyRate.fulfilled, (state, { payload }) => {
+      state.dailyRate = payload.dailyRate;
+      state.notAllowedProducts = payload.notAllowedProducts;
+    });
   },
 });
 
