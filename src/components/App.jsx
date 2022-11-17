@@ -8,7 +8,7 @@ import { DiaryPage } from 'Pages/DiaryPage';
 import { CalculatorPage } from 'Pages/CalculatorPage';
 import { PrivateRoute, PublicRoute } from './Routes/Routes';
 import { Global } from 'styles/global';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import operations from 'Redux/Auth/auth.service';
 import { useSelector, useDispatch } from 'react-redux';
 import { sidSelector } from 'Redux/Selectors/authSelectors';
@@ -16,10 +16,16 @@ import { sidSelector } from 'Redux/Selectors/authSelectors';
 export const App = () => {
   const { sid } = useSelector(sidSelector);
   const dispach = useDispatch();
+  const isFirstRefresh = useRef(true);
 
   useEffect(() => {
+    if (isFirstRefresh.current) {
+      isFirstRefresh.current = false;
+      return;
+    }
+
     dispach(operations.fetchCurrentUser({ sid: sid }));
-  }, [dispach, sid]);
+  }, [dispach]);
 
   return (
     <>

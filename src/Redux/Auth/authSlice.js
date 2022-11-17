@@ -57,13 +57,22 @@ export const authSlice = createSlice({
       state.sid = null;
       state.isLoggedIn = false;
     });
+    builder.addCase(
+      operations.fetchCurrentUser.fulfilled,
+      (state, { payload }) => {
+        state.accessToken = payload.newAccessToken;
+        state.refreshToken = payload.newRefreshToken;
+        state.sid = payload.sid;
+        state.isLoggedIn = true;
+      }
+    );
   },
 });
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid'],
+  whitelist: ['sid', 'accessToken', 'refreshToken'],
 };
 
 export const persistedReducer = persistReducer(
