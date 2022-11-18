@@ -180,7 +180,6 @@ export const Header = styled.header`
   // width: 1280px;
   margin: auto;
   align-items: baseline;
-  margin-bottom: 10px;
 `;
 
 export const LogoLink = styled(Link)`
@@ -241,7 +240,16 @@ export const ExitBox = styled.div`
   z-index: 10;
   @media screen and (max-width: 479px) {
     position: absolute;
-    top: 95px;
+    top: 80px;
+    left: 0;
+    background-color: #eff1f3;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    margin-left: auto;
+    justify-content: end;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 `;
 
