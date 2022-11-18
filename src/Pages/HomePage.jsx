@@ -6,7 +6,7 @@ const Section = styled.section`
     padding: 32px 20px 100px 20px;
   }
   @media screen and (min-width: 768px) {
-    padding: 100px 32px 210px 32px;
+    padding: 68px 32px 398px 32px;
   }
   padding: 147px 16px 0px 16px;
   margin: auto;

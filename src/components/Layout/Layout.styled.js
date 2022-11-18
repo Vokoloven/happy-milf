@@ -28,12 +28,16 @@ export const PagesLinks = styled(NavLink)`
 `;
 export const SingInLink = styled(NavLink)`
   margin-left: auto;
+  @media screen and (min-width: 1280px) {
+    margin-left: revert;
+  }
   font-family: 'Gotham Pro';
   font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
   position: relative;
   font-size: 14px;
+  line-height: 13px;
 
   letter-spacing: 0.04em;
 
@@ -53,6 +57,7 @@ export const Header = styled.header`
   display: flex;
   gap: 15px;
   @media screen and (max-width: 1279px) {
+    align-items: center;
     padding: 20px 20px 16px;
   }
   padding: 80px 16px 0px;
@@ -64,16 +69,18 @@ export const Header = styled.header`
 export const LogoLink = styled(Link)`
   margin-right: 22px;
   position: relative;
-  &::after {
-    pointer-events: none;
-    position: absolute;
-    content: '';
-    height: 32px;
-    width: 2px;
-    background-color: #e0e0e0;
-    bottom: -26px;
-    right: -20px;
-    transform: translateY(-50%);
+  @media screen and (min-width: 1280px) {
+    &::after {
+      pointer-events: none;
+      position: absolute;
+      content: '';
+      height: 32px;
+      width: 2px;
+      background-color: #e0e0e0;
+      bottom: -26px;
+      right: -20px;
+      transform: translateY(-50%);
+    }
   }
 `;
 
@@ -114,6 +121,7 @@ export const NicName = styled.p`
   letter-spacing: 0.04em;
 
   color: #212121;
+
   &::after {
     pointer-events: none;
     position: absolute;

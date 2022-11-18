@@ -14,6 +14,9 @@ export const Form = styled.form`
   @media screen and (max-width: 767px) {
     grid-template-columns: repeat(1, 1fr);
   }
+  @media screen and (min-width: 768px) {
+    width: 512px;
+  }
 `;
 
 export const Label = styled.label`
@@ -27,6 +30,7 @@ export const Label = styled.label`
   letter-spacing: 0.04em;
   width: 240px;
   color: #9b9faa;
+  position: relative;
   @media screen and (min-width: 480px) {
     margin: auto;
   }
@@ -91,6 +95,11 @@ export const StartBtn = styled.button`
   margin-right: auto;
   @media screen and (min-width: 1280px) {
     margin-left: auto;
+  }
+  @media screen and (min-width: 768px) {
+    position: relative;
+    left: -287px;
+    bottom: 6px;
   }
   @media screen and (max-width: 480px) {
     margin-top: 40px;
