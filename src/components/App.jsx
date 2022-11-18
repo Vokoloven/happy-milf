@@ -8,7 +8,7 @@ import { DiaryPage } from 'Pages/DiaryPage';
 import { CalculatorPage } from 'Pages/CalculatorPage';
 import { PrivateRoute, PublicRoute } from './Routes/Routes';
 import { Global } from 'styles/global';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import operations from 'Redux/Auth/auth.service';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from 'Redux/Selectors/authSelectors';
@@ -17,13 +17,13 @@ export const App = () => {
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
-  const isFirstRefresh = useRef(true);
+  // const isFirstRefresh = useRef(true);
 
   useEffect(() => {
-    if (isFirstRefresh.current) {
-      isFirstRefresh.current = false;
-      return;
-    }
+    // if (isFirstRefresh.current) {
+    //   isFirstRefresh.current = false;
+    //   return;
+    // }
 
     if (isLoading) {
       dispach(operations.fetchCurrentUser({ sid: sid }));
