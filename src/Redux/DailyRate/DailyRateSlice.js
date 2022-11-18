@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getDailyRate } from './DailyRate.service';
+import { postDailyRateById } from './DailyRate.service';
 
 const initialState = {
   user: {
@@ -20,6 +21,9 @@ export const dailyRateSlice = createSlice({
     builder.addCase(getDailyRate.fulfilled, (state, { payload }) => {
       state.dailyRate = payload.dailyRate;
       state.notAllowedProducts = payload.notAllowedProducts;
+    });
+    builder.addCase(postDailyRateById.fulfilled, (state, { payload }) => {
+      console.log(payload);
     });
   },
 });
