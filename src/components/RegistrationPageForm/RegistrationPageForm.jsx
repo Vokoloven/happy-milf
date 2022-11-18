@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { LoginPage } from 'Pages/LoginPage';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
