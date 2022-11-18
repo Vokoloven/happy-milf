@@ -6,12 +6,12 @@ import {
 } from './ CalculatorDateСalendar.styled';
 
 export const CalculatorDateCalendar = () => {
-  const dateNow = new Date().toLocaleDateString();
+  // const dateNow = new Date().toLocaleDateString();
   const [value, onValue] = useState(new Date());
 
   return (
     <CalendarContainer>
-      <CalendarTitle>{value}</CalendarTitle>
+      <CalendarTitle>{value.toString()}</CalendarTitle>
       <Calendar value={value} onValue={onValue} />
     </CalendarContainer>
   );
