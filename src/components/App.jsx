@@ -11,15 +11,24 @@ import { Global } from 'styles/global';
 import { useEffect } from 'react';
 import operations from 'Redux/Auth/auth.service';
 import { useSelector, useDispatch } from 'react-redux';
-import { sidSelector } from 'Redux/Selectors/authSelectors';
+import { authSelector } from 'Redux/Selectors/authSelectors';
 
 export const App = () => {
-  const { sid } = useSelector(sidSelector);
+  const { sid } = useSelector(authSelector);
+  const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
+  // const isFirstRefresh = useRef(true);
 
   useEffect(() => {
-    dispach(operations.fetchCurrentUser({ sid: sid }));
-  }, [dispach, sid]);
+    // if (isFirstRefresh.current) {
+    //   isFirstRefresh.current = false;
+    //   return;
+    // }
+
+    if (isLoading) {
+      dispach(operations.fetchCurrentUser({ sid: sid }));
+    }
+  }, [dispach, isLoading, sid]);
 
   return (
     <>

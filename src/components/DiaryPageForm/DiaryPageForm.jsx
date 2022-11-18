@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getDailyRate } from 'reduxx/DailyRateApi';
-import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
+import { getDailyRate } from '../../Redux/DailyRate/DailyRate.service';
+
+import { DiaryAside } from './DiaryAside/DiaryAside';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import {
   Form,
@@ -9,10 +10,17 @@ import {
   Title,
   Input,
   StartBtn,
-  Aside,
   Section,
-  // RadioBtnBox,
 } from './DiaryPageForm.styled';
+// import {
+//   selectorDailyRate,
+//   selectorNotAllowedProducts,
+// } from 'Redux/Selectors/dailyRateSelector';
+// import {
+//   addUserData,
+//   addDailyRate,
+//   addNotAllowedProducts,
+// } from 'Redux/Auth/authSlice';
 
 export const DiaryPageForm = () => {
   const [height, setHeight] = useState('');
@@ -20,8 +28,12 @@ export const DiaryPageForm = () => {
   const [age, setAge] = useState('');
   const [bloodType, setBloodType] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
+  // const dailyRate = useSelector(selectorDailyRate);
+  // const notAllowedProducts = useSelector(selectorNotAllowedProducts);
+  // const isFirstRefresh = useRef(true);
+
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
   };
@@ -46,30 +58,12 @@ export const DiaryPageForm = () => {
       desiredWeight: Number(desiredWeight),
       bloodType: Number(bloodType),
     };
+
     dispatch(getDailyRate(user));
-    setIsModalOpen(true);
+
     reset();
   };
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyModalClose);
-    return () => {
-      window.removeEventListener('keydown', handleKeyModalClose);
-    };
-  }, []);
-  const handleKeyModalClose = e => {
-    if (e.code === 'Escape') {
-      setIsModalOpen(false);
-    }
-  };
-  const handleClickOnCloseBtn = () => {
-    setIsModalOpen(false);
-  };
-  const handleBackdropClose = e => {
-    console.log(e.target);
-    if (e.target === e.currentTarget) {
-      setIsModalOpen(false);
-    }
-  };
+
   const reset = () => {
     setHeight('');
     setWeight('');
@@ -127,7 +121,7 @@ export const DiaryPageForm = () => {
               type="number"
               name="inputBloodNumber"
               required
-              value={Number(bloodType)}
+              value={Number(bloodType) || ''}
               readOnly
               style={{ pointerEvents: 'none' }}
             />
@@ -178,13 +172,7 @@ export const DiaryPageForm = () => {
           <StartBtn>Start losing weight</StartBtn>
         </Form>
       </div>
-      {/* {isModalOpen && (
-        <DailyRateModal
-          handleBackdropClose={handleBackdropClose}
-          handleClickOnCloseBtn={handleClickOnCloseBtn}
-        />
-      )} */}
-      <Aside></Aside>
+      <DiaryAside />
     </Section>
   );
 };

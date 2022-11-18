@@ -1,1 +1,1 @@
-export const sidSelector = state => state.auth;
+export const authSelector = state => state.auth;

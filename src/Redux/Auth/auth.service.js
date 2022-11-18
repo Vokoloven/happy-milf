@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { configAxios } from './config.axios';
+import { configAxios } from 'Redux/config.axios';
 
 const token = {
   set(token) {
@@ -28,7 +28,6 @@ const logIn = createAsyncThunk('login/auth', async (authData, thunkAPI) => {
     const { data } = await configAxios.post('auth/login', authData);
 
     token.set(data.accessToken);
-    // console.log(configAxios.defaults.headers.common.Authorization);
 
     return data;
   } catch (e) {
@@ -49,13 +48,22 @@ const logOut = createAsyncThunk('logout/auth', async (_, thunkAPI) => {
 const fetchCurrentUser = createAsyncThunk(
   'refresh/auth',
   async (sid, thunkAPI) => {
-    console.log(sid);
     try {
-      const response = await configAxios.post('auth/refresh', sid);
+      const state = thunkAPI.getState();
 
-      console.log(response);
+      const persistedToken = state.auth.refreshToken;
 
-      return response;
+      token.set(persistedToken);
+
+      if (persistedToken === null) {
+        return thunkAPI.rejectWithValue();
+      }
+
+      const { data } = await configAxios.post('auth/refresh', sid);
+
+      token.set(data.newAccessToken);
+
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
