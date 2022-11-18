@@ -1,14 +1,32 @@
 import styled from 'styled-components';
 
 export const Aside = styled.aside`
-  padding-top: 292px;
+  background-color: #f0f1f3;
+
+  /* padding-top: 292px;
   padding-left: 106px;
   position: absolute;
   top: 0;
   right: 0;
   width: 517px;
   height: 100%;
+  background-color: #f0f1f3; */
+`;
+
+export const AsideContainer = styled.div`
+  width: 320px;
+  margin: 0 auto;
+  padding: 40px 20px 70px 20px;
   background-color: #f0f1f3;
+
+  /* padding-top: 292px;
+  padding-left: 106px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 517px;
+  height: 100%;
+  background-color: #f0f1f3; */
 `;
 
 export const TitleAside = styled.h3`
