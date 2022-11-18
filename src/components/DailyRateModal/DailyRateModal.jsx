@@ -13,8 +13,10 @@ import {
   InfoItem,
   InfoList,
   ModalBtn,
+  CloseBtnMob,
 } from './DailyRateModal.styled';
-import closeIcon from './closeIcon.svg';
+import closeIcon from './img/closeIcon.svg';
+import menuArrow from './img/MenuArrow.svg';
 
 export const DailyRateModal = ({
   handleBackdropClose,
@@ -26,6 +28,9 @@ export const DailyRateModal = ({
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
+        <CloseBtnMob onClick={handleClickOnCloseBtn}>
+          <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
+        </CloseBtnMob>
         <CloseBtn onClick={handleClickOnCloseBtn}>
           <img style={{ pointerEvents: 'none' }} src={closeIcon} alt="X" />
         </CloseBtn>
@@ -33,7 +38,7 @@ export const DailyRateModal = ({
           Your recommended daily calorie intake is
           <DailyRateNumber>
             {dailyRate}
-            <CalText>cal</CalText>
+            <CalText>kcal</CalText>
           </DailyRateNumber>
         </ModalTitle>
         <InfoBox>

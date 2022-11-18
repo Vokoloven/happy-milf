@@ -20,9 +20,31 @@ export const Modal = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  @media screen and (max-width: 479px) {
+    width: fit-content;
+  }
+  @media screen and (max-width: 767px) {
+    max-width: 500px;
+  }
 `;
 
+export const CloseBtnMob = styled.button`
+@media screen and (min-width: 767px) {
+display: none;
+  
+}
+    position: absolute;
+    top: -16px;
+    transform: translateY(-100%);
+    border: none;
+    background-color: transparent;
+      scale: 1.1;
+}`;
+
 export const CloseBtn = styled.button`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   background: none;
   border: none;
   outline: none;
@@ -48,6 +70,12 @@ export const ModalTitle = styled.h2`
   color: #212121;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 26px;
+    width: 280px;
+    margin: auto;
+  }
 `;
 
 export const DailyRateNumber = styled.span`
@@ -66,6 +94,12 @@ export const DailyRateNumber = styled.span`
 export const CalText = styled.span`
   font-size: 25px;
   margin-left: 10px;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 26px;
+    width: 280px;
+    margin-left: 5px;
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -74,6 +108,11 @@ padding-top: 12px;
   display: block;
   width: 330px;
   margin: auto;
+  
+  @media screen and (max-width: 767px) {
+  width: fit-content;
+  }
+
 `;
 
 export const ModalInfo = styled.h3`
