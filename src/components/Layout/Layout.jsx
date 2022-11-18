@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { PagesLinks } from './Layout.styled';
 import LogoB from './img/LogoB.png';
 import LogoS from './img/LogoS.png';
 import { useSelector } from 'react-redux';
@@ -10,11 +9,14 @@ import {
   Header,
   LogoLink,
   SingInLink,
+  SingInLinkMob,
   LogoImgB,
   LogoImgS,
   ExitBox,
   NicName,
   ExitBtn,
+  PagesLinks,
+  PagesLinksMob,
 } from './Layout.styled';
 import { useState } from 'react';
 
@@ -53,6 +55,16 @@ export const Layout = () => {
             </PagesLinks>
           </>
         )}
+
+        <>
+          {' '}
+          <SingInLinkMob onClick={handleAuthorization} to="/login">
+            Sing in
+          </SingInLinkMob>
+          <PagesLinksMob onClick={handleAuthorization} to="/registration">
+            Registration
+          </PagesLinksMob>
+        </>
         {TOKEN && (
           <>
             <PagesLinks to="/diary">diary</PagesLinks>

@@ -33,6 +33,10 @@ export const CloseBtnMob = styled.button`
 display: none;
   
 }
+@media screen and (min-width: 480px) {
+  left: 20px;
+
+}
     position: absolute;
     top: -16px;
     transform: translateY(-100%);
