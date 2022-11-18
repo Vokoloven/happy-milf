@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { selectorDailyRate } from 'reduxx/DailyRate/Selector';
-import { selectorNotAllowedProducts } from 'reduxx/DailyRate/Selector';
+import { selectorDailyRate } from 'Redux/Selectors/dailyRateSelector';
+import { selectorNotAllowedProducts } from 'Redux/Selectors/dailyRateSelector';
 import {
   Backdrop,
   CloseBtn,

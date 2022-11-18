@@ -1,13 +1,11 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
+import { configAxios } from 'Redux/config.axios';
 
 export const getDailyRate = createAsyncThunk(
   'rate/daily',
   async (userData, thunkAPI) => {
     try {
-      const { data } = await axios.post('/daily-rate', userData);
+      const { data } = await configAxios.post('/daily-rate', userData);
 
       return data;
     } catch (e) {

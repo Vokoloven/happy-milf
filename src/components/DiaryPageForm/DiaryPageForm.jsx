@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getDailyRate } from 'reduxx/DailyRateApi';
+import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDailyRate } from 'Redux/DailyRate/DailyRate.service';
 // import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 import { DiaryAside } from './DiaryAside/DiaryAside';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
@@ -14,7 +14,15 @@ import {
   Section,
   // RadioBtnBox,
 } from './DiaryPageForm.styled';
-import { addUserData } from 'Redux/Auth/authSlice';
+import {
+  selectorDailyRate,
+  selectorNotAllowedProducts,
+} from 'Redux/Selectors/dailyRateSelector';
+import {
+  addUserData,
+  addDailyRate,
+  addNotAllowedProducts,
+} from 'Redux/Auth/authSlice';
 
 export const DiaryPageForm = () => {
   const [height, setHeight] = useState('');
@@ -24,6 +32,10 @@ export const DiaryPageForm = () => {
   const [desiredWeight, setDesiredWeight] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const dailyRate = useSelector(selectorDailyRate);
+  const notAllowedProducts = useSelector(selectorNotAllowedProducts);
+  const isFirstRefresh = useRef(true);
+
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
   };
@@ -48,11 +60,21 @@ export const DiaryPageForm = () => {
       desiredWeight: Number(desiredWeight),
       bloodType: Number(bloodType),
     };
+
     dispatch(getDailyRate(user));
     dispatch(addUserData(user));
+
     setIsModalOpen(true);
     reset();
   };
+
+  useEffect(() => {
+    if (dailyRate !== '' || notAllowedProducts.length !== 0) {
+      dispatch(addDailyRate(dailyRate));
+      dispatch(addNotAllowedProducts(notAllowedProducts));
+    }
+  }, [dailyRate, dispatch, notAllowedProducts]);
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyModalClose);
     return () => {

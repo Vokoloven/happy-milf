@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getDailyRate } from 'reduxx/DailyRateApi';
+import { getDailyRate } from 'Redux/DailyRate/DailyRate.service';
 import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import {
