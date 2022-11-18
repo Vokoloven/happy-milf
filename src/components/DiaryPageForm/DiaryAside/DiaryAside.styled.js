@@ -1,14 +1,33 @@
 import styled from 'styled-components';
 
 export const Aside = styled.aside`
-  padding-top: 292px;
-  padding-left: 106px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 517px;
-  height: 100%;
   background-color: #f0f1f3;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding: 0 32px;
+  }
+`;
+
+export const AsideContainer = styled.div`
+  width: 320px;
+  margin: 0 auto;
+  padding: 40px 20px 70px 20px;
+  background-color: #f0f1f3;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    width: 768px;
+    padding: 80px 0;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 292px;
+    padding-left: 106px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 517px;
+    height: 100%;
+  }
 `;
 
 export const TitleAside = styled.h3`
@@ -28,6 +47,10 @@ export const List = styled.ul`
   gap: 10px;
   width: 270px;
   margin-bottom: 60px;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-right: 80px;
+    margin-bottom: 0;
+  }
 `;
 
 export const InfoName = styled.p`

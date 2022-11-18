@@ -28,17 +28,7 @@ export const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: true,
   },
-  reducers: {
-    addUserData(state, { payload }) {
-      state.user.userData = { ...state.user.userData, ...payload };
-    },
-    addDailyRate(state, { payload }) {
-      state.user.userData.dailyRate = payload;
-    },
-    addNotAllowedProducts(state, { payload }) {
-      state.user.userData.notAllowedProducts = payload;
-    },
-  },
+
   extraReducers: builder => {
     builder.addCase(operations.register.fulfilled, (state, { payload }) => {
       state.user.userData = payload;
@@ -52,20 +42,20 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     });
     builder.addCase(operations.logOut.fulfilled, state => {
-      // state.user = {
-      //   email: null,
-      //   username: null,
-      //   id: null,
-      //   userData: {
-      //     notAllowedProducts: [],
-      //     weight: 0,
-      //     height: 0,
-      //     age: 0,
-      //     bloodType: 0,
-      //     desiredWeight: 0,
-      //     dailyRate: 0,
-      //   },
-      // };
+      state.user = {
+        email: null,
+        username: null,
+        id: null,
+        userData: {
+          notAllowedProducts: [],
+          weight: 0,
+          height: 0,
+          age: 0,
+          bloodType: 0,
+          desiredWeight: 0,
+          dailyRate: 0,
+        },
+      };
       state.accessToken = null;
       state.refreshToken = null;
       state.sid = null;
@@ -95,6 +85,3 @@ export const persistedReducer = persistReducer(
   persistConfig,
   authSlice.reducer
 );
-
-export const { addUserData, addDailyRate, addNotAllowedProducts } =
-  authSlice.actions;

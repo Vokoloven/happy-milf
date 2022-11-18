@@ -23,7 +23,8 @@ export const dailyRateSlice = createSlice({
       state.notAllowedProducts = payload.notAllowedProducts;
     });
     builder.addCase(postDailyRateById.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      state.dailyRate = payload.dailyRate;
+      state.notAllowedProducts = payload.notAllowedProducts;
     });
   },
 });
