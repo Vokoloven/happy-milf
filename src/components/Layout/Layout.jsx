@@ -5,6 +5,7 @@ import LogoS from './img/LogoS.png';
 import { useSelector } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
 import { useDispatch } from 'react-redux';
+// import { sidSelector } from 'Redux/Selectors/authSelectors';
 import {
   Header,
   LogoLink,
@@ -25,6 +26,7 @@ export const Layout = () => {
 
   const TOKEN = useSelector(state => state.auth.accessToken);
   const NAME = useSelector(state => state.auth.user.username);
+  // const SID = useSelector(sidSelector);
   const handleLogOut = () => {
     dispatch(operations.logOut());
   };
