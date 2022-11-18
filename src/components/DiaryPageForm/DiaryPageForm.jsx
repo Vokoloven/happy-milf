@@ -12,15 +12,9 @@ import {
   StartBtn,
   Section,
 } from './DiaryPageForm.styled';
-// import {
-//   selectorDailyRate,
-//   selectorNotAllowedProducts,
-// } from 'Redux/Selectors/dailyRateSelector';
-// import {
-//   addUserData,
-//   addDailyRate,
-//   addNotAllowedProducts,
-// } from 'Redux/Auth/authSlice';
+import { postDailyRateById } from 'Redux/DailyRate/DailyRate.service';
+import { useSelector } from 'react-redux';
+import { authSelector } from 'Redux/Selectors/authSelectors';
 
 export const DiaryPageForm = () => {
   const [height, setHeight] = useState('');
@@ -30,9 +24,8 @@ export const DiaryPageForm = () => {
   const [desiredWeight, setDesiredWeight] = useState('');
 
   const dispatch = useDispatch();
-  // const dailyRate = useSelector(selectorDailyRate);
-  // const notAllowedProducts = useSelector(selectorNotAllowedProducts);
-  // const isFirstRefresh = useRef(true);
+
+  const { isLoggedIn } = useSelector(authSelector);
 
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
@@ -59,7 +52,13 @@ export const DiaryPageForm = () => {
       bloodType: Number(bloodType),
     };
 
-    dispatch(getDailyRate(user));
+    if (!isLoggedIn) {
+      dispatch(getDailyRate(user));
+    }
+
+    if (isLoggedIn) {
+      dispatch(postDailyRateById(user));
+    }
 
     reset();
   };

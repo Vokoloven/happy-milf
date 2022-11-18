@@ -28,17 +28,7 @@ export const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: true,
   },
-  reducers: {
-    addUserData(state, { payload }) {
-      state.user.userData = { ...state.user.userData, ...payload };
-    },
-    addDailyRate(state, { payload }) {
-      state.user.userData.dailyRate = payload;
-    },
-    addNotAllowedProducts(state, { payload }) {
-      state.user.userData.notAllowedProducts = payload;
-    },
-  },
+
   extraReducers: builder => {
     builder.addCase(operations.register.fulfilled, (state, { payload }) => {
       state.user.userData = payload;
@@ -95,6 +85,3 @@ export const persistedReducer = persistReducer(
   persistConfig,
   authSlice.reducer
 );
-
-export const { addUserData, addDailyRate, addNotAllowedProducts } =
-  authSlice.actions;

@@ -16,11 +16,12 @@ export const getDailyRate = createAsyncThunk(
 
 export const postDailyRateById = createAsyncThunk(
   'rate/dailyId',
-  async (id, userData, thunkAPI) => {
+  async (userData, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const id = state.auth.user.id;
+
     try {
       const { data } = await configAxios.post(`/daily-rate/${id}`, userData);
-
-      console.log(data);
 
       return data;
     } catch (e) {
