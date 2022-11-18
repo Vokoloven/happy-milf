@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dailyRateSlice } from 'reduxx/DailyRate/DailyRateSlice';
+import { dailyRateSlice } from 'Redux/DailyRate/DailyRateSlice';
 import thunk from 'redux-thunk';
 import { persistedReducer } from './Auth/authSlice';
 import { persistStore } from 'redux-persist';
