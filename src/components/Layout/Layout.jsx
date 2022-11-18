@@ -36,7 +36,7 @@ export const Layout = () => {
 
   const TOKEN = useSelector(state => state.auth.accessToken);
   const NAME = useSelector(state => state.auth.user.username);
-  // const SID = useSelector(sidSelector);
+
   const handleLogOut = () => {
     dispatch(operations.logOut());
   };
@@ -60,10 +60,18 @@ export const Layout = () => {
         </LogoLink>
         {!TOKEN && !authorization && (
           <>
-            <SingInLink onClick={handleAuthorization} to="/login">
+            <SingInLink
+              style={{ marginLeft: '20px' }}
+              onClick={handleAuthorization}
+              to="/login"
+            >
               Sing in
             </SingInLink>
-            <PagesLinks onClick={handleAuthorization} to="/registration">
+            <PagesLinks
+              style={{ marginLeft: '15px' }}
+              onClick={handleAuthorization}
+              to="/registration"
+            >
               Registration
             </PagesLinks>
           </>

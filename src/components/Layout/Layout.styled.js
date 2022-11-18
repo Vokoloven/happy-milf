@@ -170,6 +170,7 @@ export const SingInLinkMob = styled(NavLink)`
 
 export const Header = styled.header`
   position: relative;
+  background-color: white;
   display: flex;
   @media screen and (max-width: 1279px) {
     box-shadow: 0px 0px 4px grey;
