@@ -239,6 +239,10 @@ export const ExitBox = styled.div`
   margin-left: auto;
   position: relative;
   z-index: 10;
+  @media screen and (max-width: 479px) {
+    position: absolute;
+    top: 95px;
+  }
 `;
 
 export const NicName = styled.p`
@@ -291,11 +295,12 @@ export const ExitBtn = styled.button`
 
 export const MenuBox = styled.div`
   padding-top: 60px;
+  top: 80px;
   @media screen and (min-width: 768px) {
     padding: 100px;
+    top: 80px;
   }
   left: 0;
-  top: 80px;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -315,5 +320,8 @@ export const MenuBtn = styled.button`
   margin-left: 50px;
   @media screen and (min-width: 1280px) {
     display: none;
+  }
+  @media screen and (max-width: 479px) {
+    margin-left: auto;
   }
 `;
