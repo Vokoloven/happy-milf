@@ -47,8 +47,6 @@ export const Layout = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  console.log(isMenuOpen);
-
   const handleAuthorizationRestart = () => {
     setAuthorization(AUTHORIZATION);
   };
