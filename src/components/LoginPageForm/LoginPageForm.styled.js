@@ -12,6 +12,9 @@ export const Form = styled.form`
   }
   gap: 32px;
   width: 512px;
+  @media screen and (max-width: 767px) {
+    width: auto;
+  }
 `;
 
 export const Label = styled.label`
@@ -74,6 +77,15 @@ export const LogIntBtn = styled.button`
   border-radius: 30px;
   border: none;
 
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+  }
+
   font-family: 'Verdana';
   font-style: normal;
   font-weight: 700;
@@ -94,6 +106,16 @@ export const LogIntBtn = styled.button`
   }
 `;
 export const RegisterBtn = styled(Link)`
+  @media screen and (max-width: 767px) {
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: 255px;
+    left: 234px;
+  }
   position: absolute;
   bottom: 254px;
   left: 213px;

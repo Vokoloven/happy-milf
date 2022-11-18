@@ -32,7 +32,7 @@ export const Form = styled.form`
 `;
 
 export const DiaryContainer = styled.div`
-  width: 320px;
+  // width: 320px;
   margin: 0 auto;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -205,6 +205,9 @@ export const StartBtn = styled.button`
 `;
 
 export const Section = styled.section`
+  position: relative;
+  top: 8px;
+  padding-top: 32px;
   background-color: white;
   padding-left: 20px;
   padding-right: 20px;

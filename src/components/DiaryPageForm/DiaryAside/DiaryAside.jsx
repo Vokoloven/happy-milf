@@ -14,7 +14,6 @@ export const DiaryAside = () => {
     <Aside>
       <AsideContainer>
         <div>
-          {' '}
           <TitleAside>Summary for 06/20/2020</TitleAside>
           <List>
             <li>
