@@ -40,7 +40,7 @@ export const DiaryAside = () => {
       </List>
       <RecTitle>Food not recommended</RecTitle>
       {/* !! */}
-      {1 === 1 ? (
+      {1 === 0 ? (
         <DietText>Your diet will displayed here</DietText>
       ) : (
         <DietText>replace here Backend diet info</DietText>

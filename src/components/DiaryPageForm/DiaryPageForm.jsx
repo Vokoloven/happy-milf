@@ -12,15 +12,6 @@ import {
   StartBtn,
   Section,
 } from './DiaryPageForm.styled';
-// import {
-//   selectorDailyRate,
-//   selectorNotAllowedProducts,
-// } from 'Redux/Selectors/dailyRateSelector';
-// import {
-//   addUserData,
-//   addDailyRate,
-//   addNotAllowedProducts,
-// } from 'Redux/Auth/authSlice';
 
 export const DiaryPageForm = () => {
   const [height, setHeight] = useState('');
@@ -30,9 +21,6 @@ export const DiaryPageForm = () => {
   const [desiredWeight, setDesiredWeight] = useState('');
 
   const dispatch = useDispatch();
-  // const dailyRate = useSelector(selectorDailyRate);
-  // const notAllowedProducts = useSelector(selectorNotAllowedProducts);
-  // const isFirstRefresh = useRef(true);
 
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
