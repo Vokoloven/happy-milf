@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'Redux/DailyRate/DailyRate.service';
 // import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 import { DiaryAside } from './DiaryAside/DiaryAside';
