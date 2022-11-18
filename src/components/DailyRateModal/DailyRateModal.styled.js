@@ -21,7 +21,9 @@ export const Modal = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   @media screen and (max-width: 479px) {
+    top: 125px;
     width: fit-content;
+    transform: translate(-50%, 0%);
   }
   @media screen and (max-width: 767px) {
     max-width: 500px;
@@ -29,7 +31,7 @@ export const Modal = styled.div`
 `;
 
 export const CloseBtnMob = styled.button`
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 480px) {
 display: none;
   
 }
@@ -38,7 +40,7 @@ display: none;
 
 }
     position: absolute;
-    top: -16px;
+    top: -15px;
     transform: translateY(-100%);
     border: none;
     background-color: transparent;
@@ -46,7 +48,7 @@ display: none;
 }`;
 
 export const CloseBtn = styled.button`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 479px) {
     display: none;
   }
   background: none;

@@ -95,5 +95,14 @@ export const StartBtn = styled.button`
 export const Section = styled.section`
   display: flex;
   background-color: white;
-  padding-top: 147px;
+  // padding-top: 147px;
+  // position: relative;
+
+  padding: 40px 20px 0px 20px;
+  @media screen and (min-width: 768px) {
+    padding: 160px 32px 0px 32px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 160px 16px 0px 16px;
+  }
 `;

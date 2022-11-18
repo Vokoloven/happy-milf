@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Section = styled.section`
   @media screen and (max-width: 767px) {
-    padding: 32px 20px 100px 20px;
+    padding: 40px 20px 100px 20px;
   }
   @media screen and (min-width: 768px) {
     padding: 68px 32px 398px 32px;

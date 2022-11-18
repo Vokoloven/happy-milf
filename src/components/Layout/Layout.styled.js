@@ -29,6 +29,36 @@ export const PagesLinks = styled(NavLink)`
     color: #212121;
   }
 `;
+
+export const PagesLinksPrivate = styled(NavLink)`
+  // @media screen and (max-width: 1279px) {
+  //   display: none;
+  // }
+  font-family: 'Gotham Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9b9faa;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    scale: 1.05;
+  }
+
+  &.active {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    position: relative;
+    color: #212121;
+  }
+`;
+
 export const PagesLinksMob = styled(NavLink)`
   @media screen and (min-width: 1280px) {
     display: none;
@@ -122,6 +152,7 @@ export const Header = styled.header`
   @media screen and (max-width: 1279px) {
     align-items: center;
     padding: 20px 20px 16px;
+    box-shadow: 0px 0px 10px;
   }
   padding: 80px 16px 0px;
   // width: 1280px;
@@ -149,7 +180,7 @@ export const LogoLink = styled(Link)`
 
 export const LogoImgB = styled.img`
   height: 66px;
-  @media screen and (max-width: 479px) {
+  @media screen and (max-width: 1279px) {
     display: none;
   }
   @media screen and (max-width: 767px) {
@@ -163,6 +194,15 @@ export const LogoImgS = styled.img`
   position: relative;
   bottom: -4px;
   @media screen and (min-width: 480px) {
+    display: none;
+  }
+`;
+
+export const LogoImgT = styled.img`
+  height: 44px;
+  position: relative;
+  bottom: -4px;
+  @media screen and (min-width: 1280px) {
     display: none;
   }
 `;

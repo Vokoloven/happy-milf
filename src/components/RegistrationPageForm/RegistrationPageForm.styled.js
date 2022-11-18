@@ -11,7 +11,7 @@ export const Form = styled.form`
     margin: 0;
   }
   gap: 32px;
-  width: 512px;
+  // width: 512px;
 `;
 
 export const Label = styled.label`
@@ -94,6 +94,10 @@ export const RegistertBtn = styled.button`
   }
 `;
 export const LoginBtn = styled(Link)`
+  @media screen and (max-width: 767px) {
+    bottom: 193px;
+    left: 0px;
+  }
   position: absolute;
   bottom: 254px;
   left: 213px;
