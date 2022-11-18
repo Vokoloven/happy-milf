@@ -3,14 +3,16 @@ import { useDispatch } from 'react-redux';
 import { getDailyRate } from 'Redux/DailyRate/DailyRate.service';
 import { DailyRateModal } from 'components/DailyRateModal/DailyRateModal';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import {
-  Form,
-  Label,
-  Title,
-  Input,
-  StartBtn,
-  // RadioBtnBox,
-} from './HomePageForm.styled';
+import { Form, Label, Title, Input, StartBtn } from './HomePageForm.styled';
+import styled from 'styled-components';
+
+const RadioBox = styled(RadioGroup)`
+  display: block;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: -40px;
+  }
+`;
 
 export const HomePageForm = () => {
   const [height, setHeight] = useState('');
@@ -128,7 +130,7 @@ export const HomePageForm = () => {
             readOnly
             style={{ pointerEvents: 'none' }}
           />
-          <RadioGroup
+          <RadioBox
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             style={{ display: 'block' }}
@@ -157,7 +159,7 @@ export const HomePageForm = () => {
               control={<Radio />}
               label="4"
             />
-          </RadioGroup>
+          </RadioBox>
         </Label>
 
         <Label>

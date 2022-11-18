@@ -27,6 +27,7 @@ export const PagesLinks = styled(NavLink)`
   }
 `;
 export const SingInLink = styled(NavLink)`
+  margin-left: auto;
   font-family: 'Gotham Pro';
   font-style: normal;
   font-weight: 700;
@@ -55,7 +56,7 @@ export const Header = styled.header`
     padding: 20px 20px 16px;
   }
   padding: 80px 16px 0px;
-  width: 1280px;
+  // width: 1280px;
   margin: auto;
   align-items: baseline;
 `;
@@ -77,7 +78,7 @@ export const LogoLink = styled(Link)`
 `;
 
 export const LogoImgB = styled.img`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 479px) {
     display: none;
   }
   width: 167px;
@@ -88,7 +89,7 @@ export const LogoImgS = styled.img`
   height: 44px;
   position: relative;
   bottom: -4px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 480px) {
     display: none;
   }
 `;

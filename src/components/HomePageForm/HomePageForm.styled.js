@@ -10,7 +10,10 @@ export const Form = styled.form`
     margin: 0;
   }
   gap: 32px;
-  width: 512px;
+  // width: 512px;
+  @media screen and (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Label = styled.label`
@@ -24,6 +27,12 @@ export const Label = styled.label`
   letter-spacing: 0.04em;
   width: 240px;
   color: #9b9faa;
+  @media screen and (min-width: 480px) {
+    margin: auto;
+  }
+  @media screen and (min-width: 768px) {
+    margin: inherit;
+  }
 `;
 
 export const RadioBtnBox = styled.div`
@@ -32,17 +41,33 @@ export const RadioBtnBox = styled.div`
   bottom: 155px;
   right: 0;
   width: 240px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: 20px;
+  }
 `;
 
 export const Title = styled.h1`
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 26px;
+  }
   font-family: 'Verdana';
   font-style: normal;
   font-weight: 700;
   font-size: 34px;
   line-height: 41px;
-  width: 608px;
+  // width: 608px;
   color: #212121;
   margin-bottom: 64px;
+  @media screen and (min-width: 480px) {
+    display: flex;
+    justify-content: center;
+  }
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+    width: 530px;
+  }
 `;
 
 export const Input = styled.input`
@@ -63,6 +88,14 @@ export const Input = styled.input`
 export const StartBtn = styled.button`
   display: block;
   margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 1280px) {
+    margin-left: auto;
+  }
+  @media screen and (max-width: 480px) {
+    margin-top: 40px;
+    margin-bottom: 0px;
+  }
   margin-top: 103px;
   margin-bottom: 111px;
   width: 210px;
