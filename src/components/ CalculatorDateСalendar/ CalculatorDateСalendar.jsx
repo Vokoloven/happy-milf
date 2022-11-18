@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
 import {
   CalendarContainer,
   CalendarTitle,
@@ -5,10 +7,12 @@ import {
 
 export const CalculatorDateCalendar = () => {
   const dateNow = new Date().toLocaleDateString();
+  const [value, onValue] = useState(new Date());
+
   return (
     <CalendarContainer>
-      <CalendarTitle>{dateNow}</CalendarTitle>
-      <input type="date" />
+      <CalendarTitle>{value}</CalendarTitle>
+      <Calendar value={value} onValue={onValue} />
     </CalendarContainer>
   );
 };
