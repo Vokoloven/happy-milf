@@ -103,6 +103,6 @@ export const Section = styled.section`
     padding: 160px 32px 0px 32px;
   }
   @media screen and (min-width: 768px) {
-    padding: 160px 16px 0px 16px;
+    padding: 150px 16px 0px 16px;
   }
 `;
