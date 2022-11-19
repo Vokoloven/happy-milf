@@ -48,6 +48,7 @@ export const Layout = () => {
         )}
         {!TOKEN && !authorization && <AuthNavMobile />}
         {TOKEN && <HeaderPrivateNav />}
+
         {TOKEN && <HeaderExitBox NAME={NAME} handleLogOut={handleLogOut} />}
         {TOKEN && (
           <>

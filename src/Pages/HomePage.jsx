@@ -1,5 +1,6 @@
 import { HomePageForm } from 'components/HomePageForm/HomePageForm';
 import styled from 'styled-components';
+import React from 'react';
 
 const Section = styled.section`
   @media screen and (max-width: 767px) {

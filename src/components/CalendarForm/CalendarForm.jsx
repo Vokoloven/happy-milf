@@ -18,7 +18,7 @@ export const CalendarForm = () => {
   };
   return (
     <>
-      <form onSubmit={handleCalculationSubmit}>
+      <form>
         <label>
           Enter product name
           <input value={productName} onChange={handleProductName} type="text" />
@@ -27,7 +27,7 @@ export const CalendarForm = () => {
           Grams
           <input value={grams} onChange={handleGrams} min="100" type="number" />
         </label>
-        <button type="submit">+</button>
+        <button onClick={handleCalculationSubmit}>+</button>
       </form>
       <ul>
         {/* Тут нада використовувати 'map' з бекенду (можна винести в окремий компонент) */}
