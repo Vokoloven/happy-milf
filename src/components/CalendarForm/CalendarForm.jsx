@@ -61,6 +61,8 @@ export const CalendarForm = () => {
             return [...prevState, ...result];
           });
     }
+    setProductName('');
+    setGrams('');
   };
 
   const caloriesCalculator = () => {
