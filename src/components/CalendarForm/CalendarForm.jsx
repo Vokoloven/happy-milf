@@ -1,15 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { productsSearchByName } from 'Redux/ProductSearch/productSearch.service';
+import _ from 'lodash';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
-
-  const handleProductName = e => {
-    setProductName(e.currentTarget.value);
-  };
+  const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const handleGrams = e => {
     setGrams(e.currentTarget.value);
+  };
+
+  useEffect(() => {
+    const searchedProducts = async productName => {
+      const resposnse = await productsSearchByName({
+        params: { search: productName },
+      });
+      setProducts(resposnse);
+    };
+    if (reload) {
+      searchedProducts(productName);
+    }
+  }, [productName, reload]);
+
+  const callApi = () => {
+    setReload(true);
+  };
+
+  const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
+
+  const handleProductName = e => {
+    debounceCallApi(setProductName(e.currentTarget.value));
+    setReload(false);
   };
 
   const handleCalculationSubmit = e => {
@@ -18,6 +41,7 @@ export const CalendarForm = () => {
   };
   return (
     <>
+      re
       <form onSubmit={handleCalculationSubmit}>
         <label>
           Enter product name
