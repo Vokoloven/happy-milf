@@ -28,10 +28,10 @@ code {
   #root {
     background-image: url(./components/HomePageForm/img/banane1x.png),
       url(./components/HomePageForm/img/Layer1xVertical.png),
-      url(./components/HomePageForm/img/StrawberryT1x.png),
+      url(./components/HomePageForm/img/StrawberryT-min.png),
       url(./components//HomePageForm/img/shit.svg);
     background-repeat: no-repeat;
-    background-position: bottom 0px right 0px, 0px 465px, 420px 525px,
+    background-position: bottom 0px right 0px, 0px 465px, top 397px right 0px,
       top 408px right -40px;
   }
 }

@@ -1,63 +1,6 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const PagesLinks = styled(NavLink)`
-  @media screen and (max-width: 1279px) {
-    display: none;
-  }
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #9b9faa;
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-  }
-
-  &.active {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    position: relative;
-    color: #212121;
-  }
-`;
-
-export const PagesLinksPrivate = styled(NavLink)`
-  @media screen and (max-width: 1279px) {
-    display: none;
-  }
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #9b9faa;
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-  }
-
-  &.active {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    position: relative;
-    color: #212121;
-  }
-`;
 export const PagesLinksPrivateMenu = styled(NavLink)`
   // @media screen and (max-width: 1279px) {
   //   display: none;
@@ -81,97 +24,13 @@ export const PagesLinksPrivateMenu = styled(NavLink)`
   }
 `;
 
-export const PagesLinksMob = styled(NavLink)`
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #9b9faa;
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-  }
-
-  &.active {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    position: relative;
-    color: #212121;
-  }
-`;
-export const SingInLink = styled(NavLink)`
-  @media screen and (max-width: 1279px) {
-    display: none;
-  }
-  margin-left: auto;
-  @media screen and (min-width: 1280px) {
-    margin-left: revert;
-  }
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  position: relative;
-  font-size: 14px;
-  line-height: 13px;
-
-  letter-spacing: 0.04em;
-
-  color: #9b9faa;
-  &.active {
-    color: #212121;
-    line-height: 13px;
-  }
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-  }
-`;
-export const SingInLinkMob = styled(NavLink)`
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-  margin-left: auto;
-  @media screen and (min-width: 1280px) {
-    margin-left: revert;
-  }
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  position: relative;
-  font-size: 14px;
-  line-height: 13px;
-
-  letter-spacing: 0.04em;
-
-  color: #9b9faa;
-  &.active {
-    color: #212121;
-    line-height: 13px;
-  }
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-  }
-`;
-
 export const Header = styled.header`
   position: relative;
-  background-color: white;
   display: flex;
+  background-color: white;
+  @media screen and (min-width: 1280px) {
+    background-color: transparent;
+  }
   @media screen and (max-width: 1279px) {
     box-shadow: 0px 0px 4px grey;
     align-items: center;
@@ -181,125 +40,6 @@ export const Header = styled.header`
   // width: 1280px;
   margin: auto;
   align-items: baseline;
-`;
-
-export const LogoLink = styled(Link)`
-  margin-right: 22px;
-  position: relative;
-  @media screen and (min-width: 1280px) {
-    &::after {
-      pointer-events: none;
-      position: absolute;
-      content: '';
-      height: 32px;
-      width: 2px;
-      background-color: #e0e0e0;
-      bottom: -26px;
-      right: -20px;
-      transform: translateY(-50%);
-    }
-  }
-`;
-
-export const LogoImgB = styled.img`
-  height: 66px;
-  @media screen and (max-width: 1279px) {
-    display: none;
-  }
-  @media screen and (max-width: 767px) {
-    height: 44px;
-  }
-  position: relative;
-  bottom: -4px;
-`;
-export const LogoImgS = styled.img`
-  height: 44px;
-  position: relative;
-  bottom: -4px;
-  @media screen and (min-width: 480px) {
-    display: none;
-  }
-`;
-
-export const LogoImgT = styled.img`
-  height: 44px;
-  position: relative;
-  bottom: -4px;
-  display: none;
-  @media screen and (min-width: 480px) {
-    display: block;
-  }
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-`;
-
-export const ExitBox = styled.div`
-  display: flex;
-  margin-left: auto;
-  position: relative;
-  z-index: 10;
-  @media screen and (max-width: 479px) {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    background-color: #eff1f3;
-    width: 100%;
-    height: 40px;
-    align-items: center;
-    margin-left: auto;
-    justify-content: end;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-`;
-
-export const NicName = styled.p`
-  pointer-events: none;
-  margin-right: 20px;
-  position: relative;
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 13px;
-  text-align: right;
-  letter-spacing: 0.04em;
-
-  color: #212121;
-
-  &::after {
-    pointer-events: none;
-    position: absolute;
-    content: '';
-    height: 32px;
-    width: 2px;
-    background-color: #e0e0e0;
-    top: 50%;
-    right: -20px;
-    transform: translateY(-50%);
-  }
-`;
-
-export const ExitBtn = styled.button`
-  border: none;
-  background-color: transparent;
-  padding: 0px;
-  margin-left: 20px;
-  font-family: 'Gotham Pro';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-
-  color: #9b9faa;
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    scale: 1.05;
-    color: #212121;
-  }
 `;
 
 export const MenuBox = styled.div`
@@ -318,19 +58,4 @@ export const MenuBox = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #264061;
-`;
-
-export const MenuBtn = styled.button`
-  position: relative;
-  z-index: 15;
-  padding: 0px;
-  border: none;
-  background-color: transparent;
-  margin-left: 50px;
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-  @media screen and (max-width: 479px) {
-    margin-left: auto;
-  }
 `;
