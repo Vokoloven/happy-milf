@@ -142,7 +142,9 @@ export const CalendarForm = () => {
           />
         </WrapperGrams>
 
-        <AddMeal type="submit" onClick={addSelectedProduct}>+</AddMeal>
+        <AddMeal type="submit" onClick={addSelectedProduct}>
+          +
+        </AddMeal>
       </Form>
       <ul>
         {/* Тут нада використовувати 'map' з бекенду (можна винести в окремий компонент) */}
