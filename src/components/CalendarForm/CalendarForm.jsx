@@ -26,10 +26,6 @@ export const CalendarForm = () => {
     setPersonName(value);
   };
 
-  const length = products?.length > 0;
-
-  console.log(length);
-
   const handleGrams = e => {
     setGrams(e.currentTarget.value);
   };
@@ -43,6 +39,9 @@ export const CalendarForm = () => {
     };
     if (reload && productName !== '') {
       searchedProducts(productName);
+    }
+    if (productName === '' || products?.length === 0) {
+      setProducts([]);
     }
   }, [productName, reload]);
 
@@ -97,7 +96,7 @@ export const CalendarForm = () => {
         </li>
       </ul>
       <div>
-        {length && productName && reload && (
+        {products?.length > 0 && productName && reload && (
           <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
             <InputLabel shrink htmlFor="select-multiple-native">
               Native
