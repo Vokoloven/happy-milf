@@ -1,4 +1,5 @@
 import { SingInLink, PagesLinks } from './HeaderAuthNav.styled';
+import PropTypes from 'prop-types';
 
 export const HeaderAuthNav = ({ handleAuthorization }) => {
   return (
@@ -19,4 +20,8 @@ export const HeaderAuthNav = ({ handleAuthorization }) => {
       </PagesLinks>
     </>
   );
+};
+
+HeaderAuthNav.propTypes = {
+  handleAuthorization: PropTypes.func.isRequired,
 };
