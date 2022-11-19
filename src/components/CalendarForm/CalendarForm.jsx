@@ -15,6 +15,8 @@ import {
   WrapperGrams,
   AddMeal,
 } from './CalendarForm.styled';
+import { ThemeProvider } from '@mui/material';
+import { theme } from 'Theme/MUI/theme';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
@@ -25,7 +27,7 @@ export const CalendarForm = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] = useState([]);
 
-  const [personName, setPersonName] = React.useState([]);
+  const [productInputName, setProductInputName] = React.useState([]);
   const handleChangeMultiple = event => {
     const { options } = event.target;
     const value = [];
@@ -36,7 +38,7 @@ export const CalendarForm = () => {
       }
     }
 
-    setPersonName(value);
+    setProductInputName(value);
   };
 
   const handleGrams = e => {
@@ -62,15 +64,13 @@ export const CalendarForm = () => {
       const isDuplicate = productsList.some(({ _id }) => _id === id);
 
       isDuplicate
-        ? Notiflix.Notify.warning(`${personName} already in the list`, {
+        ? Notiflix.Notify.warning(`${productInputName} already in the list`, {
             timeout: 2500,
           })
         : setProductsList(prevState => {
             return [...prevState, ...result];
           });
     }
-    setProductName('');
-    setGrams('');
   };
 
   const caloriesCalculator = () => {
@@ -97,18 +97,19 @@ export const CalendarForm = () => {
 
   useEffect(() => {
     const searchedProducts = async productName => {
-      const resposnse = await productsSearchByName({
+      const response = await productsSearchByName({
         params: { search: productName },
       });
-      setProducts(resposnse);
+
+      setProducts(response);
     };
     if (reload && productName !== '') {
       searchedProducts(productName);
     }
-    if (productName === '' || products?.length === 0) {
+    if (productName === '') {
       setProducts([]);
     }
-  }, [productName, products?.length, reload]);
+  }, [productName, reload]);
 
   const callApi = () => {
     setReload(true);
@@ -178,30 +179,32 @@ export const CalendarForm = () => {
         </li>
       </ul>
       <div>
-        {products?.length > 0 && productName && reload && (
-          <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-            <InputLabel shrink htmlFor="select-multiple-native">
-              Select
-            </InputLabel>
-            <Select
-              multiple
-              native
-              value={personName}
-              // @ts-ignore Typings are not considering `native`
-              onChange={handleChangeMultiple}
-              label="Native"
-              inputProps={{
-                id: 'select-multiple-native',
-              }}
-            >
-              {products &&
-                products.map(({ _id, title: { ua } }) => (
-                  <option key={_id} id={_id} value={ua}>
-                    {ua}
-                  </option>
-                ))}
-            </Select>
-          </FormControl>
+        {products?.length > 0 && productName && (
+          <ThemeProvider theme={theme}>
+            <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
+              <InputLabel shrink htmlFor="select-multiple-native">
+                Select
+              </InputLabel>
+              <Select
+                multiple
+                native
+                value={productInputName}
+                // @ts-ignore Typings are not considering `native`
+                onChange={handleChangeMultiple}
+                label="Native"
+                inputProps={{
+                  id: 'select-multiple-native',
+                }}
+              >
+                {products &&
+                  products.map(({ _id, title: { ua } }) => (
+                    <option key={_id} id={_id} value={ua}>
+                      {ua}
+                    </option>
+                  ))}
+              </Select>
+            </FormControl>
+          </ThemeProvider>
         )}
       </div>
     </>
