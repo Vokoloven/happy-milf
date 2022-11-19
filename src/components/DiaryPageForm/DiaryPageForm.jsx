@@ -74,7 +74,6 @@ export const DiaryPageForm = () => {
 
   return (
     <>
-      {' '}
       <Section>
         <DiaryContainer>
           <Title>Calculate your daily calorie intake right now</Title>
