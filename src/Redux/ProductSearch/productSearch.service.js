@@ -5,6 +5,8 @@ export const productsSearchByName = async params => {
   try {
     const { data } = await configAxios.get('product', params);
 
+    // console.log(data);
+
     return data;
   } catch ({
     response: {
