@@ -1,12 +1,34 @@
 import { useState, useEffect } from 'react';
 import { productsSearchByName } from 'Redux/ProductSearch/productSearch.service';
 import _ from 'lodash';
+import * as React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
+
+  const [personName, setPersonName] = React.useState([]);
+  const handleChangeMultiple = event => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        console.dir(options[i].id);
+        value.push(options[i].value);
+      }
+    }
+
+    setPersonName(value);
+  };
+
+  const length = products?.length > 0;
+
+  console.log(length);
 
   const handleGrams = e => {
     setGrams(e.currentTarget.value);
@@ -19,7 +41,7 @@ export const CalendarForm = () => {
       });
       setProducts(resposnse);
     };
-    if (reload) {
+    if (reload && productName !== '') {
       searchedProducts(productName);
     }
   }, [productName, reload]);
@@ -41,7 +63,6 @@ export const CalendarForm = () => {
   };
   return (
     <>
-      re
       <form onSubmit={handleCalculationSubmit}>
         <label>
           Enter product name
@@ -75,6 +96,33 @@ export const CalendarForm = () => {
           </button>
         </li>
       </ul>
+      <div>
+        {length && productName && reload && (
+          <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
+            <InputLabel shrink htmlFor="select-multiple-native">
+              Native
+            </InputLabel>
+            <Select
+              multiple
+              native
+              value={personName}
+              // @ts-ignore Typings are not considering `native`
+              onChange={handleChangeMultiple}
+              label="Native"
+              inputProps={{
+                id: 'select-multiple-native',
+              }}
+            >
+              {products &&
+                products.map(({ _id, title: { ua } }) => (
+                  <option key={_id} id={_id} value={ua}>
+                    {ua}
+                  </option>
+                ))}
+            </Select>
+          </FormControl>
+        )}
+      </div>
     </>
   );
 };
