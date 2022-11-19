@@ -69,6 +69,10 @@ export const CalendarForm = () => {
       const [{ calories }] = selectedProduct;
       const calPerGram = { calories: (grams * calories) / 100, weight: grams };
       const [obj] = selectedProduct;
+
+      if (grams < 100) {
+        return;
+      }
       const calculatedProducts = { ...obj, ...calPerGram };
       calculatedProductsArray.push(calculatedProducts);
 
