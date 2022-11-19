@@ -6,7 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
-import { Box } from 'Theme/Box';
+// import { Box } from 'Theme/Box';
 import {
   Form,
   ProductName,
@@ -14,6 +14,12 @@ import {
   WrapperProductName,
   WrapperGrams,
   AddMeal,
+  DelMeal,
+  ProductsList,
+  CurrenProduct,
+  CurrenProductName,
+  CurrenProductWeight,
+  CurrenProductCal,
 } from './CalendarForm.styled';
 import { ThemeProvider } from '@mui/material';
 import { theme } from 'Theme/MUI/theme';
@@ -147,37 +153,35 @@ export const CalendarForm = () => {
           +
         </AddMeal>
       </Form>
-      <ul>
-        {/* Тут нада використовувати 'map' з бекенду (можна винести в окремий компонент) */}
-        <li>
-          {productsList.map(({ _id, title: { ua }, calories, weight }) => {
-            return (
-              <Box as="ul" key={_id} display="flex">
-                <Box as="li" mr={3}>
-                  {ua}
-                </Box>
-                <Box as="li" mr={3}>
-                  {weight} g
-                </Box>
-                <Box as="li">{calories} kcal</Box>
-              </Box>
-            );
-          })}
-
-          <button type="button">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M1 1L13 13" stroke="#9B9FAA" strokeWidth="2" />
-              <path d="M1 13L13 0.999999" stroke="#9B9FAA" strokeWidth="2" />
-            </svg>
-          </button>
-        </li>
-      </ul>
+      <div>
+        {productsList.map(({ _id, title: { ua }, calories, weight }) => {
+          return (
+            <ProductsList key={_id}>
+              <CurrenProduct>
+                <CurrenProductName mr={3}>{ua}</CurrenProductName>
+                <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
+                <CurrenProductCal>{calories} kcal</CurrenProductCal>
+                <DelMeal type="button">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1 1L13 13" stroke="#9B9FAA" strokeWidth="2" />
+                    <path
+                      d="M1 13L13 0.999999"
+                      stroke="#9B9FAA"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </DelMeal>
+              </CurrenProduct>
+            </ProductsList>
+          );
+        })}
+      </div>
       <div>
         {products?.length > 0 && productName && (
           <ThemeProvider theme={theme}>
