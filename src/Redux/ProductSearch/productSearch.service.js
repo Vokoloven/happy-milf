@@ -1,15 +1,18 @@
 import { configAxios } from 'Redux/config.axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import Notiflix from 'notiflix';
 
-export const productsSearch = createAsyncThunk(
-  'register/auth',
-  async (search, thunkAPI) => {
-    try {
-      const { data } = await configAxios.post('product', search);
+export const productsSearchByName = async params => {
+  try {
+    const { data } = await configAxios.get('product', params);
 
-      return data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
+    return data;
+  } catch ({
+    response: {
+      data: { message },
+    },
+  }) {
+    Notiflix.Notify.failure(`${message}`, {
+      timeout: 2500,
+    });
   }
-);
+};

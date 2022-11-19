@@ -1,19 +1,20 @@
 import Calendar from 'react-calendar';
 import { useState } from 'react';
+import { CurrentDate, ChooseDate } from './CalendarSection.styled';
 
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
   return (
     <div>
-      <button onClick={() => setToggle(!toggle)}>
+      <CurrentDate onClick={() => setToggle(!toggle)}>
         {calendar.getDate() +
           '.' +
           calendar.getMonth() +
           '.' +
           calendar.getFullYear()}
-      </button>
-      <button onClick={() => setToggle(!toggle)}>
+      </CurrentDate>
+      <ChooseDate onClick={() => setToggle(!toggle)}>
         <svg
           width="20"
           height="20"
@@ -29,7 +30,7 @@ export const CalendarSection = () => {
             fill="#9B9FAA"
           />
         </svg>
-      </button>
+        </ChooseDate>
       {toggle && <Calendar onChange={setCalendar} value={calendar} />}
     </div>
   );
