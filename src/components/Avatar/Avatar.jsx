@@ -1,4 +1,3 @@
-// import Avatar from 'react-avatar';
 import { useState } from 'react';
 
 export const ChoiceAvatar = () => {
