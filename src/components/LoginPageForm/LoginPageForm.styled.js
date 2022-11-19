@@ -69,7 +69,7 @@ export const Input = styled.input`
 export const LogIntBtn = styled.button`
   display: block;
   margin-top: 60px;
-  margin-bottom: 255px;
+  margin-bottom: 495px;
   width: 182px;
   height: 43px;
   background: #fc842d;
@@ -113,7 +113,7 @@ export const RegisterBtn = styled(Link)`
   }
   @media screen and (min-width: 768px) {
     position: absolute;
-    bottom: 255px;
+    bottom: 495px;
     left: 234px;
   }
   position: absolute;

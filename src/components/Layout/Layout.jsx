@@ -1,24 +1,17 @@
 import { Outlet } from 'react-router-dom';
-import LogoB from './img/LogoB.png';
-import LogoS from './img/LogoS.png';
-import LogoT from './img/LogoT.png';
 import Menu from './img/Menu.svg';
 import CloseIcon from './img/closeIcon.svg';
 import { useSelector } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
 import { useDispatch } from 'react-redux';
+import { Logo } from 'components/Logo/Logo';
+
 import {
   Header,
-  LogoLink,
-  SingInLink,
   SingInLinkMob,
-  LogoImgB,
-  LogoImgT,
-  LogoImgS,
   ExitBox,
   NicName,
   ExitBtn,
-  PagesLinks,
   PagesLinksPrivate,
   PagesLinksPrivateMenu,
   PagesLinksMob,
@@ -26,55 +19,38 @@ import {
   MenuBox,
 } from './Layout.styled';
 import { useState } from 'react';
-
-const AUTHORIZATION = false;
+import { nameSelector, tokenSelector } from 'Redux/Selectors/authSelectors';
+import { HeaderAuthNav } from 'components/HeaderAuthNav/HeaderAuthNav';
 
 export const Layout = () => {
   const dispatch = useDispatch();
-  const [authorization, setAuthorization] = useState(AUTHORIZATION);
+  const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const TOKEN = useSelector(state => state.auth.accessToken);
-  const NAME = useSelector(state => state.auth.user.username);
+  const TOKEN = useSelector(tokenSelector);
+  const NAME = useSelector(nameSelector);
 
   const handleLogOut = () => {
     dispatch(operations.logOut());
   };
+
   const handleAuthorization = () => {
-    setAuthorization(!AUTHORIZATION);
+    setAuthorization(!authorization);
   };
+
   const handleMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleAuthorizationRestart = () => {
-    setAuthorization(AUTHORIZATION);
+    setAuthorization(authorization);
   };
+
   return (
     <>
       <Header>
-        <LogoLink onClick={handleAuthorizationRestart} to="/">
-          <LogoImgB src={LogoB} alt="Logo" />
-          <LogoImgT src={LogoT} alt="Logo" />
-          <LogoImgS src={LogoS} alt="Logo" />
-        </LogoLink>
+        <Logo handleAuthorizationRestart={handleAuthorizationRestart} />
         {!TOKEN && !authorization && (
-          <>
-            <SingInLink
-              style={{ marginLeft: '20px' }}
-              onClick={handleAuthorization}
-              to="/login"
-            >
-              Sing in
-            </SingInLink>
-            <PagesLinks
-              style={{ marginLeft: '15px' }}
-              onClick={handleAuthorization}
-              to="/registration"
-            >
-              Registration
-            </PagesLinks>
-          </>
+          <HeaderAuthNav handleAuthorization={handleAuthorization} />
         )}
         {!TOKEN && !authorization && (
           <>

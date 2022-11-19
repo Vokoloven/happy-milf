@@ -83,11 +83,10 @@ export const RegistrationPageForm = () => {
         </Label>
 
         <RegistertBtn type="submit">Register</RegistertBtn>
-
-        <LoginBtn to="/login" value={<LoginPage />}>
-          Login
-        </LoginBtn>
       </Form>
+      <LoginBtn to="/login" value={<LoginPage />}>
+        Login
+      </LoginBtn>
     </>
   );
 };
