@@ -7,6 +7,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { Box } from 'Theme/Box';
+import {
+  Form,
+  ProductName,
+  Grams,
+  WrapperProductName,
+  WrapperGrams,
+  AddMeal,
+} from './CalendarForm.styled';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
@@ -113,19 +121,27 @@ export const CalendarForm = () => {
 
   return (
     <>
-      <form onSubmit={handleCalculationSubmit}>
-        <label>
-          Enter product name
-          <input value={productName} onChange={handleProductName} type="text" />
-        </label>
-        <label>
-          Grams
-          <input value={grams} onChange={handleGrams} min="100" type="number" />
-        </label>
-        <button type="submit" onClick={addSelectedProduct}>
-          +
-        </button>
-      </form>
+      <Form onSubmit={handleCalculationSubmit}>
+        <WrapperProductName>
+          <ProductName
+            placeholder="Enter product name"
+            value={productName}
+            onChange={handleProductName}
+            type="text"
+          />
+        </WrapperProductName>
+        <WrapperGrams>
+          <Grams
+            placeholder="Grams"
+            value={grams}
+            onChange={handleGrams}
+            min="100"
+            type="number"
+          />
+        </WrapperGrams>
+
+        <AddMeal type="submit" onClick={addSelectedProduct}>+</AddMeal>
+      </Form>
       <ul>
         {/* Тут нада використовувати 'map' з бекенду (можна винести в окремий компонент) */}
         <li>
