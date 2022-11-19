@@ -17,5 +17,5 @@ export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen }) => {
 
 HeaderMenuBtn.propTypes = {
   handleMenuOpen: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.func.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
 };

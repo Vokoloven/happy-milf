@@ -36,7 +36,7 @@ export const Layout = () => {
   };
 
   const handleAuthorizationRestart = () => {
-    setAuthorization(authorization);
+    setAuthorization(false);
   };
 
   return (
