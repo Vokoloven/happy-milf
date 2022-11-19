@@ -73,6 +73,14 @@ export const RegistertBtn = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
   border: none;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+  }
 
   font-family: 'Verdana';
   font-style: normal;
@@ -97,6 +105,9 @@ export const LoginBtn = styled(Link)`
   @media screen and (max-width: 767px) {
     bottom: 193px;
     left: 0px;
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
   }
   position: absolute;
   bottom: 254px;

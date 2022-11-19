@@ -22,6 +22,7 @@ export const HomePageForm = () => {
   const [desiredWeight, setDesiredWeight] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
   const handleHeight = e => {
     setHeight(e.currentTarget.value);
   };
