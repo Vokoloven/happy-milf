@@ -12,6 +12,7 @@ export const WrapperProductName = styled.div`
 `;
 
 export const ProductName = styled.input`
+  outline: none;
   margin-bottom: 40px;
   border: none;
   width: 240px;
@@ -21,6 +22,10 @@ export const ProductName = styled.input`
   font-weight: 700;
   font-size: 14px;
   color: #9b9faa;
+
+  &:focus {
+    border-bottom: 1px solid #fc842d;
+  }
 `;
 
 export const WrapperGrams = styled.div`
@@ -28,6 +33,7 @@ export const WrapperGrams = styled.div`
 `;
 
 export const Grams = styled.input`
+  outline: none;
   margin-bottom: 40px;
   text-align: right;
   width: 105px;
@@ -38,6 +44,10 @@ export const Grams = styled.input`
   font-weight: 700;
   font-size: 14px;
   color: #9b9faa;
+
+  &:focus {
+    border-bottom: 1px solid #fc842d;
+  }
 `;
 
 export const AddMeal = styled.button`
@@ -49,4 +59,48 @@ export const AddMeal = styled.button`
   font-size: 24px;
   height: 48px;
   width: 48px;
+`;
+
+export const DelMeal = styled.button`
+  background: none;
+  border: none;
+  margin-left: 10px;
+  outline: none;
+`;
+
+export const ProductsList = styled.ul`
+  margin-top: 40px;
+`;
+
+export const CurrenProduct = styled.li`
+  display: flex;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #212121;
+  font-weight: 400;
+`;
+
+export const CurrenProductName = styled.p`
+  padding-bottom: 20px;
+  width: 304px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-right: 50px;
+`;
+
+export const CurrenProductWeight = styled.p`
+  padding-bottom: 20px;
+  width: 105px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-right: 50px;
+  text-align: right;
+`;
+
+export const CurrenProductCal = styled.p`
+  padding-bottom: 20px;
+  width: 105px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-right: 32px;
+  text-align: right;
 `;
