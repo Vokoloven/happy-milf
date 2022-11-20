@@ -15,6 +15,8 @@ const Input = styled.input`
 `;
 
 const AvatarBox = styled.div`
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 4px grey;
   z-index: 20;
   position: absolute;
   right: 60px;
@@ -26,6 +28,11 @@ const AvatarBox = styled.div`
     right: 87px;
   }
   // pointer-events: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const AvatarImg = styled.img`
@@ -53,6 +60,7 @@ export const ChoiceAvatar = () => {
     <AvatarBox>
       {avatarSelect === null ? (
         <AvatarImg
+          style={{ width: '40px', height: '40px' }}
           src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg"
           alt="userAvatar"
         />
