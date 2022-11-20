@@ -11,11 +11,28 @@ const Input = styled.input`
   bottom: 0;
   border-radius: 50%;
   opacity: 0;
+  cursor: pointer;
 `;
 
 const AvatarBox = styled.div`
+  z-index: 20;
   position: absolute;
   right: 60px;
+  @media screen and (min-width: 530px) {
+    right: 170px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 108px;
+    right: 87px;
+  }
+  // pointer-events: none;
+`;
+
+const AvatarImg = styled.img`
+  pointer-events: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
 `;
 
 export const ChoiceAvatar = () => {
@@ -30,14 +47,19 @@ export const ChoiceAvatar = () => {
     };
     reader.readAsDataURL(file);
   }
+
   console.dir(document.querySelector('#avatarInput'));
   return (
     <AvatarBox>
-      <img
-        style={{ width: '60px', borderRadius: '50%' }}
-        src={avatarSelect}
-        alt="userAvatar"
-      />
+      {avatarSelect === null ? (
+        <AvatarImg
+          src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg"
+          alt="userAvatar"
+        />
+      ) : (
+        <AvatarImg src={avatarSelect} alt="userAvatar" />
+      )}
+
       <Input onChange={onChange} id="avatarInput" type="file" />
     </AvatarBox>
   );
