@@ -12,14 +12,18 @@ const Box = styled.div`
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
+
+  const year = calendar.toLocaleString('default', { year: 'numeric' });
+  const month = calendar.toLocaleString('default', { month: '2-digit' });
+  const day = calendar.toLocaleString('default', { day: '2-digit' });
+
+  const backendDate = year + '-' + month + '-' + day;
+  const formateDate = year + '.' + month + '.' + day;
+  console.log(formateDate);
   return (
     <Box>
       <CurrentDate onClick={() => setToggle(!toggle)}>
-        {calendar.getDate() +
-          '.' +
-          calendar.getMonth() +
-          '.' +
-          calendar.getFullYear()}
+        {formateDate}
       </CurrentDate>
       <ChooseDate onClick={() => setToggle(!toggle)}>
         <svg
