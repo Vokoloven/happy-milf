@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Box = styled.div`
   @media screen and (max-width: 767px) {
-    display: none;
+    margin-bottom: 32px;
   }
 `;
 
