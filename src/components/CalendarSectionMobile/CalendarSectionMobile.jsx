@@ -1,15 +1,17 @@
 import Calendar from 'react-calendar';
 import { useState } from 'react';
-import { CurrentDate, ChooseDate } from './CalendarSection.styled';
+import { CurrentDate, ChooseDate } from './CalendarSectionMobile.styled';
 import styled from 'styled-components';
 
 const Box = styled.div`
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
+  position: absolute;
+  top: 80px;
 `;
 
-export const CalendarSection = () => {
+export const CalendarSectionMobile = () => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
   return (

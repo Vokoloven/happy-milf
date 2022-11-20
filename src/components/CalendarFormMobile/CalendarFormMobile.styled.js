@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
   display: flex;
@@ -60,12 +60,6 @@ export const AddMeal = styled.button`
   font-size: 24px;
   height: 48px;
   width: 48px;
-  @media screen and (max-width: 767px) {
-    position: absolute;
-    top: 392px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `;
 
 export const DelMeal = styled.button`
