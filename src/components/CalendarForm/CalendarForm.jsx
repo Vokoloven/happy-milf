@@ -184,31 +184,29 @@ export const CalendarForm = () => {
       </div>
       <div>
         {products?.length > 0 && productName && (
-          <ThemeProvider theme={theme}>
-            <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-              <InputLabel shrink htmlFor="select-multiple-native">
-                Select
-              </InputLabel>
-              <Select
-                multiple
-                native
-                value={productInputName}
-                // @ts-ignore Typings are not considering `native`
-                onChange={handleChangeMultiple}
-                label="Native"
-                inputProps={{
-                  id: 'select-multiple-native',
-                }}
-              >
-                {products &&
-                  products.map(({ _id, title: { ua } }) => (
-                    <option key={_id} id={_id} value={ua}>
-                      {ua}
-                    </option>
-                  ))}
-              </Select>
-            </FormControl>
-          </ThemeProvider>
+          <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
+            <InputLabel shrink htmlFor="select-multiple-native">
+              Select
+            </InputLabel>
+            <Select
+              multiple
+              native
+              value={productInputName}
+              // @ts-ignore Typings are not considering `native`
+              onChange={handleChangeMultiple}
+              label="Native"
+              inputProps={{
+                id: 'select-multiple-native',
+              }}
+            >
+              {products &&
+                products.map(({ _id, title: { ua } }) => (
+                  <option key={_id} id={_id} value={ua}>
+                    {ua}
+                  </option>
+                ))}
+            </Select>
+          </FormControl>
         )}
       </div>
     </>
