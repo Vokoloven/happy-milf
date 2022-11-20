@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
+import { ChoiceAvatar } from 'components/Avatar/Avatar';
 
 import { Header } from './Layout.styled';
 
@@ -52,6 +53,7 @@ export const Layout = () => {
         {TOKEN && <HeaderExitBox NAME={NAME} handleLogOut={handleLogOut} />}
         {TOKEN && (
           <>
+            <ChoiceAvatar />
             <HeaderMenuBtn
               handleMenuOpen={handleMenuOpen}
               isMenuOpen={isMenuOpen}
