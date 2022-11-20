@@ -6,7 +6,9 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
-// import { Box } from 'Theme/Box';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from 'Theme/MUI/theme';
+
 import {
   Form,
   ProductName,
@@ -21,8 +23,6 @@ import {
   CurrenProductWeight,
   CurrenProductCal,
 } from './CalendarForm.styled';
-import { ThemeProvider } from '@mui/material';
-import { theme } from 'Theme/MUI/theme';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
@@ -184,29 +184,37 @@ export const CalendarForm = () => {
       </div>
       <div>
         {products?.length > 0 && productName && (
-          <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-            <InputLabel shrink htmlFor="select-multiple-native">
-              Select
-            </InputLabel>
-            <Select
-              multiple
-              native
-              value={productInputName}
-              // @ts-ignore Typings are not considering `native`
-              onChange={handleChangeMultiple}
-              label="Native"
-              inputProps={{
-                id: 'select-multiple-native',
+          <ThemeProvider theme={theme}>
+            <FormControl
+              sx={{
+                m: 1,
+                minWidth: 120,
+                maxWidth: 300,
               }}
             >
-              {products &&
-                products.map(({ _id, title: { ua } }) => (
-                  <option key={_id} id={_id} value={ua}>
-                    {ua}
-                  </option>
-                ))}
-            </Select>
-          </FormControl>
+              <InputLabel shrink htmlFor="select-multiple-native">
+                Select
+              </InputLabel>
+              <Select
+                multiple
+                native
+                value={productInputName}
+                // @ts-ignore Typings are not considering `native`
+                onChange={handleChangeMultiple}
+                label="Native"
+                inputProps={{
+                  id: 'select-multiple-native',
+                }}
+              >
+                {products &&
+                  products.map(({ _id, title: { ua } }) => (
+                    <option key={_id} id={_id} value={ua}>
+                      {ua}
+                    </option>
+                  ))}
+              </Select>
+            </FormControl>
+          </ThemeProvider>
         )}
       </div>
     </>
