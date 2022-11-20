@@ -5,14 +5,17 @@ import { CurrentDate, ChooseDate } from './CalendarSection.styled';
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
+
+  const year = calendar.toLocaleString('default', { year: 'numeric' });
+  const month = calendar.toLocaleString('default', { month: '2-digit' });
+  const day = calendar.toLocaleString('default', { day: '2-digit' });
+
+  const formateDate = year + '-' + month + '-' + day;
+  console.log(formateDate);
   return (
     <div>
       <CurrentDate onClick={() => setToggle(!toggle)}>
-        {calendar.getDate() +
-          '.' +
-          calendar.getMonth() +
-          '.' +
-          calendar.getFullYear()}
+        {formateDate}
       </CurrentDate>
       <ChooseDate onClick={() => setToggle(!toggle)}>
         <svg
@@ -30,7 +33,7 @@ export const CalendarSection = () => {
             fill="#9B9FAA"
           />
         </svg>
-        </ChooseDate>
+      </ChooseDate>
       {toggle && <Calendar onChange={setCalendar} value={calendar} />}
     </div>
   );
