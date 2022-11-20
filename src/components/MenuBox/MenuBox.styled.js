@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const MenuBoxStyled = styled.div`
+  z-index: 15;
   padding-top: 60px;
   top: 80px;
   @media screen and (min-width: 768px) {
@@ -12,7 +13,6 @@ export const MenuBoxStyled = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 2;
   text-align: center;
   display: flex;
   flex-direction: column;

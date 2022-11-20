@@ -7,6 +7,10 @@ export const CurrentDate = styled.button`
   margin-right: 20px;
   background-color: #fff;
   border: none;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
 `;
 
 export const ChooseDate = styled.button`
