@@ -10,7 +10,8 @@ export const CalendarSection = () => {
   const month = calendar.toLocaleString('default', { month: '2-digit' });
   const day = calendar.toLocaleString('default', { day: '2-digit' });
 
-  const formateDate = year + '-' + month + '-' + day;
+  const backendDate = year + '-' + month + '-' + day;
+  const formateDate = year + '.' + month + '.' + day;
   console.log(formateDate);
   return (
     <div>
