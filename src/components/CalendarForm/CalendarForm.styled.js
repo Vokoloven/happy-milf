@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   display: flex;
   flex-direction: row;
-  margin-top: 60px;
+  margin-top: 40px;
   align-items: baseline;
 `;
 
-export const WrapperProductName = styled.div`
-  margin-right: 48px;
-`;
+export const WrapperProductName = styled.div``;
 
 export const ProductName = styled.input`
   outline: none;
@@ -69,7 +70,7 @@ export const DelMeal = styled.button`
 `;
 
 export const ProductsList = styled.ul`
-  margin-top: 40px;
+  // margin-top: 20px;
 `;
 
 export const CurrenProduct = styled.li`
@@ -103,4 +104,21 @@ export const CurrenProductCal = styled.p`
   border-bottom: 1px solid #e0e0e0;
   margin-right: 32px;
   text-align: right;
+`;
+
+export const ProductsBox = styled.div`
+  position: absolute;
+  left: 12px;
+  top: 268px;
+  width: 395px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    left: 24px;
+    top: 223px;
+    width: 395px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-top: 147px;
+    width: 395px;
+  }
 `;

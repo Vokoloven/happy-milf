@@ -22,6 +22,7 @@ import {
   CurrenProductName,
   CurrenProductWeight,
   CurrenProductCal,
+  ProductsBox,
 } from './CalendarForm.styled';
 
 export const CalendarForm = () => {
@@ -77,6 +78,8 @@ export const CalendarForm = () => {
             return [...prevState, ...result];
           });
     }
+    setGrams('');
+    setProductName('');
   };
 
   const caloriesCalculator = () => {
@@ -137,10 +140,12 @@ export const CalendarForm = () => {
             value={productName}
             onChange={handleProductName}
             type="text"
+            style={{ width: '334px', paddingRight: '48px' }}
           />
         </WrapperProductName>
         <WrapperGrams>
           <Grams
+            style={{ width: '60px', textAlign: 'start' }}
             placeholder="Grams"
             value={grams}
             onChange={handleGrams}
@@ -153,10 +158,13 @@ export const CalendarForm = () => {
           +
         </AddMeal>
       </Form>
-      <div>
+      <div style={{ marginTop: '90px', height: '212px', overflow: 'auto' }}>
         {productsList.map(({ _id, title: { ua }, calories, weight }) => {
           return (
-            <ProductsList key={_id}>
+            <ProductsList
+              // style={{ position: 'absolute', top: '465px' }}
+              key={_id}
+            >
               <CurrenProduct>
                 <CurrenProductName mr={3}>{ua}</CurrenProductName>
                 <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
@@ -182,7 +190,7 @@ export const CalendarForm = () => {
           );
         })}
       </div>
-      <div>
+      <ProductsBox>
         {products?.length > 0 && productName && (
           <ThemeProvider theme={theme}>
             <FormControl
@@ -196,6 +204,7 @@ export const CalendarForm = () => {
                 Select
               </InputLabel>
               <Select
+                style={{ width: '393px' }}
                 multiple
                 native
                 value={productInputName}
@@ -216,7 +225,7 @@ export const CalendarForm = () => {
             </FormControl>
           </ThemeProvider>
         )}
-      </div>
+      </ProductsBox>
     </>
   );
 };

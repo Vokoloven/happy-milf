@@ -1,22 +1,34 @@
 import styled from 'styled-components';
+import bgImg from '../HomePageForm/img/Layer1x.png';
 
 export const Aside = styled.aside`
   background-color: #f0f1f3;
+  margin-top: auto;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     padding: 0 32px;
+    margin-top: auto;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    position: static;
   }
 `;
 
 export const AsideContainer = styled.div`
-  width: 320px;
-  margin: 0 auto;
+  // width: 320px;
   padding: 40px 20px 70px 20px;
   background-color: #f0f1f3;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
-    width: 768px;
     padding: 80px 0;
   }
   @media screen and (min-width: 1280px) {
@@ -26,7 +38,11 @@ export const AsideContainer = styled.div`
     top: 0;
     right: 0;
     width: 517px;
-    height: 100%;
+    height: 850px;
+    background-image: url(${bgImg});
+
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
   }
 `;
 
