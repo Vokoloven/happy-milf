@@ -5,7 +5,8 @@ export const ExitBox = styled.div`
   margin-left: auto;
   position: relative;
   z-index: 10;
-  @media screen and (max-width: 479px) {
+
+  @media screen and (max-width: 530px) {
     position: absolute;
     top: 80px;
     left: 0;
@@ -21,6 +22,12 @@ export const ExitBox = styled.div`
 `;
 
 export const NicName = styled.p`
+  @media screen and (min-width: 530px) {
+    padding-right: 90px;
+  }
+  // @media screen and (min-width: 1280px) {
+  //   padding-right: 0px;
+  // }
   pointer-events: none;
   margin-right: 20px;
   position: relative;

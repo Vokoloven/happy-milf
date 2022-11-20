@@ -27,8 +27,13 @@ export const authSlice = createSlice({
     sid: null,
     isLoggedIn: false,
     isLoading: true,
+    avatar: null,
   },
-
+  reducers: {
+    addAvatar(state, action) {
+      state.avatar = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(operations.register.fulfilled, (state, { payload }) => {
       state.user.userData = payload;
@@ -75,10 +80,12 @@ export const authSlice = createSlice({
   },
 });
 
+export const { addAvatar } = authSlice.actions;
+
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken', 'user'],
+  whitelist: ['sid', 'accessToken', 'refreshToken', 'user', 'avatar'],
 };
 
 export const persistedReducer = persistReducer(

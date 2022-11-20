@@ -10,7 +10,7 @@ export const MenuBtn = styled.button`
   @media screen and (min-width: 1280px) {
     display: none;
   }
-  @media screen and (max-width: 479px) {
+  @media screen and (max-width: 529px) {
     margin-left: auto;
   }
 `;
