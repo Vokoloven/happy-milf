@@ -184,14 +184,14 @@ export const CalendarForm = () => {
       </div>
       <div>
         {products?.length > 0 && productName && (
-          <ThemeProvider theme={theme}>
-            <FormControl
-              sx={{
-                m: 1,
-                minWidth: 120,
-                maxWidth: 300,
-              }}
-            >
+          <FormControl
+            sx={{
+              m: 1,
+              minWidth: 120,
+              maxWidth: 300,
+            }}
+          >
+            <ThemeProvider theme={theme}>
               <InputLabel shrink htmlFor="select-multiple-native">
                 Select
               </InputLabel>
@@ -213,8 +213,8 @@ export const CalendarForm = () => {
                     </option>
                   ))}
               </Select>
-            </FormControl>
-          </ThemeProvider>
+            </ThemeProvider>
+          </FormControl>
         )}
       </div>
     </>
