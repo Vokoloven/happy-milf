@@ -80,7 +80,7 @@ export const CalendarForm = () => {
   };
 
   const caloriesCalculator = () => {
-    if (selectedProduct) {
+    if (selectedProduct?.length > 0) {
       const calculatedProductsArray = [];
       const [{ calories }] = selectedProduct;
       const calPerGram = { calories: (grams * calories) / 100, weight: grams };
@@ -128,6 +128,15 @@ export const CalendarForm = () => {
     setReload(false);
   };
 
+  const filteringProductsList = e => {
+    const idByClickOnButton = e.currentTarget.parentNode.id;
+
+    if (productsList?.length > 0) {
+      const data = productsList.filter(({ _id }) => _id !== idByClickOnButton);
+      setProductsList(data);
+    }
+  };
+
   return (
     <>
       <Form onSubmit={handleCalculationSubmit}>
@@ -157,11 +166,11 @@ export const CalendarForm = () => {
         {productsList.map(({ _id, title: { ua }, calories, weight }) => {
           return (
             <ProductsList key={_id}>
-              <CurrenProduct>
+              <CurrenProduct id={_id}>
                 <CurrenProductName mr={3}>{ua}</CurrenProductName>
                 <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
                 <CurrenProductCal>{calories} kcal</CurrenProductCal>
-                <DelMeal type="button">
+                <DelMeal type="button" onClick={filteringProductsList}>
                   <svg
                     width="14"
                     height="14"
