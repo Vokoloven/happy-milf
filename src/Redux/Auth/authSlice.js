@@ -28,10 +28,14 @@ export const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: true,
     avatar: null,
+    date: new Date(),
   },
   reducers: {
     addAvatar(state, action) {
       state.avatar = action.payload;
+    },
+    getDate(state, action) {
+      state.date = action.payload;
     },
   },
   extraReducers: builder => {
@@ -80,7 +84,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { addAvatar } = authSlice.actions;
+export const { addAvatar, getDate } = authSlice.actions;
 
 const persistConfig = {
   key: 'auth',

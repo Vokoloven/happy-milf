@@ -1,18 +1,25 @@
 import Calendar from 'react-calendar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CurrentDate, ChooseDate } from './CalendarSection.styled';
+import { useDispatch } from 'react-redux';
+import { getDate } from 'Redux/Auth/authSlice';
 
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
 
   const year = calendar.toLocaleString('default', { year: 'numeric' });
   const month = calendar.toLocaleString('default', { month: '2-digit' });
   const day = calendar.toLocaleString('default', { day: '2-digit' });
 
-  const backendDate = year + '-' + month + '-' + day;
-  const formateDate = year + '.' + month + '.' + day;
-  console.log(formateDate);
+  const backEndDate = year + '-' + month + '-' + day;
+  const formateDate = day + '.' + month + '.' + year;
+
+  useEffect(() => {
+    dispatch(getDate(backEndDate));
+  }, [backEndDate, dispatch]);
+
   return (
     <div>
       <CurrentDate onClick={() => setToggle(!toggle)}>

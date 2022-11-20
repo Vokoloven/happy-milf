@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { productsSearchByName } from 'Redux/ProductSearch/productSearch.service';
+import { productsSearchByName } from 'service/ProductSearch/productSearch.service';
+import { postDay } from 'service/Day/day.service';
 import _ from 'lodash';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
@@ -8,6 +9,7 @@ import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
+import { authSelector } from 'Redux/Selectors/authSelectors';
 
 import {
   Form,
@@ -23,6 +25,7 @@ import {
   CurrenProductWeight,
   CurrenProductCal,
 } from './CalendarForm.styled';
+import { useSelector } from 'react-redux';
 
 export const CalendarForm = () => {
   const [productName, setProductName] = useState('');
@@ -32,6 +35,10 @@ export const CalendarForm = () => {
   const [id, setId] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] = useState([]);
+  const [productId, setProductId] = useState('');
+  const [weight, setWeight] = useState('');
+
+  const { date } = useSelector(authSelector);
 
   const [productInputName, setProductInputName] = React.useState([]);
   const handleChangeMultiple = event => {
@@ -61,6 +68,8 @@ export const CalendarForm = () => {
   const addSelectedProduct = () => {
     const result = caloriesCalculator();
 
+    const [{ weight }] = result;
+
     if (productsList?.length === 0) {
       result &&
         setProductsList(prevState => {
@@ -77,6 +86,9 @@ export const CalendarForm = () => {
             return [...prevState, ...result];
           });
     }
+
+    setProductId(id);
+    setWeight(Number(weight));
   };
 
   const caloriesCalculator = () => {
@@ -98,7 +110,6 @@ export const CalendarForm = () => {
 
   const handleCalculationSubmit = e => {
     e.preventDefault();
-    console.log(productName, grams);
   };
 
   useEffect(() => {
@@ -116,6 +127,20 @@ export const CalendarForm = () => {
       setProducts([]);
     }
   }, [productName, reload]);
+
+  useEffect(() => {
+    const getApiPostDay = async params => {
+      const response = await postDay(params);
+    };
+
+    if (date && productId && weight) {
+      getApiPostDay({
+        date,
+        productId,
+        weight,
+      });
+    }
+  }, [date, productId, weight]);
 
   const callApi = () => {
     setReload(true);

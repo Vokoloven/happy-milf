@@ -1,4 +1,4 @@
-import { configAxios } from 'Redux/config.axios';
+import { configAxios } from 'service/config.axios';
 import Notiflix from 'notiflix';
 
 export const productsSearchByName = async params => {
