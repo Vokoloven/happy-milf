@@ -96,9 +96,11 @@ export const RegistrationPageForm = () => {
           <Input
             {...register('password', {
               required: 'Password cant be empty',
-              minLength: {
-                value: 5,
-                message: 'Password must be bigger than 5 symbols',
+              pattern: {
+                value:
+                  /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/,
+                message:
+                  'Wrong input. Must contain at least one number, one special character, one lowercase latin letter, one uppercase latin letter, consist of at least 6 of the above characters',
               },
               onChange: handleChange,
             })}
