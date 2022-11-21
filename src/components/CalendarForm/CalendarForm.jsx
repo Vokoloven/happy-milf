@@ -166,6 +166,13 @@ export const CalendarForm = ({ setActive }) => {
   useEffect(() => {
     const getApiPostDay = async params => {
       const response = await postDay(params);
+
+      const {
+        day: { eatenProducts },
+      } = response;
+
+      console.log(eatenProducts);
+      // setProductsList(eatenProducts);
     };
 
     if (date && productId && weight) {
