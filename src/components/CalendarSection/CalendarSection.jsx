@@ -1,8 +1,15 @@
 import Calendar from 'react-calendar';
 import { useState, useEffect } from 'react';
 import { CurrentDate, ChooseDate } from './CalendarSection.styled';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getDate } from 'Redux/Auth/authSlice';
+
+const Box = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 32px;
+  }
+`;
 
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
@@ -21,7 +28,7 @@ export const CalendarSection = () => {
   }, [backEndDate, dispatch]);
 
   return (
-    <div>
+    <Box>
       <CurrentDate onClick={() => setToggle(!toggle)}>
         {formateDate}
       </CurrentDate>
@@ -43,6 +50,6 @@ export const CalendarSection = () => {
         </svg>
       </ChooseDate>
       {toggle && <Calendar onChange={setCalendar} value={calendar} />}
-    </div>
+    </Box>
   );
 };

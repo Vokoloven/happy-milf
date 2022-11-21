@@ -1,23 +1,47 @@
 import styled from 'styled-components';
+import bgImg from '../HomePageForm/img/Layer1x.png';
 
 export const Aside = styled.aside`
   background-color: #f0f1f3;
+  margin-top: auto;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    padding: 0 32px;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    left: 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    position: static;
   }
 `;
 
 export const AsideContainer = styled.div`
-  width: 320px;
-  margin: 0 auto;
+  // width: 320px;
   padding: 40px 20px 70px 20px;
   background-color: #f0f1f3;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    // position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: -100px;
+    // transform: translateY(100%);
+  }
+  @media screen and (min-width: 768px) {
+    position: absolute;
+  }
+
+  @media screen and (max-width: 1279px) and (max-width: 1279px) {
     display: flex;
-    width: 768px;
     padding: 80px 0;
+
+    width: 100%;
+    left: 0;
+    margin-top: 48px;
+    padding: 80px 32px;
   }
   @media screen and (min-width: 1280px) {
     padding-top: 292px;
@@ -27,6 +51,10 @@ export const AsideContainer = styled.div`
     right: 0;
     width: 517px;
     height: 100%;
+    background-image: url(${bgImg});
+
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
   }
 `;
 
