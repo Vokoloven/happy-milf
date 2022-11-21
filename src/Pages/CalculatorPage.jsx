@@ -23,7 +23,7 @@ const Section = styled.section`
   }
 `;
 
-export const CalculatorPage = () => {
+const CalculatorPage = () => {
   const [active, setActive] = useState(true);
   const screenWidth = window.screen.width;
 
@@ -42,3 +42,5 @@ export const CalculatorPage = () => {
     </Section>
   );
 };
+
+export default CalculatorPage;

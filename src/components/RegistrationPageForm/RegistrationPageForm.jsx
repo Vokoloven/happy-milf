@@ -1,4 +1,4 @@
-import { LoginPage } from 'Pages/LoginPage';
+import LoginPage from 'Pages/LoginPage';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';

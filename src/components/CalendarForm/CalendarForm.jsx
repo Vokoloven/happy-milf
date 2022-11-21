@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
 import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
+import { Loader } from 'components/Loader/Loader';
 
 import {
   Form,
@@ -47,6 +48,7 @@ export const CalendarForm = ({ setActive }) => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] = useState([]);
   const [startBtnS, setStartBtnS] = useState(false);
+  const [isLoadin, setIsLoading] = useState(false);
 
   const [productInputName, setProductInputName] = React.useState([]);
   const handleChangeMultiple = event => {
@@ -76,6 +78,7 @@ export const CalendarForm = ({ setActive }) => {
       const product = products.filter(({ _id }) => _id === id);
       product && setSelectedProduct(() => product);
     }
+    setIsLoading(false);
   }, [id, products]);
 
   const screenWidth = window.screen.width;
@@ -159,6 +162,7 @@ export const CalendarForm = ({ setActive }) => {
   const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
 
   const handleProductName = e => {
+    setIsLoading(true);
     debounceCallApi(setProductName(e.currentTarget.value));
     setReload(false);
   };
@@ -179,6 +183,7 @@ export const CalendarForm = ({ setActive }) => {
 
   return (
     <>
+      {isLoadin && <Loader />}
       {startBtnS && (
         <>
           {screenWidth < 767 && (
@@ -186,7 +191,6 @@ export const CalendarForm = ({ setActive }) => {
               <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
             </ReturnButton>
           )}
-
           <Form onSubmit={handleCalculationSubmit}>
             <WrapperProductName>
               <ProductName

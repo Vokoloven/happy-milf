@@ -14,10 +14,12 @@ const Section = styled.section`
   // height: 594px;
 `;
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <Section>
       <HomePageForm />
     </Section>
   );
 };
+
+export default HomePage;

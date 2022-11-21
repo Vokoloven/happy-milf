@@ -10,10 +10,12 @@ const Section = styled.section`
   }
 `;
 
-export const LoginPage = () => {
+const LoginPage = () => {
   return (
     <Section>
       <LoginPageForm />
     </Section>
   );
 };
+
+export default LoginPage;

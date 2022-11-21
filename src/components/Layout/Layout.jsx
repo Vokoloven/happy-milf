@@ -23,6 +23,14 @@ export const Layout = () => {
   const TOKEN = useSelector(tokenSelector);
   const NAME = useSelector(nameSelector);
 
+  const root = document.getElementById('#root');
+
+  const handleChangeTheme = () => {
+    const foo = document.querySelectorAll('#root');
+    console.log(foo[0].className === 'darkTheme');
+    foo[0].classList.toggle('darkTheme');
+  };
+
   const handleLogOut = () => {
     dispatch(operations.logOut());
     dispatch(addAvatar(null));
@@ -45,6 +53,7 @@ export const Layout = () => {
     <>
       <Header>
         <Logo handleAuthorizationRestart={handleAuthorizationRestart} />
+        <button onClick={handleChangeTheme}></button>
         {!TOKEN && !authorization && (
           <HeaderAuthNav handleAuthorization={handleAuthorization} />
         )}

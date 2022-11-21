@@ -13,10 +13,12 @@ const Section = styled.section`
   }
 `;
 
-export const RegistrationPage = () => {
+const RegistrationPage = () => {
   return (
     <Section>
       <RegistrationPageForm />
     </Section>
   );
 };
+
+export default RegistrationPage;

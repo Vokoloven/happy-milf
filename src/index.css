@@ -47,3 +47,25 @@ code {
     position: relative;
   }
 }
+
+#root.darkTheme {
+  background-color: #444444;
+}
+#root.darkTheme > header {
+  background-color: #444444;
+  box-shadow: 0px 0px 7px #fc842d;
+}
+
+#root.darkTheme > section {
+  background-color: #444444;
+}
+
+#root.darkTheme > section > div > h1 {
+  color: #e2e2e2;
+}
+#root > header > div.css-72bwj6 > button {
+  color: #e2e2e2;
+}
+#root > header > div.css-72bwj6 > p {
+  color: #e2e2e2;
+}

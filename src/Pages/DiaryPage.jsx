@@ -1,5 +1,7 @@
 import { DiaryPageForm } from 'components/DiaryPageForm/DiaryPageForm';
 
-export const DiaryPage = () => {
+const DiaryPage = () => {
   return <DiaryPageForm />;
 };
+
+export default DiaryPage;
