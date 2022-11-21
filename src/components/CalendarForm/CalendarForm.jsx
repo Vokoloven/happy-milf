@@ -50,8 +50,9 @@ export const CalendarForm = ({ setActive }) => {
   const [id, setId] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] = useState([]);
-  const [productId, setProductId] = useState('');
-  const [weight, setWeight] = useState('');
+  const [eatenProductsList, setEatenProductsList] = useState({});
+  // const [productId, setProductId] = useState('');
+  // const [weight, setWeight] = useState('');
 
   const { date } = useSelector(authSelector);
   const [startBtnS, setStartBtnS] = useState(false);
@@ -70,13 +71,15 @@ export const CalendarForm = ({ setActive }) => {
     setProductInputName(value);
   };
 
+  console.log(eatenProductsList);
+
   const handleStartChooseProduct = () => {
     setActive(false);
     setStartBtnS(true);
   };
 
   const handleGrams = e => {
-    setGrams(e.currentTarget.value);
+    setGrams(Number(e.currentTarget.value));
   };
 
   const {
@@ -104,26 +107,26 @@ export const CalendarForm = ({ setActive }) => {
   }, []);
 
   const addSelectedProduct = () => {
-    const result = caloriesCalculator();
+    // const result = caloriesCalculator();
 
-    const [{ weight }] = result;
+    // const [{ weight }] = result;
 
-    if (productsList?.length === 0) {
-      result &&
-        setProductsList(prevState => {
-          return [...prevState, ...result];
-        });
-    } else {
-      const isDuplicate = productsList.some(({ _id }) => _id === id);
+    // if (productsList?.length === 0) {
+    //   result &&
+    //     setProductsList(prevState => {
+    //       return [...prevState, ...result];
+    //     });
+    // } else {
+    //   const isDuplicate = productsList.some(({ _id }) => _id === id);
 
-      isDuplicate
-        ? Notiflix.Notify.warning(`${productInputName} already in the list`, {
-            timeout: 2500,
-          })
-        : setProductsList(prevState => {
-            return [...prevState, ...result];
-          });
-    }
+    //   isDuplicate
+    //     ? Notiflix.Notify.warning(`${productInputName} already in the list`, {
+    //         timeout: 2500,
+    //       })
+    //     : setProductsList(prevState => {
+    //         return [...prevState, ...result];
+    //       });
+    // }
     setGrams('');
     setProductName('');
     setActive(true);
@@ -131,26 +134,26 @@ export const CalendarForm = ({ setActive }) => {
       setStartBtnS(false);
     }
 
-    setProductId(id);
-    setWeight(Number(weight));
+    // setProductId(id);
+    // setWeight(Number(weight));
   };
 
-  const caloriesCalculator = () => {
-    if (selectedProduct?.length > 0) {
-      const calculatedProductsArray = [];
-      const [{ calories }] = selectedProduct;
-      const calPerGram = { calories: (grams * calories) / 100, weight: grams };
-      const [obj] = selectedProduct;
+  // const caloriesCalculator = () => {
+  //   if (selectedProduct?.length > 0) {
+  //     const calculatedProductsArray = [];
+  //     const [{ calories }] = selectedProduct;
+  //     const calPerGram = { calories: (grams * calories) / 100, weight: grams };
+  //     const [obj] = selectedProduct;
 
-      if (grams < 100) {
-        return;
-      }
-      const calculatedProducts = { ...obj, ...calPerGram };
-      calculatedProductsArray.push(calculatedProducts);
+  //     if (grams < 100) {
+  //       return;
+  //     }
+  //     const calculatedProducts = { ...obj, ...calPerGram };
+  //     calculatedProductsArray.push(calculatedProducts);
 
-      return calculatedProductsArray;
-    }
-  };
+  //     return calculatedProductsArray;
+  //   }
+  // };
 
   const onSubmit = () => {};
 
@@ -177,10 +180,13 @@ export const CalendarForm = ({ setActive }) => {
       const {
         day: { eatenProducts },
       } = response;
-
-      console.log(eatenProducts);
-      // setProductsList(eatenProducts);
+      eatenProducts &&
+        // setProductsList(() => eatenProducts);
+        setEatenProductsList(() => eatenProducts);
     };
+
+    const productId = id;
+    const weight = grams;
 
     if (date && productId && weight) {
       getApiPostDay({
@@ -189,7 +195,7 @@ export const CalendarForm = ({ setActive }) => {
         weight,
       });
     }
-  }, [date, productId, weight]);
+  }, [date, id, grams]);
 
   const callApi = () => {
     setReload(true);
