@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
+import { useForm } from 'react-hook-form';
 
 import {
   Form,
@@ -15,10 +16,17 @@ export const LoginPageForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onChange',
+  });
+
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     dispatch(operations.logIn({ email, password }));
   };
 
@@ -38,31 +46,45 @@ export const LoginPageForm = () => {
   return (
     <>
       <Title>Sing In</Title>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="email">
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Label>
           Email *
           <Input
-            id="email"
+            {...register('email', {
+              required: 'Email cant be empty',
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: 'Wrong email type',
+              },
+              onChange: handleChange,
+            })}
             type="email"
-            name="email"
             value={email}
-            onChange={handleChange}
-            autoComplete="off"
-            required
           />
+          <div style={{ color: 'red' }}>
+            {errors?.email && <p>{errors?.email.message || 'Error!'}</p>}
+          </div>
         </Label>
 
-        <Label htmlFor="password">
+        <Label>
           Password *
           <Input
-            id="password"
+            {...register('password', {
+              required: 'Password cant be empty',
+              pattern: {
+                value:
+                  /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/,
+                message:
+                  'Wrong input. Must contain at least one number, one special character, one lowercase latin letter, one uppercase latin letter, consist of at least 6 of the above characters',
+              },
+            })}
             type="password"
-            name="password"
             value={password}
-            onChange={handleChange}
-            autoComplete="off"
-            required
           />
+          <div style={{ color: 'red' }}>
+            {errors?.password && <p>{errors?.password.message || 'Error!'}</p>}
+          </div>
         </Label>
 
         <LogIntBtn type="submit">Log In</LogIntBtn>
