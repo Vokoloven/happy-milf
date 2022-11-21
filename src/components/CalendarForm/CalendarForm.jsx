@@ -8,6 +8,7 @@ import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 
@@ -71,6 +72,14 @@ export const CalendarForm = ({ setActive }) => {
     setGrams(e.currentTarget.value);
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onChange',
+  });
+
   useEffect(() => {
     if (products) {
       const product = products.filter(({ _id }) => _id === id);
@@ -131,8 +140,7 @@ export const CalendarForm = ({ setActive }) => {
     }
   };
 
-  const handleCalculationSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     console.log(productName, grams);
   };
 
@@ -187,23 +195,44 @@ export const CalendarForm = ({ setActive }) => {
             </ReturnButton>
           )}
 
-          <Form onSubmit={handleCalculationSubmit}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <WrapperProductName>
               <ProductName
+                {...register('productName', {
+                  required: 'Product name cant be empty',
+                  maxLength: {
+                    value: 30,
+                    message: 'Product name to large',
+                  },
+                  pattern: {
+                    value: /^[а-яА-ЯёЁ0-9\s]+$/,
+                    message: 'Wrong input. Must be Ru or Ua',
+                  },
+                  onChange: handleProductName,
+                })}
+                type="text"
                 placeholder="Enter product name"
                 value={productName}
-                onChange={handleProductName}
-                type="text"
               />
+              <div style={{ color: 'red' }}>
+                {errors?.productName && (
+                  <p>{errors?.productName.message || 'Error!'}</p>
+                )}
+              </div>
             </WrapperProductName>
             <WrapperGrams>
               <Grams
+                {...register('grams', {
+                  required: 'Enter weight',
+                  onChange: handleGrams,
+                })}
+                type="number"
                 placeholder="Grams"
                 value={grams}
-                onChange={handleGrams}
-                min="100"
-                type="number"
               />
+              <div style={{ color: 'red' }}>
+                {errors?.grams && <p>{errors?.grams.message || 'Error!'}</p>}
+              </div>
             </WrapperGrams>
             <AddMeal type="submit" onClick={addSelectedProduct}>
               +
