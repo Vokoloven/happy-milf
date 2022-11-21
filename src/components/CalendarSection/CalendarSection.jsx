@@ -1,6 +1,13 @@
 import Calendar from 'react-calendar';
 import { useState } from 'react';
 import { CurrentDate, ChooseDate } from './CalendarSection.styled';
+import styled from 'styled-components';
+
+const Box = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 32px;
+  }
+`;
 
 export const CalendarSection = () => {
   const [calendar, setCalendar] = useState(new Date());
@@ -14,7 +21,7 @@ export const CalendarSection = () => {
   const formateDate = year + '.' + month + '.' + day;
   console.log(formateDate);
   return (
-    <div>
+    <Box>
       <CurrentDate onClick={() => setToggle(!toggle)}>
         {formateDate}
       </CurrentDate>
@@ -36,6 +43,6 @@ export const CalendarSection = () => {
         </svg>
       </ChooseDate>
       {toggle && <Calendar onChange={setCalendar} value={calendar} />}
-    </div>
+    </Box>
   );
 };

@@ -58,11 +58,13 @@ export const ChoiceAvatar = () => {
   return (
     <AvatarBox>
       {avatarSelect === null ? (
-        <AvatarImg
-          style={{ width: '30px', height: '30px' }}
-          src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg"
-          alt="userAvatar"
-        />
+        <div>
+          <AvatarImg
+            style={{ width: '45px', height: '45px' }}
+            src="https://cdn2.iconfinder.com/data/icons/users-outline-2/32/user-09-512.png"
+            alt="userAvatar"
+          />
+        </div>
       ) : (
         <AvatarImg src={avatarSelect} alt="userAvatar" />
       )}

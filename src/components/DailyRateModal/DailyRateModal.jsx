@@ -29,7 +29,7 @@ export const DailyRateModal = ({
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
         <CloseBtnMob onClick={handleClickOnCloseBtn}>
-          <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
+          <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="<<<" />
         </CloseBtnMob>
         <CloseBtn onClick={handleClickOnCloseBtn}>
           <img style={{ pointerEvents: 'none' }} src={closeIcon} alt="X" />

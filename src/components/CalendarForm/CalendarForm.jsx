@@ -9,6 +9,8 @@ import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 
 import {
   Form,
@@ -17,15 +19,27 @@ import {
   WrapperProductName,
   WrapperGrams,
   AddMeal,
+  AddMeals,
   DelMeal,
   ProductsList,
   CurrenProduct,
   CurrenProductName,
   CurrenProductWeight,
   CurrenProductCal,
+  ProductsBox,
+  StartBtn,
+  ReturnButton,
+  ProductBox,
 } from './CalendarForm.styled';
 
-export const CalendarForm = () => {
+const SelectStyled = styled(Select)`
+  width: 440px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
+`;
+
+export const CalendarForm = ({ setActive }) => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
@@ -33,6 +47,7 @@ export const CalendarForm = () => {
   const [id, setId] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] = useState([]);
+  const [startBtnS, setStartBtnS] = useState(false);
 
   const [productInputName, setProductInputName] = React.useState([]);
   const handleChangeMultiple = event => {
@@ -46,6 +61,11 @@ export const CalendarForm = () => {
     }
 
     setProductInputName(value);
+  };
+
+  const handleStartChooseProduct = () => {
+    setActive(false);
+    setStartBtnS(true);
   };
 
   const handleGrams = e => {
@@ -67,6 +87,15 @@ export const CalendarForm = () => {
     }
   }, [id, products]);
 
+  const screenWidth = window.screen.width;
+
+  useEffect(() => {
+    if (screenWidth > 768) {
+      setStartBtnS(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const addSelectedProduct = () => {
     const result = caloriesCalculator();
 
@@ -85,6 +114,12 @@ export const CalendarForm = () => {
         : setProductsList(prevState => {
             return [...prevState, ...result];
           });
+    }
+    setGrams('');
+    setProductName('');
+    setActive(true);
+    if (screenWidth < 768) {
+      setStartBtnS(false);
     }
   };
 
@@ -145,53 +180,75 @@ export const CalendarForm = () => {
     }
   };
 
+  const handleReturnBtn = () => {
+    setStartBtnS(false);
+    setActive(true);
+  };
+
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <WrapperProductName>
-          <ProductName
-            {...register('productName', {
-              required: 'Product name cant be empty',
-              maxLength: {
-                value: 30,
-                message: 'Product name to large',
-              },
-              pattern: {
-                value: /^[а-яА-ЯёЁ0-9\s]+$/,
-                message: 'Wrong input. Must be Ru or Ua',
-              },
-              onChange: handleProductName,
-            })}
-            type="text"
-            placeholder="Enter product name"
-            value={productName}
-          />
-          <div style={{ color: 'red' }}>
-            {errors?.productName && (
-              <p>{errors?.productName.message || 'Error!'}</p>
-            )}
-          </div>
-        </WrapperProductName>
-        <WrapperGrams>
-          <Grams
-            {...register('grams', {
-              required: 'Enter weight',
-              onChange: handleGrams,
-            })}
-            type="number"
-            placeholder="Grams"
-            value={grams}
-          />
-          <div style={{ color: 'red' }}>
-            {errors?.grams && <p>{errors?.grams.message || 'Error!'}</p>}
-          </div>
-        </WrapperGrams>
+      {startBtnS && (
+        <>
+          {screenWidth < 767 && (
+            <ReturnButton onClick={handleReturnBtn}>
+              <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
+            </ReturnButton>
+          )}
 
-        <AddMeal type="submit" onClick={addSelectedProduct}>
-          +
-        </AddMeal>
-      </Form>
-      <div>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <WrapperProductName>
+              <ProductName
+                {...register('productName', {
+                  required: 'Product name cant be empty',
+                  maxLength: {
+                    value: 30,
+                    message: 'Product name to large',
+                  },
+                  pattern: {
+                    value: /^[а-яА-ЯёЁ0-9\s]+$/,
+                    message: 'Wrong input. Must be Ru or Ua',
+                  },
+                  onChange: handleProductName,
+                })}
+                type="text"
+                placeholder="Enter product name"
+                value={productName}
+              />
+              <div style={{ color: 'red' }}>
+                {errors?.productName && (
+                  <p>{errors?.productName.message || 'Error!'}</p>
+                )}
+              </div>
+            </WrapperProductName>
+            <WrapperGrams>
+              <Grams
+                {...register('grams', {
+                  required: 'Enter weight',
+                  onChange: handleGrams,
+                })}
+                type="number"
+                placeholder="Grams"
+                value={grams}
+              />
+              <div style={{ color: 'red' }}>
+                {errors?.grams && <p>{errors?.grams.message || 'Error!'}</p>}
+              </div>
+            </WrapperGrams>
+            <AddMeal type="submit" onClick={addSelectedProduct}>
+              +
+            </AddMeal>
+            {screenWidth > 768 ? (
+              <></>
+            ) : (
+              <AddMeals type="submit" onClick={addSelectedProduct}>
+                Add
+              </AddMeals>
+            )}
+          </Form>
+        </>
+      )}
+
+      <ProductBox>
         {productsList.map(({ _id, title: { ua }, calories, weight }) => {
           return (
             <ProductsList key={_id}>
@@ -219,8 +276,11 @@ export const CalendarForm = () => {
             </ProductsList>
           );
         })}
-      </div>
-      <div>
+      </ProductBox>
+      <StartBtn type="submit" onClick={handleStartChooseProduct}>
+        +
+      </StartBtn>
+      <ProductsBox>
         {products?.length > 0 && productName && (
           <FormControl
             sx={{
@@ -233,7 +293,7 @@ export const CalendarForm = () => {
               <InputLabel shrink htmlFor="select-multiple-native">
                 Select
               </InputLabel>
-              <Select
+              <SelectStyled
                 multiple
                 native
                 value={productInputName}
@@ -250,11 +310,11 @@ export const CalendarForm = () => {
                       {ua}
                     </option>
                   ))}
-              </Select>
+              </SelectStyled>
             </ThemeProvider>
           </FormControl>
         )}
-      </div>
+      </ProductsBox>
     </>
   );
 };
