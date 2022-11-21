@@ -70,8 +70,6 @@ export const CalendarForm = ({ setActive }) => {
     setProductInputName(value);
   };
 
-  console.log('rofl');
-
   const handleStartChooseProduct = () => {
     setActive(false);
     setStartBtnS(true);
