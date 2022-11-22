@@ -71,7 +71,7 @@ export const DiaryAside = () => {
         </div>
         <Box display="flex" flexDirection="column">
           <RecTitle>Food not recommended</RecTitle>
-          {/* !! */}
+
           {1 === 0 ? (
             <DietText>Your diet will displayed here</DietText>
           ) : (
@@ -83,7 +83,6 @@ export const DiaryAside = () => {
               ))}
             </StyledUl>
           )}
-          {/* !! */}
         </Box>
       </AsideContainerx>
     </Aside>
