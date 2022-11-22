@@ -14,36 +14,44 @@ import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
 
 export const DiaryAside = () => {
   const { userInfo } = useSelector(userInfoSelector);
-  console.log(userInfo.days);
+  const { dayId } = useSelector(postDaySelector);
+
+  if (userInfo.length === 0) {
+    return;
+  }
+
+  const day = userInfo.days.filter(({ _id }) => _id === dayId);
+
+  const [{ daySummary }] = day;
 
   return (
     <Aside>
       <AsideContainer>
         <div>
-          <TitleAside>Summary for 000</TitleAside>
+          <TitleAside>Summary for {daySummary.date}</TitleAside>
           <List>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Left</InfoName>
-                <InfoText>000 kcal</InfoText>
+                <InfoText>{daySummary.kcalLeft} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Consumed</InfoName>
-                <InfoText>000 kcal</InfoText>
+                <InfoText>{daySummary.kcalConsumed} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Daily rate</InfoName>
-                <InfoText>000 kcal</InfoText>
+                <InfoText>{daySummary.dailyRate} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>n% of normal</InfoName>
-                <InfoText>000 kcal</InfoText>
+                <InfoText>{daySummary.percentsOfDailyRate} kcal</InfoText>
               </div>
             </li>
           </List>

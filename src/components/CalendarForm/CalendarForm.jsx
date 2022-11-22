@@ -165,7 +165,6 @@ export const CalendarForm = ({ setActive }) => {
     const getDateInfo = async date => {
       const getDataApi = await postDayInfo(date);
 
-      console.log(getDataApi);
       setProductsList(getDataApi);
       dispatch(addSummaryData(getDataApi.id));
     };

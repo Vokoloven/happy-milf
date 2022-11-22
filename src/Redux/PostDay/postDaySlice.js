@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { postDayApiService } from './postDay.service';
 import operations from './postDay.service';
 
 export const postDaySlice = createSlice({
