@@ -17,6 +17,10 @@ export const Form = styled.form`
   @media screen and (min-width: 768px) {
     width: 512px;
   }
+  @media screen and (min-width: 1280px) {
+    gap: 40px;
+    padding-bottom: 10px;
+  }
 `;
 
 export const Label = styled.label`
@@ -95,6 +99,7 @@ export const StartBtn = styled.button`
   margin-right: auto;
   @media screen and (min-width: 1280px) {
     margin-left: auto;
+    margin-bottom: 0px;
   }
   @media screen and (min-width: 768px) {
     position: relative;

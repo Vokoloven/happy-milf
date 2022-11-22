@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
 const Section = styled.section`
-  padding: 80px 20px 0px 20px;
+  padding: 70px 20px 0px 20px;
+  margin-top: 10px;
   background-color: transparent;
   position: relative;
   @media screen and (min-width: 768px) {

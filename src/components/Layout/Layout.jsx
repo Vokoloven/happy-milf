@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
 import { ChoiceAvatar } from 'components/Avatar/Avatar';
 import { addAvatar } from 'Redux/Auth/authSlice';
+import styled from 'styled-components';
+
+import { ReactComponent as ThemeBtnIcon } from './img/lightbulb_outline.svg';
 
 import { Header } from './Layout.styled';
 
@@ -16,6 +19,33 @@ import { HeaderExitBox } from 'components/HeaderExitBox/HeaderExitBox';
 import { HeaderMenuBtn } from 'components/HeaderMenuBtn/HeaderMenuBtn';
 import { MenuBox } from 'components/MenuBox/MenuBox';
 
+const ThemeIcon = styled(ThemeBtnIcon)`
+  * {
+    color: #fc842d;
+    fill: #fc842d;
+  }
+  @media screen and (max-width: 350px) {
+    position: absolute;
+    left: 5px;
+    top: 1px;
+  }
+`;
+
+const ThemeBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  @media screen and (max-width: 350px) {
+    position: absolute;
+    left: 75px;
+    top: 30px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 10px;
+    position: relative;
+    top: 5px;
+  }
+`;
+
 export const Layout = () => {
   const dispatch = useDispatch();
   const [authorization, setAuthorization] = useState(false);
@@ -24,11 +54,8 @@ export const Layout = () => {
   const TOKEN = useSelector(tokenSelector);
   const NAME = useSelector(nameSelector);
 
-  const root = document.getElementById('#root');
-
   const handleChangeTheme = () => {
     const foo = document.querySelectorAll('#root');
-    // console.log(foo[0].className === 'darkTheme');
     foo[0].classList.toggle('darkTheme');
     setChangeTheme(!changeTheme);
   };
@@ -55,7 +82,13 @@ export const Layout = () => {
     <>
       <Header>
         <Logo handleAuthorizationRestart={handleAuthorizationRestart} />
-        <button onClick={handleChangeTheme}></button>
+        <ThemeBtn onClick={handleChangeTheme}>
+          {changeTheme ? (
+            <ThemeIcon alt="themeIcon"></ThemeIcon>
+          ) : (
+            <ThemeBtnIcon alt="themeIcon"></ThemeBtnIcon>
+          )}
+        </ThemeBtn>
         {!TOKEN && !authorization && (
           <HeaderAuthNav handleAuthorization={handleAuthorization} />
         )}

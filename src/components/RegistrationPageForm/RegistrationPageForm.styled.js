@@ -66,7 +66,7 @@ export const Input = styled.input`
 export const RegistertBtn = styled.button`
   display: block;
   margin-top: 60px;
-  margin-bottom: 255px;
+  margin-bottom: 177px;
   width: 182px;
   height: 43px;
   background: #fc842d;
@@ -110,8 +110,8 @@ export const LoginBtn = styled(Link)`
     margin-right: auto;
   }
   position: absolute;
-  bottom: 254px;
-  left: 213px;
+  bottom: 417px;
+  left: 246px;
   display: block;
   width: 182px;
   height: 43px;
@@ -120,6 +120,11 @@ export const LoginBtn = styled(Link)`
   border-radius: 30px;
   border: none;
   position: absolute;
+
+  @media screen and (min-width: 1280px) {
+    bottom: 177px;
+    left: 232px;
+  }
 
   font-family: 'Verdana';
   font-style: normal;

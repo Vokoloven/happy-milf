@@ -5,7 +5,7 @@ export const HeaderAuthNav = ({ handleAuthorization }) => {
   return (
     <>
       <SingInLink
-        style={{ marginLeft: '20px' }}
+        style={{ marginLeft: '15px' }}
         onClick={handleAuthorization}
         to="/login"
       >
