@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { configAxios } from 'Redux/config.axios';
+import { configAxios } from 'service/config.axios';
 
 export const getDailyRate = createAsyncThunk(
   'rate/daily',

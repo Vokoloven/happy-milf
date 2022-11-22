@@ -7,6 +7,8 @@ import { useEffect, useRef } from 'react';
 import operations from 'Redux/Auth/auth.service';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from 'Redux/Selectors/authSelectors';
+import { getUserInfoApiService } from 'Redux/UserInfo/userInfo.service';
+import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 import { Loader } from './Loader/Loader';
@@ -25,6 +27,9 @@ export const App = () => {
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
   const isFirstRefresh = useRef(true);
+  const { isCompletedRefreshing } = useSelector(authSelector);
+  const { isAddedProductInList, isDeletedProductInList } =
+    useSelector(postDaySelector);
 
   useEffect(() => {
     const foo = document.querySelectorAll('#root');
@@ -44,6 +49,15 @@ export const App = () => {
       dispach(operations.fetchCurrentUser({ sid: sid }));
     }
   }, [dispach, isLoading, sid]);
+
+  useEffect(() => {
+    isCompletedRefreshing && dispach(getUserInfoApiService());
+  }, [
+    dispach,
+    isCompletedRefreshing,
+    isAddedProductInList,
+    isDeletedProductInList,
+  ]);
 
   return (
     <Suspense fallback={<Loader />}>
