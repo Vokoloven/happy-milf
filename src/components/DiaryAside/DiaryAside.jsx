@@ -7,6 +7,7 @@ import {
   RecTitle,
   DietText,
   AsideContainer,
+  StyledUl,
 } from './DiaryAside.styled';
 import { useSelector } from 'react-redux';
 import { userInfoSelector } from 'Redux/Selectors/userInfoSelector';
@@ -22,6 +23,10 @@ export const DiaryAside = () => {
   }
 
   const day = userInfo.days.filter(({ _id }) => _id === dayId);
+
+  if (day.length === 0) {
+    return;
+  }
 
   const [{ daySummary }] = day;
 
@@ -39,25 +44,27 @@ export const DiaryAside = () => {
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Left</InfoName>
-                <InfoText>{daySummary.kcalLeft} kcal</InfoText>
+                <InfoText>{daySummary.kcalLeft.toFixed(2)} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Consumed</InfoName>
-                <InfoText>{daySummary.kcalConsumed} kcal</InfoText>
+                <InfoText>{daySummary.kcalConsumed.toFixed(2)} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>Daily rate</InfoName>
-                <InfoText>{daySummary.dailyRate} kcal</InfoText>
+                <InfoText>{daySummary.dailyRate.toFixed(2)} kcal</InfoText>
               </div>
             </li>
             <li>
               <div style={{ display: 'flex' }}>
                 <InfoName>n% of normal</InfoName>
-                <InfoText>{daySummary.percentsOfDailyRate} kcal</InfoText>
+                <InfoText>
+                  {daySummary.percentsOfDailyRate.toFixed(2)} kcal
+                </InfoText>
               </div>
             </li>
           </List>
@@ -68,13 +75,13 @@ export const DiaryAside = () => {
           {1 === 0 ? (
             <DietText>Your diet will displayed here</DietText>
           ) : (
-            <DietText>
+            <StyledUl>
               {secondNotAllowedProducts.map(food => (
-                <Box as="p" mb={3}>
+                <Box as="li" mb={3} key={food}>
                   {food}
                 </Box>
               ))}
-            </DietText>
+            </StyledUl>
           )}
           {/* !! */}
         </Box>

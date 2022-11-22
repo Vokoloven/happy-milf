@@ -92,7 +92,7 @@ export const { addAvatar, getDate } = authSlice.actions;
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken', 'user', 'avatar'],
+  whitelist: ['sid', 'accessToken', 'refreshToken', 'avatar'],
 };
 
 export const persistedReducer = persistReducer(

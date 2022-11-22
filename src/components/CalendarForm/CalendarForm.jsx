@@ -282,7 +282,7 @@ export const CalendarForm = ({ setActive }) => {
                 <CurrenProduct id={id}>
                   <CurrenProductName mr={3}>{title}</CurrenProductName>
                   <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
-                  <CurrenProductCal>{kcal} kcal</CurrenProductCal>
+                  <CurrenProductCal>{Math.round(kcal)} kcal</CurrenProductCal>
                   <DelMeal type="button" onClick={deletingProductsFromTheList}>
                     <svg
                       width="14"
