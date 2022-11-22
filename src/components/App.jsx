@@ -10,7 +10,6 @@ import { authSelector } from 'Redux/Selectors/authSelectors';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 import { Loader } from './Loader/Loader';
-import { useState } from 'react';
 import { themeSelector } from 'Redux/Selectors/authSelectors';
 
 const HomePage = lazy(() => import('Pages/HomePage'));
@@ -20,7 +19,7 @@ const DiaryPage = lazy(() => import('Pages/DiaryPage'));
 const CalculatorPage = lazy(() => import('Pages/CalculatorPage'));
 
 export const App = () => {
-  const theme = useSelector(themeSelector);
+  const colorTheme = useSelector(themeSelector);
 
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
@@ -29,9 +28,10 @@ export const App = () => {
 
   useEffect(() => {
     const foo = document.querySelectorAll('#root');
-    if (theme === true) {
+    if (colorTheme === true) {
       foo[0].classList.add('darkTheme');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -49,12 +49,12 @@ export const App = () => {
     <Suspense fallback={<Loader />}>
       <Global />
       <Routes>
-        <Route path="/" element={<Layout theme={theme} />}>
+        <Route path="/" element={<Layout colorTheme={colorTheme} />}>
           <Route
             index
             element={
               <PublicRoute>
-                <HomePage theme={theme} />
+                <HomePage colorTheme={colorTheme} />
               </PublicRoute>
             }
           />
@@ -86,7 +86,7 @@ export const App = () => {
             path="/calculator"
             element={
               <PrivateRoute>
-                <CalculatorPage theme={theme} />
+                <CalculatorPage colorTheme={colorTheme} />
               </PrivateRoute>
             }
           />

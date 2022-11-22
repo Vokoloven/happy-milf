@@ -7,8 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
+import { theme } from 'Theme/MUI/theme';
 import styled from 'styled-components';
-import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { Loader } from 'components/Loader/Loader';
 
 import {
@@ -42,7 +42,7 @@ const SelectStyled = styled(Select)`
   }
 `;
 
-export const CalendarForm = ({ setActive, theme }) => {
+export const CalendarForm = ({ setActive, colorTheme }) => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
@@ -191,7 +191,7 @@ export const CalendarForm = ({ setActive, theme }) => {
         <>
           {screenWidth < 767 && (
             <ReturnButton onClick={handleReturnBtn}>
-              {theme ? (
+              {colorTheme ? (
                 <ReturnIconTomato alt="<<<" />
               ) : (
                 <ReturnIconBlack alt="<<<" />
@@ -200,7 +200,7 @@ export const CalendarForm = ({ setActive, theme }) => {
           )}
 
           <Form onSubmit={handleCalculationSubmit}>
-            {theme ? (
+            {colorTheme ? (
               <>
                 <WrapperProductName>
                   <ProductNameTheme

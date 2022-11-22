@@ -96,3 +96,15 @@ code {
 #root.darkTheme > #productName {
   background-color: transparent;
 }
+
+#calculatorSection > div.sc-eeMvmM.cUatmD > div > div {
+  background-color: white;
+}
+
+#root.darkTheme > #calculatorSection > div.sc-jOiSOi.caEVxA > ul > li {
+  color: silver;
+}
+
+#root.darkTheme > #calculatorSection > aside > div {
+  bottom: 0px;
+}

@@ -114,7 +114,7 @@ export const DiaryPageForm = () => {
                 onChange={handleAge}
               />
             </Label>
-            <Label>
+            <Label style={{ position: 'relative' }}>
               Blood type *
               <Input
                 min="1"
@@ -129,7 +129,11 @@ export const DiaryPageForm = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="radio-buttons-group"
-                style={{ display: 'block' }}
+                style={{
+                  display: 'block',
+                  position: 'absolute',
+                  bottom: '-40px',
+                }}
               >
                 <FormControlLabel
                   onChange={handleBlood}

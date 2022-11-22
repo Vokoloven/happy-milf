@@ -20,7 +20,7 @@ const CurrentDateStyled = styled(CurrentDate)`
   color: #9b9faa;
 `;
 
-export const CalendarSection = ({ theme }) => {
+export const CalendarSection = ({ colorTheme }) => {
   const [calendar, setCalendar] = useState(new Date());
   const [toggle, setToggle] = useState(false);
 
@@ -30,10 +30,10 @@ export const CalendarSection = ({ theme }) => {
 
   // const backendDate = year + '-' + month + '-' + day;
   const formateDate = year + '.' + month + '.' + day;
-  console.log(formateDate);
+
   return (
     <Box>
-      {theme ? (
+      {colorTheme ? (
         <CurrentDateStyled
           id="currentDateStyled"
           onClick={() => setToggle(!toggle)}
@@ -46,7 +46,7 @@ export const CalendarSection = ({ theme }) => {
         </CurrentDate>
       )}
 
-      {theme ? (
+      {colorTheme ? (
         <ChooseDateStyled
           id="chooseDateStyled"
           onClick={() => setToggle(!toggle)}

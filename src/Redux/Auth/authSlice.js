@@ -28,14 +28,14 @@ export const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: true,
     avatar: null,
-    theme: false,
+    colorTheme: false,
   },
   reducers: {
     addAvatar(state, action) {
       state.avatar = action.payload;
     },
     changeTheme(state, action) {
-      state.theme = action.payload;
+      state.colorTheme = action.payload;
     },
   },
   extraReducers: builder => {
@@ -89,7 +89,14 @@ export const { addAvatar, changeTheme } = authSlice.actions;
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken', 'user', 'avatar', 'theme'],
+  whitelist: [
+    'sid',
+    'accessToken',
+    'refreshToken',
+    'user',
+    'avatar',
+    'colorTheme',
+  ],
 };
 
 export const persistedReducer = persistReducer(
