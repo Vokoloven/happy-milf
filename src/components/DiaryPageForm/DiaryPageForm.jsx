@@ -24,9 +24,9 @@ export const DiaryPageForm = () => {
   const [bloodType, setBloodType] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
 
-  const dispatch = useDispatch();
-
   const { isLoggedIn } = useSelector(authSelector);
+
+  const dispatch = useDispatch();
 
   const handleHeight = e => {
     setHeight(e.currentTarget.value);

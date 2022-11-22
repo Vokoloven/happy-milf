@@ -65,6 +65,7 @@ export const RegistrationPageForm = () => {
             })}
             type="text"
             value={username}
+            autoComplete="off"
           />
           <div style={{ color: 'red' }}>
             {errors?.username && <p>{errors?.username.message || 'Error!'}</p>}
@@ -85,6 +86,7 @@ export const RegistrationPageForm = () => {
             })}
             type="email"
             value={email}
+            autoComplete="off"
           />
           <div style={{ color: 'red' }}>
             {errors?.email && <p>{errors?.email.message || 'Error!'}</p>}
@@ -106,6 +108,7 @@ export const RegistrationPageForm = () => {
             })}
             type="password"
             value={password}
+            autoComplete="off"
           />
           <div style={{ color: 'red' }}>
             {errors?.password && <p>{errors?.password.message || 'Error!'}</p>}

@@ -61,6 +61,7 @@ export const LoginPageForm = () => {
             })}
             type="email"
             value={email}
+            autoComplete="off"
           />
           <div style={{ color: 'red' }}>
             {errors?.email && <p>{errors?.email.message || 'Error!'}</p>}
@@ -78,9 +79,11 @@ export const LoginPageForm = () => {
                 message:
                   'Wrong input. Must contain at least one number, one special character, one lowercase latin letter, one uppercase latin letter, consist of at least 6 of the above characters',
               },
+              onChange: handleChange,
             })}
             type="password"
             value={password}
+            autoComplete="off"
           />
           <div style={{ color: 'red' }}>
             {errors?.password && <p>{errors?.password.message || 'Error!'}</p>}

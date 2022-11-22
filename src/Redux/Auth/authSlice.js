@@ -27,11 +27,16 @@ export const authSlice = createSlice({
     sid: null,
     isLoggedIn: false,
     isLoading: true,
+    isCompletedRefreshing: false,
     avatar: null,
+    date: new Date(),
   },
   reducers: {
     addAvatar(state, action) {
       state.avatar = action.payload;
+    },
+    getDate(state, action) {
+      state.date = action.payload;
     },
   },
   extraReducers: builder => {
@@ -67,25 +72,27 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
     });
     builder
-      // .addCase(operations.fetchCurrentUser.pending, state => {
-      //   state.isLoading = true;
-      // })
+      .addCase(operations.fetchCurrentUser.pending, state => {
+        // state.isLoading = true;
+        state.isCompletedRefreshing = false;
+      })
       .addCase(operations.fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.accessToken = payload.newAccessToken;
         state.refreshToken = payload.newRefreshToken;
         state.sid = payload.sid;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.isCompletedRefreshing = true;
       });
   },
 });
 
-export const { addAvatar } = authSlice.actions;
+export const { addAvatar, getDate } = authSlice.actions;
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken', 'user', 'avatar'],
+  whitelist: ['sid', 'accessToken', 'refreshToken', 'avatar'],
 };
 
 export const persistedReducer = persistReducer(
