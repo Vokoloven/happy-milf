@@ -141,6 +141,7 @@ export const CalendarForm = ({ setActive }) => {
 
     setGrams('');
     setProductName('');
+    setSelectedProduct([]);
     setActive(true);
     if (screenWidth < 768) {
       setStartBtnS(false);

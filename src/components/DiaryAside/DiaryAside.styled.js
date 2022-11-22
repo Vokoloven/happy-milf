@@ -122,6 +122,5 @@ export const DietText = styled.p`
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
-
   color: #9b9faa;
 `;

@@ -11,6 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 import { userInfoSelector } from 'Redux/Selectors/userInfoSelector';
 import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
+import { Box } from 'Theme/Box';
 
 export const DiaryAside = () => {
   const { userInfo } = useSelector(userInfoSelector);
@@ -23,6 +24,11 @@ export const DiaryAside = () => {
   const day = userInfo.days.filter(({ _id }) => _id === dayId);
 
   const [{ daySummary }] = day;
+
+  const secondNotAllowedProducts = userInfo.userData.notAllowedProducts.slice(
+    0,
+    6
+  );
 
   return (
     <Aside>
@@ -56,16 +62,22 @@ export const DiaryAside = () => {
             </li>
           </List>
         </div>
-        <div>
+        <Box display="flex" flexDirection="column">
           <RecTitle>Food not recommended</RecTitle>
           {/* !! */}
           {1 === 0 ? (
             <DietText>Your diet will displayed here</DietText>
           ) : (
-            <DietText>replace here Backend diet info</DietText>
+            <DietText>
+              {secondNotAllowedProducts.map(food => (
+                <Box as="p" mb={3}>
+                  {food}
+                </Box>
+              ))}
+            </DietText>
           )}
           {/* !! */}
-        </div>
+        </Box>
       </AsideContainer>
     </Aside>
   );
