@@ -1,7 +1,18 @@
 {
   "files": {
-    "main.css": "/happy-milf/static/css/main.5c163581.css",
-    "main.js": "/happy-milf/static/js/main.2fc463c4.js",
+    "main.css": "/happy-milf/static/css/main.60bb0315.css",
+    "main.js": "/happy-milf/static/js/main.5f2fbdc4.js",
+    "static/js/219.be134a80.chunk.js": "/happy-milf/static/js/219.be134a80.chunk.js",
+    "static/js/521.7a41ecd0.chunk.js": "/happy-milf/static/js/521.7a41ecd0.chunk.js",
+    "static/js/676.e922a590.chunk.js": "/happy-milf/static/js/676.e922a590.chunk.js",
+    "static/js/343.3552eb8d.chunk.js": "/happy-milf/static/js/343.3552eb8d.chunk.js",
+    "static/css/528.e6d76b8d.chunk.css": "/happy-milf/static/css/528.e6d76b8d.chunk.css",
+    "static/js/528.ab95113d.chunk.js": "/happy-milf/static/js/528.ab95113d.chunk.js",
+    "static/js/106.a9fe27d2.chunk.js": "/happy-milf/static/js/106.a9fe27d2.chunk.js",
+    "static/js/896.211bce2b.chunk.js": "/happy-milf/static/js/896.211bce2b.chunk.js",
+    "static/js/921.ff13f7d7.chunk.js": "/happy-milf/static/js/921.ff13f7d7.chunk.js",
+    "static/js/407.27e2c693.chunk.js": "/happy-milf/static/js/407.27e2c693.chunk.js",
+    "static/js/589.8a4f847c.chunk.js": "/happy-milf/static/js/589.8a4f847c.chunk.js",
     "static/media/Strawberry1x.png": "/happy-milf/static/media/Strawberry1x.710d7026c4b284b6be95.png",
     "static/media/banane1x.png": "/happy-milf/static/media/banane1x.2da01581a1ed4f4189b1.png",
     "static/media/Layer1x.png": "/happy-milf/static/media/Layer1x.6594c140e7b671a5a24c.png",
@@ -9,15 +20,27 @@
     "static/media/StrawberryT-min.png": "/happy-milf/static/media/StrawberryT-min.b69a9abfc4fdd6e49356.png",
     "static/media/LogoB.png": "/happy-milf/static/media/LogoB.40d0abb6166acda86bbd.png",
     "index.html": "/happy-milf/index.html",
+    "static/media/lightbulb_outline.svg": "/happy-milf/static/media/lightbulb_outline.a72a85e04540184a59958bf592f957d0.svg",
     "static/media/closeIcon.svg": "/happy-milf/static/media/closeIcon.8b0b169a772dfb2ec183581943cf2094.svg",
     "static/media/Menu.svg": "/happy-milf/static/media/Menu.f7ffcfd901ad96fdcc5355cdc0d0ac22.svg",
     "static/media/shit.svg": "/happy-milf/static/media/shit.c655d736b7c28331ec14.svg",
-    "static/media/MenuArrow.svg": "/happy-milf/static/media/MenuArrow.24ce6b342eecfc3ce7e0b459a70fddbb.svg",
-    "main.5c163581.css.map": "/happy-milf/static/css/main.5c163581.css.map",
-    "main.2fc463c4.js.map": "/happy-milf/static/js/main.2fc463c4.js.map"
+    "static/media/arrow-left.svg": "/happy-milf/static/media/arrow-left.1f7c9ddbfefd2897518a055249d2f36c.svg",
+    "main.60bb0315.css.map": "/happy-milf/static/css/main.60bb0315.css.map",
+    "main.5f2fbdc4.js.map": "/happy-milf/static/js/main.5f2fbdc4.js.map",
+    "219.be134a80.chunk.js.map": "/happy-milf/static/js/219.be134a80.chunk.js.map",
+    "521.7a41ecd0.chunk.js.map": "/happy-milf/static/js/521.7a41ecd0.chunk.js.map",
+    "676.e922a590.chunk.js.map": "/happy-milf/static/js/676.e922a590.chunk.js.map",
+    "343.3552eb8d.chunk.js.map": "/happy-milf/static/js/343.3552eb8d.chunk.js.map",
+    "528.e6d76b8d.chunk.css.map": "/happy-milf/static/css/528.e6d76b8d.chunk.css.map",
+    "528.ab95113d.chunk.js.map": "/happy-milf/static/js/528.ab95113d.chunk.js.map",
+    "106.a9fe27d2.chunk.js.map": "/happy-milf/static/js/106.a9fe27d2.chunk.js.map",
+    "896.211bce2b.chunk.js.map": "/happy-milf/static/js/896.211bce2b.chunk.js.map",
+    "921.ff13f7d7.chunk.js.map": "/happy-milf/static/js/921.ff13f7d7.chunk.js.map",
+    "407.27e2c693.chunk.js.map": "/happy-milf/static/js/407.27e2c693.chunk.js.map",
+    "589.8a4f847c.chunk.js.map": "/happy-milf/static/js/589.8a4f847c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c163581.css",
-    "static/js/main.2fc463c4.js"
+    "static/css/main.60bb0315.css",
+    "static/js/main.5f2fbdc4.js"
   ]
 }
