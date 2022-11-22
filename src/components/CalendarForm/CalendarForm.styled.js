@@ -95,6 +95,10 @@ export const AddMeal = styled.button`
     left: 50%;
     transform: translateX(-50%);
   }
+  &:hover {
+    transform: scale(1.10);
+    transition: all 250ms linear;;
+  }
 `;
 export const AddMeals = styled.button`
   @media screen and (min-width: 768px) {
@@ -155,6 +159,10 @@ export const DelMeal = styled.button`
   @media screen and (max-width: 767px) {
     margin: auto 0;
     margin-left: 10px;
+  }
+  &:hover {
+    transform: scale(1.15);
+    transition: all 250ms linear;;
   }
 `;
 

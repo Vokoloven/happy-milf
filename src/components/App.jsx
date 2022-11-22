@@ -63,7 +63,7 @@ export const App = () => {
             path="/diary"
             element={
               <PrivateRoute>
-                <DiaryPage />
+                <CalculatorPage />
               </PrivateRoute>
             }
           />
@@ -71,7 +71,7 @@ export const App = () => {
             path="/calculator"
             element={
               <PrivateRoute>
-                <CalculatorPage />
+                <DiaryPage />
               </PrivateRoute>
             }
           />
