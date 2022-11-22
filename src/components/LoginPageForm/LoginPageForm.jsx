@@ -37,7 +37,7 @@ export const LoginPageForm = () => {
 
   return (
     <>
-      <Title>Sing In</Title>
+      <Title style={{ color: '#fc842d' }}>Sing In</Title>
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="email">
           Email *

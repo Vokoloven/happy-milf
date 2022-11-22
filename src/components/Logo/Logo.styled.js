@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 export const LogoLink = styled(Link)`
   margin-right: 22px;
+  @media screen and (max-width: 530px) {
+    margin-right: 10px;
+  }
   position: relative;
   @media screen and (min-width: 1280px) {
     &::after {

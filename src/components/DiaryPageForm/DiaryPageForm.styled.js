@@ -211,6 +211,8 @@ export const Section = styled.section`
   background-color: white;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 1px;
+  
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;

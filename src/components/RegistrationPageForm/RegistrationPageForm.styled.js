@@ -66,7 +66,7 @@ export const Input = styled.input`
 export const RegistertBtn = styled.button`
   display: block;
   margin-top: 60px;
-  margin-bottom: 177px;
+  margin-bottom: 175px;
   width: 182px;
   height: 43px;
   background: #fc842d;

@@ -40,7 +40,7 @@ export const AsideContainer = styled.div`
 
     width: 100%;
     left: 0;
-    margin-top: 48px;
+    // margin-top: 48px;
     padding: 80px 32px;
   }
   @media screen and (min-width: 1280px) {

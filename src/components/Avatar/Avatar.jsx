@@ -21,6 +21,9 @@ const AvatarBox = styled.div`
   position: absolute;
   right: 60px;
   @media screen and (min-width: 530px) {
+    right: 150px;
+  }
+  @media screen and (min-width: 580px) {
     right: 170px;
   }
   @media screen and (min-width: 1280px) {

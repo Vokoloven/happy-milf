@@ -6,7 +6,7 @@ export const ExitBox = styled.div`
   position: relative;
   z-index: 10;
 
-  @media screen and (max-width: 530px) {
+  @media screen and (max-width: 529px) {
     position: absolute;
     top: 80px;
     left: 0;

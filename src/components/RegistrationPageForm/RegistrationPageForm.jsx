@@ -41,7 +41,7 @@ export const RegistrationPageForm = () => {
   };
   return (
     <>
-      <Title>Register</Title>
+      <Title style={{ color: '#fc842d' }}>Register</Title>
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="username">
           Name *

@@ -12,7 +12,8 @@ const Section = styled.section`
     padding: 40px 20px 175px 20px;
   }
   @media screen and (min-width: 1280px) {
-    padding: 40px 16px 255px 16px;
+    margin-top: 10px;
+    padding: 150px 16px 255px 16px;
   }
 `;
 
