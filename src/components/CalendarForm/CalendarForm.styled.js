@@ -40,13 +40,11 @@ export const Form = styled.form`
   }
 `;
 
-export const WrapperProductName = styled.div`
-  margin-right: 48px;
-  margin-bottom: 40px;
-`;
+export const WrapperProductName = styled.div``;
 
 export const ProductName = styled.input`
   outline: none;
+  margin-bottom: 40px;
   border: none;
   width: 240px;
   border-bottom: 1px solid #e0e0e0;
@@ -94,14 +92,13 @@ export const ProductNameTheme = styled.input`
 
 export const WrapperGrams = styled.div`
   margin-right: 60px;
-  margin-bottom: 40px;
 `;
 
 export const Grams = styled.input`
   width: 60px;
   text-align: start;
   outline: none;
-  text-align: right;
+  margin-bottom: 40px;
   width: 105px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -157,10 +154,6 @@ export const AddMeal = styled.button`
     top: 392px;
     left: 50%;
     transform: translateX(-50%);
-  }
-  &:hover {
-    transform: scale(1.10);
-    transition: all 250ms linear;;
   }
 `;
 export const AddMeals = styled.button`
@@ -222,10 +215,6 @@ export const DelMeal = styled.button`
   @media screen and (max-width: 767px) {
     margin: auto 0;
     margin-left: 10px;
-  }
-  &:hover {
-    transform: scale(1.15);
-    transition: all 250ms linear;;
   }
 `;
 

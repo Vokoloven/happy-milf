@@ -78,7 +78,7 @@ export const App = () => {
             path="/diary"
             element={
               <PrivateRoute>
-                <CalculatorPage />
+                <DiaryPage />
               </PrivateRoute>
             }
           />
@@ -86,7 +86,7 @@ export const App = () => {
             path="/calculator"
             element={
               <PrivateRoute>
-                <DiaryPage />
+                <CalculatorPage colorTheme={colorTheme} />
               </PrivateRoute>
             }
           />

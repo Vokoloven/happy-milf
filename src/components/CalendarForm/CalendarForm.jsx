@@ -8,7 +8,6 @@ import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
-import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Loader } from 'components/Loader/Loader';
 
@@ -18,6 +17,7 @@ import {
   Grams,
   WrapperProductName,
   WrapperGrams,
+  GramsTheme,
   AddMeal,
   AddMeals,
   DelMeal,
@@ -30,6 +30,7 @@ import {
   StartBtn,
   ReturnButton,
   ProductBox,
+  ProductNameTheme,
   ReturnIconBlack,
   ReturnIconTomato,
 } from './CalendarForm.styled';
@@ -74,14 +75,6 @@ export const CalendarForm = ({ setActive, colorTheme }) => {
   const handleGrams = e => {
     setGrams(e.currentTarget.value);
   };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: 'onChange',
-  });
 
   useEffect(() => {
     if (products) {
@@ -144,7 +137,8 @@ export const CalendarForm = ({ setActive, colorTheme }) => {
     }
   };
 
-  const onSubmit = () => {
+  const handleCalculationSubmit = e => {
+    e.preventDefault();
     console.log(productName, grams);
   };
 
@@ -205,45 +199,51 @@ export const CalendarForm = ({ setActive, colorTheme }) => {
             </ReturnButton>
           )}
 
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <WrapperProductName>
-              <ProductName
-                {...register('productName', {
-                  required: 'Product name cant be empty',
-                  maxLength: {
-                    value: 30,
-                    message: 'Product name to large',
-                  },
-                  pattern: {
-                    value: /^[а-яА-ЯёЁ0-9\s]+$/,
-                    message: 'Wrong input. Must be Ru or Ua',
-                  },
-                  onChange: handleProductName,
-                })}
-                type="text"
-                placeholder="Enter product name"
-                value={productName}
-              />
-              <div style={{ color: 'red' }}>
-                {errors?.productName && (
-                  <p>{errors?.productName.message || 'Error!'}</p>
-                )}
-              </div>
-            </WrapperProductName>
-            <WrapperGrams>
-              <Grams
-                {...register('grams', {
-                  required: 'Enter weight',
-                  onChange: handleGrams,
-                })}
-                type="number"
-                placeholder="Grams"
-                value={grams}
-              />
-              <div style={{ color: 'red' }}>
-                {errors?.grams && <p>{errors?.grams.message || 'Error!'}</p>}
-              </div>
-            </WrapperGrams>
+          <Form onSubmit={handleCalculationSubmit}>
+            {colorTheme ? (
+              <>
+                <WrapperProductName>
+                  <ProductNameTheme
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={handleProductName}
+                    type="text"
+                  />
+                </WrapperProductName>
+                <WrapperGrams>
+                  <GramsTheme
+                    placeholder="Grams"
+                    value={grams}
+                    onChange={handleGrams}
+                    min="100"
+                    type="number"
+                  />
+                </WrapperGrams>
+              </>
+            ) : (
+              <>
+                <WrapperProductName>
+                  <ProductName
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={handleProductName}
+                    type="text"
+                  />
+                </WrapperProductName>
+                <WrapperGrams>
+                  <Grams
+                    placeholder="Grams"
+                    value={grams}
+                    onChange={handleGrams}
+                    min="100"
+                    type="number"
+                  />
+                </WrapperGrams>
+              </>
+            )}
+
             <AddMeal type="submit" onClick={addSelectedProduct}>
               +
             </AddMeal>
