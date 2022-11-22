@@ -7,21 +7,6 @@ export const authSlice = createSlice({
   name: 'auth',
 
   initialState: {
-    user: {
-      email: null,
-      username: null,
-      id: null,
-      userData: {
-        notAllowedProducts: [],
-        weight: 0,
-        height: 0,
-        age: 0,
-        bloodType: 0,
-        desiredWeight: 0,
-        dailyRate: 0,
-      },
-    },
-    todaySummary: {},
     accessToken: null,
     refreshToken: null,
     sid: null,
@@ -44,7 +29,7 @@ export const authSlice = createSlice({
       state.user.userData = payload;
     });
     builder.addCase(operations.logIn.fulfilled, (state, { payload }) => {
-      state.user = payload.user;
+      state.username = payload.user.username;
       state.todaySummary = payload.todaySummary;
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
