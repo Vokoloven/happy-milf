@@ -1,4 +1,4 @@
-import { LoginPage } from 'Pages/LoginPage';
+import LoginPage from 'Pages/LoginPage';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from 'Redux/Auth/auth.service';
@@ -20,7 +20,6 @@ export const RegistrationPageForm = () => {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
@@ -28,7 +27,8 @@ export const RegistrationPageForm = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
     dispatch(operations.register({ username, email, password }));
   };
 
@@ -51,7 +51,7 @@ export const RegistrationPageForm = () => {
   return (
     <>
       <Title style={{ color: '#fc842d' }}>Register</Title>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={onSubmit}>
         <Label htmlFor="username">
           Name *
           <Input

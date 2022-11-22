@@ -85,7 +85,7 @@ export const DiaryAside = () => {
           )}
           {/* !! */}
         </Box>
-      </AsideContainer>
+      </AsideContainerx>
     </Aside>
   );
 };

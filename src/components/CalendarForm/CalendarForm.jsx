@@ -12,7 +12,6 @@ import { theme } from 'Theme/MUI/theme';
 import styled from 'styled-components';
 import { Loader } from 'components/Loader/Loader';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { authSelector } from 'Redux/Selectors/authSelectors';
 import { useSelector, useDispatch } from 'react-redux';
@@ -110,6 +109,7 @@ export const CalendarForm = ({ setActive, colorTheme }) => {
   const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
 
   const handleProductName = e => {
+    setIsLoading(true);
     debounceCallApi(setProductName(e.currentTarget.value));
     setReload(false);
   };
@@ -161,10 +161,6 @@ export const CalendarForm = ({ setActive, colorTheme }) => {
     if (screenWidth < 768) {
       setStartBtnS(false);
     }
-=======
-  const callApi = () => {
-    setReload(true);
->>>>>>> origin/main
   };
 
   useEffect(() => {
