@@ -21,7 +21,7 @@ const CalculatorPage = lazy(() => import('Pages/CalculatorPage'));
 
 export const App = () => {
   const theme = useSelector(themeSelector);
-  const [changeTheme, setChangeTheme] = useState(theme);
+
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
