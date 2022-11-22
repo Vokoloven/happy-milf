@@ -18,6 +18,7 @@ import {
   Grams,
   WrapperProductName,
   WrapperGrams,
+  GramsTheme,
   AddMeal,
   AddMeals,
   DelMeal,
@@ -30,6 +31,7 @@ import {
   StartBtn,
   ReturnButton,
   ProductBox,
+  ProductNameTheme,
 } from './CalendarForm.styled';
 
 const SelectStyled = styled(Select)`
@@ -39,7 +41,7 @@ const SelectStyled = styled(Select)`
   }
 `;
 
-export const CalendarForm = ({ setActive }) => {
+export const CalendarForm = ({ setActive, changeTheme, setChangeTheme }) => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
@@ -191,24 +193,52 @@ export const CalendarForm = ({ setActive }) => {
               <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
             </ReturnButton>
           )}
+
           <Form onSubmit={handleCalculationSubmit}>
-            <WrapperProductName>
-              <ProductName
-                placeholder="Enter product name"
-                value={productName}
-                onChange={handleProductName}
-                type="text"
-              />
-            </WrapperProductName>
-            <WrapperGrams>
-              <Grams
-                placeholder="Grams"
-                value={grams}
-                onChange={handleGrams}
-                min="100"
-                type="number"
-              />
-            </WrapperGrams>
+            {changeTheme ? (
+              <>
+                <WrapperProductName>
+                  <ProductNameTheme
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={handleProductName}
+                    type="text"
+                  />
+                </WrapperProductName>
+                <WrapperGrams>
+                  <GramsTheme
+                    placeholder="Grams"
+                    value={grams}
+                    onChange={handleGrams}
+                    min="100"
+                    type="number"
+                  />
+                </WrapperGrams>
+              </>
+            ) : (
+              <>
+                <WrapperProductName>
+                  <ProductName
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={handleProductName}
+                    type="text"
+                  />
+                </WrapperProductName>
+                <WrapperGrams>
+                  <Grams
+                    placeholder="Grams"
+                    value={grams}
+                    onChange={handleGrams}
+                    min="100"
+                    type="number"
+                  />
+                </WrapperGrams>
+              </>
+            )}
+
             <AddMeal type="submit" onClick={addSelectedProduct}>
               +
             </AddMeal>

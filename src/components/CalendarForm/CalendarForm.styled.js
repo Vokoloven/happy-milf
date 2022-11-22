@@ -49,6 +49,30 @@ export const ProductName = styled.input`
   margin-bottom: 20px;
 }
 `;
+export const ProductNameTheme = styled.input`
+  outline: none;
+  margin-bottom: 40px;
+  border: none;
+  width: 240px;
+  border-bottom: 1px solid #e0e0e0;
+  height: 48px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #9b9faa;
+  width: 334px;
+  padding-right: 48px;
+  background-color: transparent;
+}
+
+&:focus {
+  border-bottom: 1px solid #fc842d;
+}
+@media screen and (max-width: 767px) {
+  width: 280px;
+  margin-bottom: 20px;
+}
+`;
 
 export const WrapperGrams = styled.div`
   margin-right: 60px;
@@ -67,6 +91,29 @@ export const Grams = styled.input`
   font-weight: 700;
   font-size: 14px;
   color: #9b9faa;
+
+  &:focus {
+    border-bottom: 1px solid #fc842d;
+  }
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    margin-bottom: 40px;
+  }
+`;
+export const GramsTheme = styled.input`
+  width: 60px;
+  text-align: start;
+  outline: none;
+  margin-bottom: 40px;
+  width: 105px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  height: 48px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #9b9faa;
+  background-color: transparent;
 
   &:focus {
     border-bottom: 1px solid #fc842d;
@@ -236,8 +283,7 @@ export const ProductBox = styled.div`
   @media screen and (max-width: 767px) {
     margin-top: 0px;
 
-    height: 280px;
-    margin-bottom: 170px;
+    height: 450px;
   }
   margin-top: 90px;
   height: 212px;

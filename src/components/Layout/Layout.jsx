@@ -46,11 +46,11 @@ const ThemeBtn = styled.button`
   }
 `;
 
-export const Layout = () => {
+export const Layout = ({ changeTheme, setChangeTheme }) => {
   const dispatch = useDispatch();
   const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [changeTheme, setChangeTheme] = useState(false);
+
   const TOKEN = useSelector(tokenSelector);
   const NAME = useSelector(nameSelector);
 
@@ -58,6 +58,7 @@ export const Layout = () => {
     const foo = document.querySelectorAll('#root');
     foo[0].classList.toggle('darkTheme');
     setChangeTheme(!changeTheme);
+    console.log(changeTheme);
   };
 
   const handleLogOut = () => {

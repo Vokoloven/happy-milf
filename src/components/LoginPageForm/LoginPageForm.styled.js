@@ -118,7 +118,7 @@ export const RegisterBtn = styled(Link)`
   }
   position: absolute;
   @media screen and (min-width: 1280px) {
-    bottom: 255px;
+    bottom: 244px;
   }
   left: 213px;
   display: block;

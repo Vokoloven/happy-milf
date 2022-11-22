@@ -26,13 +26,7 @@ const BurgerIconTomato = styled(BurgerIcon)`
   }
 `;
 
-const root = document.querySelectorAll('#root');
-// console.log(root[0].className === 'darkTheme');
-
 export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen, changeTheme }) => {
-  const handleCLick = () => {
-    console.log(changeTheme);
-  };
   return (
     <MenuBtn onClick={handleMenuOpen}>
       {isMenuOpen ? (

@@ -74,7 +74,7 @@ export const DiaryPageForm = () => {
 
   return (
     <>
-      <Section>
+      <Section id="diarySection">
         <DiaryContainer>
           <Title>Calculate your daily calorie intake right now</Title>
           <Form onSubmit={handleStartWeightLosing}>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ReactComponent as ThemeBtnIcon } from './img/arrow-left.svg';
 
 export const Backdrop = styled.div`
   background: rgba(33, 33, 33, 0.12);
@@ -11,6 +12,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Modal = styled.div`
+  box-shadow: 0px 0px 10px black;
   padding: 64px 80px 81px 80px;
   display: block;
   width: 672px;
@@ -30,22 +32,54 @@ export const Modal = styled.div`
   }
 `;
 
-export const CloseBtnMob = styled.button`
-@media screen and (min-width: 480px) {
-display: none;
-  
-}
-@media screen and (min-width: 480px) {
-  left: 20px;
-
-}
+export const CloseModalIcon = styled(ThemeBtnIcon)`
+  * {
+    color: #fc842d;
+    fill: #fc842d;
+  }
+  @media screen and (max-width: 350px) {
     position: absolute;
-    top: -15px;
-    transform: translateY(-100%);
-    border: none;
-    background-color: transparent;
-      scale: 1.1;
-}`;
+    left: 5px;
+    top: 1px;
+  }
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
+  @media screen and (min-width: 480px) {
+    left: 20px;
+  }
+  position: absolute;
+  top: -3px;
+  transform: translateY(-100%);
+  border: none;
+  background-color: transparent;
+  scale: 1.1;
+  pointerevents: 'none';
+`;
+export const CloseModalIconBlack = styled(ThemeBtnIcon)`
+  * {
+    color: black;
+    fill: black;
+  }
+  @media screen and (max-width: 350px) {
+    position: absolute;
+    left: 5px;
+    top: 1px;
+  }
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
+  @media screen and (min-width: 480px) {
+    left: 20px;
+  }
+  position: absolute;
+  top: -3px;
+  transform: translateY(-100%);
+  border: none;
+  background-color: transparent;
+  scale: 1.1;
+  pointerevents: 'none';
+`;
 
 export const CloseBtn = styled.button`
   @media screen and (max-width: 479px) {

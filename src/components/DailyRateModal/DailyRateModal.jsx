@@ -13,24 +13,40 @@ import {
   InfoItem,
   InfoList,
   ModalBtn,
-  CloseBtnMob,
+  CloseModalIcon,
+  CloseModalIconBlack,
 } from './DailyRateModal.styled';
 import closeIcon from './img/closeIcon.svg';
-import menuArrow from './img/MenuArrow.svg';
 
 export const DailyRateModal = ({
   handleBackdropClose,
   handleClickOnCloseBtn,
+  changeTheme,
 }) => {
   const dailyRate = useSelector(selectorDailyRate);
   const notAllowedProducts = useSelector(selectorNotAllowedProducts);
   const secondNotAllowedProducts = notAllowedProducts.slice(0, 6);
+
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
-        <CloseBtnMob onClick={handleClickOnCloseBtn}>
-          <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="<<<" />
-        </CloseBtnMob>
+        {changeTheme ? (
+          <CloseModalIcon
+            onClick={handleClickOnCloseBtn}
+            width="20px"
+            alt="themeIcon"
+          ></CloseModalIcon>
+        ) : (
+          <CloseModalIconBlack
+            onClick={handleClickOnCloseBtn}
+            width="20px"
+            alt="themeIcon"
+          ></CloseModalIconBlack>
+        )}
+
+        <CloseBtn onClick={handleClickOnCloseBtn}>
+          <img style={{ pointerEvents: 'none' }} src={closeIcon} alt="X" />
+        </CloseBtn>
         <CloseBtn onClick={handleClickOnCloseBtn}>
           <img style={{ pointerEvents: 'none' }} src={closeIcon} alt="X" />
         </CloseBtn>

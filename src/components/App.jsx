@@ -10,6 +10,7 @@ import { authSelector } from 'Redux/Selectors/authSelectors';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 import { Loader } from './Loader/Loader';
+import { useState } from 'react';
 
 const HomePage = lazy(() => import('Pages/HomePage'));
 const LoginPage = lazy(() => import('Pages/LoginPage'));
@@ -18,6 +19,7 @@ const DiaryPage = lazy(() => import('Pages/DiaryPage'));
 const CalculatorPage = lazy(() => import('Pages/CalculatorPage'));
 
 export const App = () => {
+  const [changeTheme, setChangeTheme] = useState(false);
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
@@ -38,12 +40,20 @@ export const App = () => {
     <Suspense fallback={<Loader />}>
       <Global />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout changeTheme={changeTheme} setChangeTheme={setChangeTheme} />
+          }
+        >
           <Route
             index
             element={
               <PublicRoute>
-                <HomePage />
+                <HomePage
+                  changeTheme={changeTheme}
+                  setChangeTheme={setChangeTheme}
+                />
               </PublicRoute>
             }
           />
@@ -75,7 +85,10 @@ export const App = () => {
             path="/calculator"
             element={
               <PrivateRoute>
-                <CalculatorPage />
+                <CalculatorPage
+                  changeTheme={changeTheme}
+                  setChangeTheme={setChangeTheme}
+                />
               </PrivateRoute>
             }
           />

@@ -80,3 +80,19 @@ code {
 #root.darkTheme > section > h1 {
   color: white;
 }
+
+#root.darkTheme > header > div.css-1fcks0o > p {
+  color: #9b9faa;
+}
+
+#root.darkTheme > #diarySection {
+  background-color: #444444;
+}
+
+#root.darkTheme > #calculatorSection {
+  background-color: #444444;
+}
+
+#root.darkTheme > #productName {
+  background-color: transparent;
+}
