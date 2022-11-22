@@ -26,16 +26,16 @@ const BurgerIconTomato = styled(BurgerIcon)`
   }
 `;
 
-export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen, changeTheme }) => {
+export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen, theme }) => {
   return (
     <MenuBtn onClick={handleMenuOpen}>
       {isMenuOpen ? (
-        changeTheme ? (
+        theme ? (
           <ExitIcon src={CloseIcon} alt="X" />
         ) : (
           <ExitIcon src={CloseIcon} alt="X" />
         )
-      ) : changeTheme ? (
+      ) : theme ? (
         <BurgerIconTomato alt="menu"></BurgerIconTomato>
       ) : (
         <BurgerIconBlack alt="menu"></BurgerIconBlack>

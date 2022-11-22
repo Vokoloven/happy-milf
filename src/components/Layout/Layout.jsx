@@ -5,6 +5,8 @@ import operations from 'Redux/Auth/auth.service';
 import { ChoiceAvatar } from 'components/Avatar/Avatar';
 import { addAvatar } from 'Redux/Auth/authSlice';
 import styled from 'styled-components';
+import { changeTheme } from 'Redux/Auth/authSlice';
+import { themeSelector } from 'Redux/Selectors/authSelectors';
 
 import { ReactComponent as ThemeBtnIcon } from './img/lightbulb_outline.svg';
 
@@ -46,8 +48,10 @@ const ThemeBtn = styled.button`
   }
 `;
 
-export const Layout = ({ changeTheme, setChangeTheme }) => {
+export const Layout = () => {
   const dispatch = useDispatch();
+  const theme = useSelector(themeSelector);
+
   const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -57,8 +61,10 @@ export const Layout = ({ changeTheme, setChangeTheme }) => {
   const handleChangeTheme = () => {
     const foo = document.querySelectorAll('#root');
     foo[0].classList.toggle('darkTheme');
-    setChangeTheme(!changeTheme);
-    console.log(changeTheme);
+    // setChangeTheme(!changeTheme);
+    // dispatch()
+    dispatch(changeTheme(!theme));
+    console.log(theme);
   };
 
   const handleLogOut = () => {
@@ -84,7 +90,7 @@ export const Layout = ({ changeTheme, setChangeTheme }) => {
       <Header>
         <Logo handleAuthorizationRestart={handleAuthorizationRestart} />
         <ThemeBtn onClick={handleChangeTheme}>
-          {changeTheme ? (
+          {theme ? (
             <ThemeIcon alt="themeIcon"></ThemeIcon>
           ) : (
             <ThemeBtnIcon alt="themeIcon"></ThemeBtnIcon>
@@ -101,7 +107,7 @@ export const Layout = ({ changeTheme, setChangeTheme }) => {
           <>
             <ChoiceAvatar />
             <HeaderMenuBtn
-              changeTheme={changeTheme}
+              theme={theme}
               handleMenuOpen={handleMenuOpen}
               isMenuOpen={isMenuOpen}
             />

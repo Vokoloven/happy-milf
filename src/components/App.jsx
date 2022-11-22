@@ -11,6 +11,7 @@ import { lazy } from 'react';
 import { Suspense } from 'react';
 import { Loader } from './Loader/Loader';
 import { useState } from 'react';
+import { themeSelector } from 'Redux/Selectors/authSelectors';
 
 const HomePage = lazy(() => import('Pages/HomePage'));
 const LoginPage = lazy(() => import('Pages/LoginPage'));
@@ -19,7 +20,8 @@ const DiaryPage = lazy(() => import('Pages/DiaryPage'));
 const CalculatorPage = lazy(() => import('Pages/CalculatorPage'));
 
 export const App = () => {
-  const [changeTheme, setChangeTheme] = useState(false);
+  const theme = useSelector(themeSelector);
+  const [changeTheme, setChangeTheme] = useState(theme);
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
@@ -40,12 +42,7 @@ export const App = () => {
     <Suspense fallback={<Loader />}>
       <Global />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout changeTheme={changeTheme} setChangeTheme={setChangeTheme} />
-          }
-        >
+        <Route path="/" element={<Layout theme={theme} />}>
           <Route
             index
             element={
