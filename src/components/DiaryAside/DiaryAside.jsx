@@ -6,13 +6,13 @@ import {
   InfoText,
   RecTitle,
   DietText,
-  AsideContainer,
+  AsideContainerx,
 } from './DiaryAside.styled';
 
 export const DiaryAside = () => {
   return (
     <Aside>
-      <AsideContainer>
+      <AsideContainerx>
         <div>
           <TitleAside>Summary for 06/20/2020</TitleAside>
           <List>
@@ -52,7 +52,7 @@ export const DiaryAside = () => {
           )}
           {/* !! */}
         </div>
-      </AsideContainer>
+      </AsideContainerx>
     </Aside>
   );
 };
