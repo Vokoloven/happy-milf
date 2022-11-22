@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productsSearchByName } from 'service/ProductSearch/productSearch.service';
-import { postDay } from 'service/Day/day.service';
+import { postDay, deletePostDay, postDayInfo } from 'service/Day/day.service';
 import _ from 'lodash';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,6 +13,8 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { authSelector } from 'Redux/Selectors/authSelectors';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import {
   Form,
@@ -33,7 +35,6 @@ import {
   ReturnButton,
   ProductBox,
 } from './CalendarForm.styled';
-import { useSelector } from 'react-redux';
 
 const SelectStyled = styled(Select)`
   width: 440px;
@@ -49,10 +50,10 @@ export const CalendarForm = ({ setActive }) => {
   const [reload, setReload] = useState(false);
   const [id, setId] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
-  const [productsList, setProductsList] = useState([]);
-  const [eatenProductsList, setEatenProductsList] = useState({});
-  // const [productId, setProductId] = useState('');
-  // const [weight, setWeight] = useState('');
+  const [productsList, setProductsList] = useState('');
+  const [productId, setProductId] = useState('');
+  const [weight, setWeight] = useState('');
+  const { isCompletedRefreshing } = useSelector(authSelector);
 
   const { date } = useSelector(authSelector);
   const [startBtnS, setStartBtnS] = useState(false);
@@ -71,8 +72,6 @@ export const CalendarForm = ({ setActive }) => {
     setProductInputName(value);
   };
 
-  console.log(eatenProductsList);
-
   const handleStartChooseProduct = () => {
     setActive(false);
     setStartBtnS(true);
@@ -90,6 +89,33 @@ export const CalendarForm = ({ setActive }) => {
     mode: 'onChange',
   });
 
+  const callApi = () => {
+    setReload(true);
+  };
+
+  const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
+
+  const handleProductName = e => {
+    debounceCallApi(setProductName(e.currentTarget.value));
+    setReload(false);
+  };
+
+  useEffect(() => {
+    const searchedProducts = async productName => {
+      const response = await productsSearchByName({
+        params: { search: productName },
+      });
+
+      setProducts(response);
+    };
+    if (reload && productName !== '') {
+      searchedProducts(productName);
+    }
+    if (productName === '') {
+      setProducts([]);
+    }
+  }, [productName, reload]);
+
   useEffect(() => {
     if (products) {
       const product = products.filter(({ _id }) => _id === id);
@@ -99,14 +125,13 @@ export const CalendarForm = ({ setActive }) => {
 
   const screenWidth = window.screen.width;
 
-  useEffect(() => {
-    if (screenWidth > 768) {
-      setStartBtnS(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const addSelectedProduct = () => {
+    if (selectedProduct?.length > 0) {
+      const [{ _id }] = selectedProduct;
+      setProductId(_id);
+      setWeight(Number(grams));
+    }
+
     // const result = caloriesCalculator();
 
     // const [{ weight }] = result;
@@ -133,10 +158,32 @@ export const CalendarForm = ({ setActive }) => {
     if (screenWidth < 768) {
       setStartBtnS(false);
     }
-
-    // setProductId(id);
-    // setWeight(Number(weight));
   };
+
+  useEffect(() => {
+    if (date && productId && weight) {
+      postDay({
+        date,
+        productId,
+        weight,
+      });
+    }
+  }, [date, productId, weight]);
+
+  useEffect(() => {
+    const getDateInfo = async date => {
+      const getDataApi = await postDayInfo(date);
+      setProductsList(getDataApi);
+    };
+
+    const validationDate = moment(date, 'YYYY-MM-DD', true).isValid();
+
+    if (validationDate && isCompletedRefreshing) {
+      getDateInfo(date);
+    }
+  }, [date, isCompletedRefreshing]);
+
+  console.log(productsList);
 
   // const caloriesCalculator = () => {
   //   if (selectedProduct?.length > 0) {
@@ -155,59 +202,6 @@ export const CalendarForm = ({ setActive }) => {
   //   }
   // };
 
-  const onSubmit = () => {};
-
-  useEffect(() => {
-    const searchedProducts = async productName => {
-      const response = await productsSearchByName({
-        params: { search: productName },
-      });
-
-      setProducts(response);
-    };
-    if (reload && productName !== '') {
-      searchedProducts(productName);
-    }
-    if (productName === '') {
-      setProducts([]);
-    }
-  }, [productName, reload]);
-
-  useEffect(() => {
-    const getApiPostDay = async params => {
-      const response = await postDay(params);
-
-      const {
-        day: { eatenProducts },
-      } = response;
-      eatenProducts &&
-        // setProductsList(() => eatenProducts);
-        setEatenProductsList(() => eatenProducts);
-    };
-
-    const productId = id;
-    const weight = grams;
-
-    if (date && productId && weight) {
-      getApiPostDay({
-        date,
-        productId,
-        weight,
-      });
-    }
-  }, [date, id, grams]);
-
-  const callApi = () => {
-    setReload(true);
-  };
-
-  const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
-
-  const handleProductName = e => {
-    debounceCallApi(setProductName(e.currentTarget.value));
-    setReload(false);
-  };
-
   const filteringProductsList = e => {
     const idByClickOnButton = e.currentTarget.parentNode.id;
 
@@ -217,10 +211,19 @@ export const CalendarForm = ({ setActive }) => {
     }
   };
 
+  const onSubmit = () => {};
+
   const handleReturnBtn = () => {
     setStartBtnS(false);
     setActive(true);
   };
+
+  useEffect(() => {
+    if (screenWidth > 768) {
+      setStartBtnS(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -286,33 +289,34 @@ export const CalendarForm = ({ setActive }) => {
       )}
 
       <ProductBox>
-        {productsList.map(({ _id, title: { ua }, calories, weight }) => {
-          return (
-            <ProductsList key={_id}>
-              <CurrenProduct id={_id}>
-                <CurrenProductName mr={3}>{ua}</CurrenProductName>
-                <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
-                <CurrenProductCal>{calories} kcal</CurrenProductCal>
-                <DelMeal type="button" onClick={filteringProductsList}>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M1 1L13 13" stroke="#9B9FAA" strokeWidth="2" />
-                    <path
-                      d="M1 13L13 0.999999"
-                      stroke="#9B9FAA"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </DelMeal>
-              </CurrenProduct>
-            </ProductsList>
-          );
-        })}
+        {productsList?.eatenProducts &&
+          productsList.eatenProducts.map(({ id, kcal, title, weight }) => {
+            return (
+              <ProductsList key={id}>
+                <CurrenProduct id={id}>
+                  <CurrenProductName mr={3}>{title}</CurrenProductName>
+                  <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
+                  <CurrenProductCal>{kcal} kcal</CurrenProductCal>
+                  <DelMeal type="button" onClick={filteringProductsList}>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1 1L13 13" stroke="#9B9FAA" strokeWidth="2" />
+                      <path
+                        d="M1 13L13 0.999999"
+                        stroke="#9B9FAA"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </DelMeal>
+                </CurrenProduct>
+              </ProductsList>
+            );
+          })}
       </ProductBox>
       <StartBtn type="submit" onClick={handleStartChooseProduct}>
         +

@@ -27,6 +27,7 @@ export const authSlice = createSlice({
     sid: null,
     isLoggedIn: false,
     isLoading: true,
+    isCompletedRefreshing: false,
     avatar: null,
     date: new Date(),
   },
@@ -71,15 +72,17 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
     });
     builder
-      // .addCase(operations.fetchCurrentUser.pending, state => {
-      //   state.isLoading = true;
-      // })
+      .addCase(operations.fetchCurrentUser.pending, state => {
+        // state.isLoading = true;
+        state.isCompletedRefreshing = false;
+      })
       .addCase(operations.fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.accessToken = payload.newAccessToken;
         state.refreshToken = payload.newRefreshToken;
         state.sid = payload.sid;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.isCompletedRefreshing = true;
       });
   },
 });
