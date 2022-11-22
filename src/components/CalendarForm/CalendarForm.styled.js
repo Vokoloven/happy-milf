@@ -225,7 +225,7 @@ export const ProductsList = styled.ul`
 export const CurrenProduct = styled.li`
   align-items: end;
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
@@ -234,7 +234,7 @@ export const CurrenProduct = styled.li`
 `;
 
 export const CurrenProductName = styled.p`
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   width: 304px;
   border-bottom: 1px solid #e0e0e0;
   margin-right: 50px;
@@ -245,7 +245,7 @@ export const CurrenProductName = styled.p`
 `;
 
 export const CurrenProductWeight = styled.p`
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   width: 105px;
   border-bottom: 1px solid #e0e0e0;
   margin-right: 50px;
@@ -257,7 +257,7 @@ export const CurrenProductWeight = styled.p`
 `;
 
 export const CurrenProductCal = styled.p`
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   width: 105px;
   border-bottom: 1px solid #e0e0e0;
   margin-right: 32px;
@@ -304,7 +304,7 @@ export const ProductBox = styled.div`
     height: 450px;
   }
   margin-top: 90px;
-  height: 212px;
+  height: 200px;
   overflow: auto;
   @media screen and (min-width: 1280px) {
     margin-top: 60px;

@@ -108,3 +108,7 @@ code {
 #root.darkTheme > #calculatorSection > aside > div {
   bottom: 0px;
 }
+
+#root.darkTheme > #calculatorSection > div > ul > li {
+  color: silver;
+}

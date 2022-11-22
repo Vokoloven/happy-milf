@@ -177,4 +177,11 @@ export const StyledUl = styled('ul')`
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  @media screen and (min-width: 767px) {
+    height: 150px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 280px;
+  }
+  overflow: auto;
 `;
