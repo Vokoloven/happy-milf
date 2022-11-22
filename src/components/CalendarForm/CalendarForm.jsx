@@ -7,7 +7,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from 'Theme/MUI/theme';
 import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { Loader } from 'components/Loader/Loader';
@@ -32,6 +31,8 @@ import {
   ReturnButton,
   ProductBox,
   ProductNameTheme,
+  ReturnIconBlack,
+  ReturnIconTomato,
 } from './CalendarForm.styled';
 
 const SelectStyled = styled(Select)`
@@ -190,7 +191,11 @@ export const CalendarForm = ({ setActive, theme }) => {
         <>
           {screenWidth < 767 && (
             <ReturnButton onClick={handleReturnBtn}>
-              <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
+              {theme ? (
+                <ReturnIconTomato alt="<<<" />
+              ) : (
+                <ReturnIconBlack alt="<<<" />
+              )}
             </ReturnButton>
           )}
 

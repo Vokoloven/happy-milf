@@ -1,4 +1,20 @@
 import styled from 'styled-components';
+import { ReactComponent as arrowIcon } from '../CalendarForm/img/arrow-left.svg';
+
+export const ReturnIconBlack = styled(arrowIcon)`
+  * {
+    color: black;
+    fill: black;
+  }
+  width: 20px;
+`;
+export const ReturnIconTomato = styled(arrowIcon)`
+  * {
+    color: #fc842d;
+    fill: #fc842d;
+  }
+  width: 20px;
+`;
 
 export const Form = styled.form`
   @media screen and (max-width: 767px) {
@@ -12,7 +28,7 @@ export const Form = styled.form`
     position: absolute;
     background-color: white;
     margin: 0;
-    top: 40px;
+    top: 30px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -273,10 +289,12 @@ export const ProductsBox = styled.div`
 
 export const ReturnButton = styled.button`
   position: absolute;
-  top: 7px;
+  top: -6px;
   z-index: 10;
   border: none;
   height: 25px;
+  border: none;
+  background: transparent;
 `;
 
 export const ProductBox = styled.div`
