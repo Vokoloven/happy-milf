@@ -12,12 +12,14 @@ import { useEffect, useRef } from 'react';
 import operations from 'Redux/Auth/auth.service';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from 'Redux/Selectors/authSelectors';
+import { getUserInfoApiService } from 'Redux/UserInfo/userInfo.service';
 
 export const App = () => {
   const { sid } = useSelector(authSelector);
   const { isLoading } = useSelector(authSelector);
   const dispach = useDispatch();
   const isFirstRefresh = useRef(true);
+  const { isCompletedRefreshing } = useSelector(authSelector);
 
   useEffect(() => {
     if (isFirstRefresh.current) {
@@ -29,6 +31,10 @@ export const App = () => {
       dispach(operations.fetchCurrentUser({ sid: sid }));
     }
   }, [dispach, isLoading, sid]);
+
+  useEffect(() => {
+    isCompletedRefreshing && dispach(getUserInfoApiService());
+  }, [dispach, isCompletedRefreshing]);
 
   return (
     <>

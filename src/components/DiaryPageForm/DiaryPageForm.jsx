@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDailyRate } from '../../Redux/DailyRate/DailyRate.service';
-import { getUserInfoApi } from 'service/UserInfo/userInfo.service';
-import { useEffect } from 'react';
 
 import { DiaryAside } from '../DiaryAside/DiaryAside';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
@@ -25,22 +23,10 @@ export const DiaryPageForm = () => {
   const [age, setAge] = useState('');
   const [bloodType, setBloodType] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
-  const [userInfo, setUserInfo] = useState([]);
+
   const { isLoggedIn } = useSelector(authSelector);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const response = await getUserInfoApi();
-
-      setUserInfo(response);
-    };
-
-    isLoggedIn && getUserInfo();
-  }, [isLoggedIn]);
-
-  console.log(userInfo);
 
   const handleHeight = e => {
     setHeight(e.currentTarget.value);

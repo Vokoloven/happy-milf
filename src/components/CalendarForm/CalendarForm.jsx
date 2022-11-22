@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { productsSearchByName } from 'service/ProductSearch/productSearch.service';
-import { postDay, deletePostDay, postDayInfo } from 'service/Day/day.service';
+import { postDayInfo } from 'service/Day/day.service';
 import _ from 'lodash';
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,7 +13,10 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { authSelector } from 'Redux/Selectors/authSelectors';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
+import { addSummaryData } from 'Redux/PostDay/postDaySlice';
+import operations from 'Redux/PostDay/postDay.service';
 import moment from 'moment';
 
 import {
@@ -53,10 +56,14 @@ export const CalendarForm = ({ setActive }) => {
   const [productsList, setProductsList] = useState('');
   const [productId, setProductId] = useState('');
   const [weight, setWeight] = useState('');
-  const { isCompletedRefreshing } = useSelector(authSelector);
 
+  const { isCompletedRefreshing } = useSelector(authSelector);
   const { date } = useSelector(authSelector);
+  const { isAddedProductInList, isDeletedProductInList } =
+    useSelector(postDaySelector);
   const [startBtnS, setStartBtnS] = useState(false);
+
+  const dispatch = useDispatch();
 
   const [productInputName, setProductInputName] = React.useState([]);
   const handleChangeMultiple = event => {
@@ -132,26 +139,6 @@ export const CalendarForm = ({ setActive }) => {
       setWeight(Number(grams));
     }
 
-    // const result = caloriesCalculator();
-
-    // const [{ weight }] = result;
-
-    // if (productsList?.length === 0) {
-    //   result &&
-    //     setProductsList(prevState => {
-    //       return [...prevState, ...result];
-    //     });
-    // } else {
-    //   const isDuplicate = productsList.some(({ _id }) => _id === id);
-
-    //   isDuplicate
-    //     ? Notiflix.Notify.warning(`${productInputName} already in the list`, {
-    //         timeout: 2500,
-    //       })
-    //     : setProductsList(prevState => {
-    //         return [...prevState, ...result];
-    //       });
-    // }
     setGrams('');
     setProductName('');
     setActive(true);
@@ -162,18 +149,25 @@ export const CalendarForm = ({ setActive }) => {
 
   useEffect(() => {
     if (date && productId && weight) {
-      postDay({
-        date,
-        productId,
-        weight,
-      });
+      dispatch(
+        operations.postDayApiService({
+          date,
+          productId,
+          weight,
+        })
+      );
+      setWeight('');
+      setProductId('');
     }
-  }, [date, productId, weight]);
+  }, [date, dispatch, productId, weight]);
 
   useEffect(() => {
     const getDateInfo = async date => {
       const getDataApi = await postDayInfo(date);
+
+      console.log(getDataApi);
       setProductsList(getDataApi);
+      dispatch(addSummaryData(getDataApi.id));
     };
 
     const validationDate = moment(date, 'YYYY-MM-DD', true).isValid();
@@ -181,33 +175,25 @@ export const CalendarForm = ({ setActive }) => {
     if (validationDate && isCompletedRefreshing) {
       getDateInfo(date);
     }
-  }, [date, isCompletedRefreshing]);
+  }, [
+    date,
+    isCompletedRefreshing,
+    isAddedProductInList,
+    isDeletedProductInList,
+    dispatch,
+  ]);
 
-  console.log(productsList);
+  const deletingProductsFromTheList = e => {
+    const dayId = productsList.id;
+    const eatenProductId = e.currentTarget.parentNode.id;
 
-  // const caloriesCalculator = () => {
-  //   if (selectedProduct?.length > 0) {
-  //     const calculatedProductsArray = [];
-  //     const [{ calories }] = selectedProduct;
-  //     const calPerGram = { calories: (grams * calories) / 100, weight: grams };
-  //     const [obj] = selectedProduct;
-
-  //     if (grams < 100) {
-  //       return;
-  //     }
-  //     const calculatedProducts = { ...obj, ...calPerGram };
-  //     calculatedProductsArray.push(calculatedProducts);
-
-  //     return calculatedProductsArray;
-  //   }
-  // };
-
-  const filteringProductsList = e => {
-    const idByClickOnButton = e.currentTarget.parentNode.id;
-
-    if (productsList?.length > 0) {
-      const data = productsList.filter(({ _id }) => _id !== idByClickOnButton);
-      setProductsList(data);
+    if (dayId && eatenProductId) {
+      dispatch(
+        operations.postDeleteDayApiService({
+          dayId,
+          eatenProductId,
+        })
+      );
     }
   };
 
@@ -297,7 +283,7 @@ export const CalendarForm = ({ setActive }) => {
                   <CurrenProductName mr={3}>{title}</CurrenProductName>
                   <CurrenProductWeight mr={3}>{weight} g</CurrenProductWeight>
                   <CurrenProductCal>{kcal} kcal</CurrenProductCal>
-                  <DelMeal type="button" onClick={filteringProductsList}>
+                  <DelMeal type="button" onClick={deletingProductsFromTheList}>
                     <svg
                       width="14"
                       height="14"

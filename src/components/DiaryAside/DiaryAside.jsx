@@ -8,13 +8,19 @@ import {
   DietText,
   AsideContainer,
 } from './DiaryAside.styled';
+import { useSelector } from 'react-redux';
+import { userInfoSelector } from 'Redux/Selectors/userInfoSelector';
+import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
 
 export const DiaryAside = () => {
+  const { userInfo } = useSelector(userInfoSelector);
+  console.log(userInfo.days);
+
   return (
     <Aside>
       <AsideContainer>
         <div>
-          <TitleAside>Summary for 06/20/2020</TitleAside>
+          <TitleAside>Summary for 000</TitleAside>
           <List>
             <li>
               <div style={{ display: 'flex' }}>

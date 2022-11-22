@@ -1,25 +1,24 @@
 import { configAxios } from 'service/config.axios';
 
-export const postDay = async params => {
-  try {
-    const { data } = await configAxios.post('day', params);
+// export const postDay = async params => {
+//   try {
+//     const { data } = await configAxios.post('day', params);
 
-    // console.log(data);
-    return data;
-  } catch (e) {
-    console.log(e.message);
-  }
-};
+//     return data;
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+// };
 
-export const deletePostDay = async params => {
-  try {
-    const { data } = await configAxios.delete('day', params);
+// export const deletePostDay = async params => {
+//   try {
+//     const { data } = await configAxios.delete('day', params);
 
-    return data;
-  } catch (e) {
-    console.log(e.message);
-  }
-};
+//     return data;
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+// };
 
 export const postDayInfo = async date => {
   try {
