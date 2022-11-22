@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
 const Section = styled.section`
-  padding: 80px 20px 0px 20px;
+  padding: 70px 20px 0px 20px;
+  margin-top: 10px;
   background-color: transparent;
   position: relative;
   @media screen and (min-width: 768px) {
@@ -20,10 +21,11 @@ const Section = styled.section`
   @media screen and (min-width: 1280px) {
     padding: 147px 16px 0px 16px;
     position: static;
+    height: 707px;
   }
 `;
 
-export const CalculatorPage = () => {
+const CalculatorPage = ({ colorTheme }) => {
   const [active, setActive] = useState(true);
   const screenWidth = window.screen.width;
 
@@ -35,10 +37,12 @@ export const CalculatorPage = () => {
   }, []);
 
   return (
-    <Section>
-      <CalendarSection />
-      <CalendarForm setActive={setActive} />
+    <Section id="calculatorSection">
+      <CalendarSection colorTheme={colorTheme} />
+      <CalendarForm colorTheme={colorTheme} setActive={setActive} />
       {active && <DiaryAside />}
     </Section>
   );
 };
+
+export default CalculatorPage;

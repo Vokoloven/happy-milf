@@ -48,6 +48,9 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 0px;
+  }
   font-family: 'Verdana';
   font-style: normal;
   font-weight: 700;
@@ -211,6 +214,7 @@ export const Section = styled.section`
   background-color: white;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 1px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;

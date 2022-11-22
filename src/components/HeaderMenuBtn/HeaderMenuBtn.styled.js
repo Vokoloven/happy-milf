@@ -7,6 +7,9 @@ export const MenuBtn = styled.button`
   border: none;
   background-color: transparent;
   margin-left: 50px;
+  @media screen and (max-width: 579px) {
+    margin-left: 30px;
+  }
   @media screen and (min-width: 1280px) {
     display: none;
   }

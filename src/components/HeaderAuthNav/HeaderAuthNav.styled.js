@@ -5,6 +5,7 @@ export const PagesLinks = styled(NavLink)`
   @media screen and (max-width: 1279px) {
     display: none;
   }
+
   font-family: 'Gotham Pro';
   font-style: normal;
   font-weight: 700;

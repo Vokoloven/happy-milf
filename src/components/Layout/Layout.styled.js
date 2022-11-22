@@ -30,6 +30,7 @@ export const Header = styled.header`
   background-color: white;
   @media screen and (min-width: 1280px) {
     background-color: transparent;
+    box-shadow: initial;
   }
   @media screen and (max-width: 1279px) {
     box-shadow: 0px 0px 4px grey;

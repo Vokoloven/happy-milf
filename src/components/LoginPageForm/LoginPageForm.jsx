@@ -18,7 +18,6 @@ export const LoginPageForm = () => {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
@@ -26,7 +25,8 @@ export const LoginPageForm = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
     dispatch(operations.logIn({ email, password }));
   };
 
@@ -45,9 +45,9 @@ export const LoginPageForm = () => {
 
   return (
     <>
-      <Title>Sing In</Title>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label>
+      <Title style={{ color: '#fc842d' }}>Sing In</Title>
+      <Form onSubmit={onSubmit}>
+        <Label htmlFor="email">
           Email *
           <Input
             {...register('email', {

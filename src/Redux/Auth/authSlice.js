@@ -30,6 +30,7 @@ export const authSlice = createSlice({
     isCompletedRefreshing: false,
     avatar: null,
     date: new Date(),
+    colorTheme: false,
   },
   reducers: {
     addAvatar(state, action) {
@@ -37,6 +38,9 @@ export const authSlice = createSlice({
     },
     getDate(state, action) {
       state.date = action.payload;
+    },
+    changeTheme(state, action) {
+      state.colorTheme = action.payload;
     },
   },
   extraReducers: builder => {
@@ -87,12 +91,19 @@ export const authSlice = createSlice({
   },
 });
 
-export const { addAvatar, getDate } = authSlice.actions;
+export const { addAvatar, getDate, changeTheme } = authSlice.actions;
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['sid', 'accessToken', 'refreshToken', 'avatar'],
+  whitelist: [
+    'sid',
+    'accessToken',
+    'refreshToken',
+    'user',
+    'avatar',
+    'colorTheme',
+  ],
 };
 
 export const persistedReducer = persistReducer(

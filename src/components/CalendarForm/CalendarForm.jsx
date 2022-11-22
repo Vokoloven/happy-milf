@@ -9,8 +9,9 @@ import Select from '@mui/material/Select';
 import Notiflix from 'notiflix';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from 'Theme/MUI/theme';
-import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import { Loader } from 'components/Loader/Loader';
+import { useForm } from 'react-hook-form';
 import menuArrow from '../DailyRateModal/img/MenuArrow.svg';
 import { authSelector } from 'Redux/Selectors/authSelectors';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,6 +26,7 @@ import {
   Grams,
   WrapperProductName,
   WrapperGrams,
+  GramsTheme,
   AddMeal,
   AddMeals,
   DelMeal,
@@ -37,6 +39,9 @@ import {
   StartBtn,
   ReturnButton,
   ProductBox,
+  ProductNameTheme,
+  ReturnIconBlack,
+  ReturnIconTomato,
 } from './CalendarForm.styled';
 
 const SelectStyled = styled(Select)`
@@ -46,7 +51,7 @@ const SelectStyled = styled(Select)`
   }
 `;
 
-export const CalendarForm = ({ setActive }) => {
+export const CalendarForm = ({ setActive, colorTheme }) => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
@@ -62,6 +67,7 @@ export const CalendarForm = ({ setActive }) => {
   const { isAddedProductInList, isDeletedProductInList } =
     useSelector(postDaySelector);
   const [startBtnS, setStartBtnS] = useState(false);
+  const [isLoadin, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -103,6 +109,7 @@ export const CalendarForm = ({ setActive }) => {
   const [debounceCallApi] = useState(() => _.debounce(callApi, 1000));
 
   const handleProductName = e => {
+    setIsLoading(true);
     debounceCallApi(setProductName(e.currentTarget.value));
     setReload(false);
   };
@@ -128,9 +135,17 @@ export const CalendarForm = ({ setActive }) => {
       const product = products.filter(({ _id }) => _id === id);
       product && setSelectedProduct(() => product);
     }
+    setIsLoading(false);
   }, [id, products]);
 
   const screenWidth = window.screen.width;
+
+  useEffect(() => {
+    if (screenWidth > 768) {
+      setStartBtnS(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const addSelectedProduct = () => {
     if (selectedProduct?.length > 0) {
@@ -213,53 +228,86 @@ export const CalendarForm = ({ setActive }) => {
 
   return (
     <>
+      {isLoadin && <Loader />}
       {startBtnS && (
         <>
           {screenWidth < 767 && (
             <ReturnButton onClick={handleReturnBtn}>
-              <img style={{ pointerEvents: 'none' }} src={menuArrow} alt="X" />
+              {colorTheme ? (
+                <ReturnIconTomato alt="<<<" />
+              ) : (
+                <ReturnIconBlack alt="<<<" />
+              )}
             </ReturnButton>
           )}
 
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <WrapperProductName>
-              <ProductName
-                {...register('productName', {
-                  required: 'Product name cant be empty',
-                  maxLength: {
-                    value: 30,
-                    message: 'Product name to large',
-                  },
-                  pattern: {
-                    value: /^[а-яА-ЯёЁ0-9\s]+$/,
-                    message: 'Wrong input. Must be Ru or Ua',
-                  },
-                  onChange: handleProductName,
-                })}
-                type="text"
-                placeholder="Enter product name"
-                value={productName}
-              />
-              <div style={{ color: 'red' }}>
-                {errors?.productName && (
-                  <p>{errors?.productName.message || 'Error!'}</p>
-                )}
-              </div>
-            </WrapperProductName>
-            <WrapperGrams>
-              <Grams
-                {...register('grams', {
-                  required: 'Enter weight',
-                  onChange: handleGrams,
-                })}
-                type="number"
-                placeholder="Grams"
-                value={grams}
-              />
-              <div style={{ color: 'red' }}>
-                {errors?.grams && <p>{errors?.grams.message || 'Error!'}</p>}
-              </div>
-            </WrapperGrams>
+            {colorTheme ? (
+              <>
+                <WrapperProductName>
+                  <ProductNameTheme
+                    {...register('productName', {
+                      required: 'Product name cant be empty',
+                      maxLength: {
+                        value: 30,
+                        message: 'Product name to large',
+                      },
+                      pattern: {
+                        value: /^[а-яА-ЯёЁ0-9\s]+$/,
+                        message: 'Wrong input. Must be Ru or Ua',
+                      },
+                      onChange: handleProductName,
+                    })}
+                    type="text"
+                    placeholder="Enter product name"
+                    value={productName}
+                  />
+                  <div style={{ color: 'red' }}>
+                    {errors?.productName && (
+                      <p>{errors?.productName.message || 'Error!'}</p>
+                    )}
+                  </div>
+                </WrapperProductName>
+                <WrapperGrams>
+                  <GramsTheme
+                    {...register('grams', {
+                      required: 'Enter weight',
+                      onChange: handleGrams,
+                    })}
+                    type="number"
+                    placeholder="Grams"
+                    value={grams}
+                  />
+                </WrapperGrams>
+              </>
+            ) : (
+              <>
+                <WrapperProductName>
+                  <ProductName
+                    id="productName"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={handleProductName}
+                    type="text"
+                  />
+                  <div style={{ color: 'red' }}>
+                    {errors?.productName && (
+                      <p>{errors?.productName.message || 'Error!'}</p>
+                    )}
+                  </div>
+                </WrapperProductName>
+                <WrapperGrams>
+                  <Grams
+                    placeholder="Grams"
+                    value={grams}
+                    onChange={handleGrams}
+                    min="100"
+                    type="number"
+                  />
+                </WrapperGrams>
+              </>
+            )}
+
             <AddMeal type="submit" onClick={addSelectedProduct}>
               +
             </AddMeal>

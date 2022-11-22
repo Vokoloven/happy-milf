@@ -9,15 +9,20 @@ const Section = styled.section`
   @media screen and (min-width: 768px) {
     padding: 68px 32px 398px 32px;
   }
-  padding: 147px 16px 0px 16px;
+  @media screen and (min-width: 1280px) {
+    padding: 140px 16px 111px 16px;
+  }
+
   margin: auto;
   // height: 594px;
 `;
 
-export const HomePage = () => {
+const HomePage = ({ colorTheme }) => {
   return (
     <Section>
-      <HomePageForm />
+      <HomePageForm colorTheme={colorTheme} />
     </Section>
   );
 };
+
+export default HomePage;

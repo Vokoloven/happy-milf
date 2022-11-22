@@ -43,7 +43,68 @@ code {
       url(./components/HomePageForm/img/Strawberry1x.png),
       url(./components//HomePageForm/img/shit.svg);
     background-repeat: no-repeat;
-    background-position: 782px 0px, 350px 20px, 920px 506px, 678px 34px;
+    background-position: 782px 18px, 326px 0px, 920px 524px, 678px 52px;
     position: relative;
   }
+}
+
+#root.darkTheme {
+  background-color: #444444;
+}
+
+@media screen and (max-width: 1279px) {
+  #root.darkTheme > header {
+    background-color: #444444;
+    box-shadow: 0px 0px 7px #fc842d;
+  }
+}
+
+#root.darkTheme > section {
+  background-color: transparent;
+}
+
+#root.darkTheme > section > div > h1 {
+  color: #e2e2e2;
+}
+#root > header > div.css-72bwj6 > button {
+  color: #e2e2e2;
+}
+#root > header > div.css-72bwj6 > p {
+  color: #e2e2e2;
+}
+
+#root.darkTheme > header > a.active {
+  color: #fc842d;
+}
+
+#root.darkTheme > section > h1 {
+  color: white;
+}
+
+#root.darkTheme > header > div.css-1fcks0o > p {
+  color: #9b9faa;
+}
+
+#root.darkTheme > #diarySection {
+  background-color: #444444;
+}
+
+#root.darkTheme > #calculatorSection {
+  background-color: #444444;
+}
+
+#root.darkTheme > #productName {
+  background-color: transparent;
+}
+
+#calculatorSection > div.sc-eeMvmM.cUatmD > div > div {
+  background-color: white;
+}
+
+#root.darkTheme > #calculatorSection > div.sc-jOiSOi.caEVxA > ul > li {
+  color: silver;
+}
+
+#root.darkTheme > #calculatorSection > aside > div {
+  bottom: 0px;
 }

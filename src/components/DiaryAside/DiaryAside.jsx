@@ -6,7 +6,7 @@ import {
   InfoText,
   RecTitle,
   DietText,
-  AsideContainer,
+  AsideContainerx,
   StyledUl,
 } from './DiaryAside.styled';
 import { useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ export const DiaryAside = () => {
 
   return (
     <Aside>
-      <AsideContainer>
+      <AsideContainerx>
         <div>
           <TitleAside>Summary for {daySummary.date}</TitleAside>
           <List>
@@ -85,7 +85,7 @@ export const DiaryAside = () => {
           )}
           {/* !! */}
         </Box>
-      </AsideContainer>
+      </AsideContainerx>
     </Aside>
   );
 };

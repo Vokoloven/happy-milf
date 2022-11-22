@@ -12,8 +12,12 @@ export const PagesLinksMob = styled(NavLink)`
   line-height: 13px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  margin-left: 15px;
   color: #9b9faa;
   transition: 250ms;
+  @media screen and (max-width: 350px) {
+    margin-left: 10px;
+  }
   &:hover,
   &:focus {
     scale: 1.05;
