@@ -7,7 +7,7 @@ import { addAvatar } from 'Redux/Auth/authSlice';
 
 import { Header } from './Layout.styled';
 
-import { tokenSelector } from 'Redux/Selectors/authSelectors';
+import { nameSelector, tokenSelector } from 'Redux/Selectors/authSelectors';
 import { Logo } from 'components/Logo/Logo';
 import { HeaderAuthNav } from 'components/HeaderAuthNav/HeaderAuthNav';
 import { AuthNavMobile } from 'components/HeaderAuthNav/AuthNavMobile/AuthNavMobile';
@@ -15,19 +15,13 @@ import { HeaderPrivateNav } from 'components/HeaderPrivateNav/HeaderPrivateNav';
 import { HeaderExitBox } from 'components/HeaderExitBox/HeaderExitBox';
 import { HeaderMenuBtn } from 'components/HeaderMenuBtn/HeaderMenuBtn';
 import { MenuBox } from 'components/MenuBox/MenuBox';
-import { userInfoSelector } from 'Redux/Selectors/userInfoSelector';
 
 export const Layout = () => {
   const dispatch = useDispatch();
-  const { userInfo } = useSelector(userInfoSelector);
   const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const TOKEN = useSelector(tokenSelector);
-
-  if (!userInfo.username) {
-    return;
-  }
-  const NAME = userInfo.username;
+  const NAME = useSelector(nameSelector);
 
   const handleLogOut = () => {
     dispatch(operations.logOut());
