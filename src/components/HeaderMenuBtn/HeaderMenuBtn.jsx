@@ -23,17 +23,20 @@ const BurgerIconTomato = styled(BurgerIcons)`
 `;
 
 const root = document.querySelectorAll('#root');
-console.log(root[0].className === 'darkTheme');
+// console.log(root[0].className === 'darkTheme');
 
-export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen }) => {
+export const HeaderMenuBtn = ({ handleMenuOpen, isMenuOpen, changeTheme }) => {
+  const handleCLick = () => {
+    console.log(changeTheme);
+  };
   return (
     <MenuBtn onClick={handleMenuOpen}>
       {isMenuOpen ? (
         <ExitIcon src={CloseIcon} alt="X" />
-      ) : root[0].className !== 'darkTheme' ? (
-        <BurgerIconBlack src={MenuIcon} alt="menu"></BurgerIconBlack>
-      ) : (
+      ) : changeTheme ? (
         <BurgerIconTomato alt="menu"></BurgerIconTomato>
+      ) : (
+        <BurgerIconBlack src={MenuIcon} alt="menu"></BurgerIconBlack>
       )}
     </MenuBtn>
   );

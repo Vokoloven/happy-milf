@@ -20,6 +20,7 @@ export const Layout = () => {
   const dispatch = useDispatch();
   const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [changeTheme, setChangeTheme] = useState(false);
   const TOKEN = useSelector(tokenSelector);
   const NAME = useSelector(nameSelector);
 
@@ -27,8 +28,9 @@ export const Layout = () => {
 
   const handleChangeTheme = () => {
     const foo = document.querySelectorAll('#root');
-    console.log(foo[0].className === 'darkTheme');
+    // console.log(foo[0].className === 'darkTheme');
     foo[0].classList.toggle('darkTheme');
+    setChangeTheme(!changeTheme);
   };
 
   const handleLogOut = () => {
@@ -65,6 +67,7 @@ export const Layout = () => {
           <>
             <ChoiceAvatar />
             <HeaderMenuBtn
+              changeTheme={changeTheme}
               handleMenuOpen={handleMenuOpen}
               isMenuOpen={isMenuOpen}
             />
