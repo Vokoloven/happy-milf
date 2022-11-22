@@ -41,7 +41,7 @@ const SelectStyled = styled(Select)`
   }
 `;
 
-export const CalendarForm = ({ setActive, changeTheme, setChangeTheme }) => {
+export const CalendarForm = ({ setActive, theme }) => {
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
   const [products, setProducts] = useState([]);
@@ -195,7 +195,7 @@ export const CalendarForm = ({ setActive, changeTheme, setChangeTheme }) => {
           )}
 
           <Form onSubmit={handleCalculationSubmit}>
-            {changeTheme ? (
+            {theme ? (
               <>
                 <WrapperProductName>
                   <ProductNameTheme

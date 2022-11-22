@@ -21,10 +21,11 @@ const Section = styled.section`
   @media screen and (min-width: 1280px) {
     padding: 147px 16px 0px 16px;
     position: static;
+    height: 707px;
   }
 `;
 
-const CalculatorPage = ({ changeTheme, setChangeTheme }) => {
+const CalculatorPage = ({ theme }) => {
   const [active, setActive] = useState(true);
   const screenWidth = window.screen.width;
 
@@ -37,15 +38,8 @@ const CalculatorPage = ({ changeTheme, setChangeTheme }) => {
 
   return (
     <Section id="calculatorSection">
-      <CalendarSection
-        changeTheme={changeTheme}
-        setChangeTheme={setChangeTheme}
-      />
-      <CalendarForm
-        changeTheme={changeTheme}
-        setChangeTheme={setChangeTheme}
-        setActive={setActive}
-      />
+      <CalendarSection theme={theme} />
+      <CalendarForm theme={theme} setActive={setActive} />
       {active && <DiaryAside />}
     </Section>
   );

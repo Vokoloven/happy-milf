@@ -37,11 +37,11 @@ export const CloseModalIcon = styled(ThemeBtnIcon)`
     color: #fc842d;
     fill: #fc842d;
   }
-  @media screen and (max-width: 350px) {
-    position: absolute;
-    left: 5px;
-    top: 1px;
-  }
+  // @media screen and (max-width: 350px) {
+  //   position: absolute;
+  //   left: 5px;
+  //   top: 1px;
+  // }
   @media screen and (min-width: 480px) {
     display: none;
   }
@@ -61,11 +61,11 @@ export const CloseModalIconBlack = styled(ThemeBtnIcon)`
     color: black;
     fill: black;
   }
-  @media screen and (max-width: 350px) {
-    position: absolute;
-    left: 5px;
-    top: 1px;
-  }
+  // @media screen and (max-width: 350px) {
+  //   position: absolute;
+  //   left: 5px;
+  //   top: 1px;
+  // }
   @media screen and (min-width: 480px) {
     display: none;
   }

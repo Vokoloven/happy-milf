@@ -14,7 +14,7 @@ const RadioBox = styled(RadioGroup)`
   }
 `;
 
-export const HomePageForm = ({ changeTheme, setChangeTheme }) => {
+export const HomePageForm = ({ theme }) => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [age, setAge] = useState('');
@@ -181,8 +181,7 @@ export const HomePageForm = ({ changeTheme, setChangeTheme }) => {
         <DailyRateModal
           handleBackdropClose={handleBackdropClose}
           handleClickOnCloseBtn={handleClickOnCloseBtn}
-          changeTheme={changeTheme}
-          setChangeTheme={setChangeTheme}
+          theme={theme}
         />
       )}
     </>

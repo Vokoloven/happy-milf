@@ -61,8 +61,6 @@ export const Layout = () => {
   const handleChangeTheme = () => {
     const foo = document.querySelectorAll('#root');
     foo[0].classList.toggle('darkTheme');
-    // setChangeTheme(!changeTheme);
-    // dispatch()
     dispatch(changeTheme(!theme));
     console.log(theme);
   };

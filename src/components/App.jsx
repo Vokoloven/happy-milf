@@ -28,6 +28,13 @@ export const App = () => {
   const isFirstRefresh = useRef(true);
 
   useEffect(() => {
+    const foo = document.querySelectorAll('#root');
+    if (theme === true) {
+      foo[0].classList.add('darkTheme');
+    }
+  }, []);
+
+  useEffect(() => {
     if (isFirstRefresh.current) {
       isFirstRefresh.current = false;
       return;
@@ -47,10 +54,7 @@ export const App = () => {
             index
             element={
               <PublicRoute>
-                <HomePage
-                  changeTheme={changeTheme}
-                  setChangeTheme={setChangeTheme}
-                />
+                <HomePage theme={theme} />
               </PublicRoute>
             }
           />
@@ -82,10 +86,7 @@ export const App = () => {
             path="/calculator"
             element={
               <PrivateRoute>
-                <CalculatorPage
-                  changeTheme={changeTheme}
-                  setChangeTheme={setChangeTheme}
-                />
+                <CalculatorPage theme={theme} />
               </PrivateRoute>
             }
           />

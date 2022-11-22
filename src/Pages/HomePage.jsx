@@ -17,10 +17,10 @@ const Section = styled.section`
   // height: 594px;
 `;
 
-const HomePage = ({ changeTheme, setChangeTheme }) => {
+const HomePage = ({ theme }) => {
   return (
     <Section>
-      <HomePageForm changeTheme={changeTheme} setChangeTheme={setChangeTheme} />
+      <HomePageForm theme={theme} />
     </Section>
   );
 };
