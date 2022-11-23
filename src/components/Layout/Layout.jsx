@@ -7,12 +7,13 @@ import { addAvatar } from 'Redux/Auth/authSlice';
 import styled from 'styled-components';
 import { changeTheme } from 'Redux/Auth/authSlice';
 import { themeSelector } from 'Redux/Selectors/authSelectors';
+import { userInfoSelector } from 'Redux/Selectors/userInfoSelector';
 
 import { ReactComponent as ThemeBtnIcon } from './img/lightbulb_outline.svg';
 
 import { Header } from './Layout.styled';
 
-import { nameSelector, tokenSelector } from 'Redux/Selectors/authSelectors';
+import { tokenSelector } from 'Redux/Selectors/authSelectors';
 import { Logo } from 'components/Logo/Logo';
 import { HeaderAuthNav } from 'components/HeaderAuthNav/HeaderAuthNav';
 import { AuthNavMobile } from 'components/HeaderAuthNav/AuthNavMobile/AuthNavMobile';
@@ -55,8 +56,9 @@ export const Layout = () => {
   const [authorization, setAuthorization] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { userInfo, isLoadedUserData } = useSelector(userInfoSelector);
+
   const TOKEN = useSelector(tokenSelector);
-  const NAME = useSelector(nameSelector);
 
   const handleChangeTheme = () => {
     const foo = document.querySelectorAll('#root');
@@ -100,7 +102,9 @@ export const Layout = () => {
         {!TOKEN && !authorization && <AuthNavMobile />}
         {TOKEN && <HeaderPrivateNav />}
 
-        {TOKEN && <HeaderExitBox NAME={NAME} handleLogOut={handleLogOut} />}
+        {isLoadedUserData && TOKEN && (
+          <HeaderExitBox NAME={userInfo.username} handleLogOut={handleLogOut} />
+        )}
         {TOKEN && (
           <>
             <ChoiceAvatar />

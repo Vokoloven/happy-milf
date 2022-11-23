@@ -7,20 +7,20 @@ export const authSlice = createSlice({
   name: 'auth',
 
   initialState: {
-    user: {
-      email: null,
-      username: null,
-      id: null,
-      userData: {
-        notAllowedProducts: [],
-        weight: 0,
-        height: 0,
-        age: 0,
-        bloodType: 0,
-        desiredWeight: 0,
-        dailyRate: 0,
-      },
-    },
+    // user: {
+    //   email: null,
+    //   username: null,
+    //   id: null,
+    //   userData: {
+    //     notAllowedProducts: [],
+    //     weight: 0,
+    //     height: 0,
+    //     age: 0,
+    //     bloodType: 0,
+    //     desiredWeight: 0,
+    //     dailyRate: 0,
+    //   },
+    // },
     todaySummary: {},
     accessToken: null,
     refreshToken: null,
@@ -56,20 +56,20 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     });
     builder.addCase(operations.logOut.fulfilled, state => {
-      state.user = {
-        email: null,
-        username: null,
-        id: null,
-        userData: {
-          notAllowedProducts: [],
-          weight: 0,
-          height: 0,
-          age: 0,
-          bloodType: 0,
-          desiredWeight: 0,
-          dailyRate: 0,
-        },
-      };
+      // state.user = {
+      //   email: null,
+      //   username: null,
+      //   id: null,
+      //   userData: {
+      //     notAllowedProducts: [],
+      //     weight: 0,
+      //     height: 0,
+      //     age: 0,
+      //     bloodType: 0,
+      //     desiredWeight: 0,
+      //     dailyRate: 0,
+      //   },
+      // };
       state.accessToken = null;
       state.refreshToken = null;
       state.sid = null;
@@ -96,14 +96,7 @@ export const { addAvatar, getDate, changeTheme } = authSlice.actions;
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: [
-    'sid',
-    'accessToken',
-    'refreshToken',
-    'user',
-    'avatar',
-    'colorTheme',
-  ],
+  whitelist: ['sid', 'accessToken', 'refreshToken', 'avatar', 'colorTheme'],
 };
 
 export const persistedReducer = persistReducer(

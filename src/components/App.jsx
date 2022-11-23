@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from 'Redux/Selectors/authSelectors';
 import { getUserInfoApiService } from 'Redux/UserInfo/userInfo.service';
 import { postDaySelector } from 'Redux/Selectors/postDaySelectors';
-import { selectorDailyRate } from 'Redux/Selectors/dailyRateSelector';
+import { selectorDailyRateSingle } from 'Redux/Selectors/dailyRateSelector';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 import { Loader } from './Loader/Loader';
@@ -32,7 +32,7 @@ export const App = () => {
   const { isAddedProductInList, isDeletedProductInList } =
     useSelector(postDaySelector);
 
-  const { getUpdateDailyRateByID } = useSelector(selectorDailyRate);
+  const { getUpdateDailyRateByID } = useSelector(selectorDailyRateSingle);
 
   useEffect(() => {
     const foo = document.querySelectorAll('#root');
