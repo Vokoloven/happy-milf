@@ -21,7 +21,7 @@ import closeIcon from './img/closeIcon.svg';
 export const DailyRateModal = ({
   handleBackdropClose,
   handleClickOnCloseBtn,
-  theme,
+  colorTheme,
 }) => {
   const dailyRate = useSelector(selectorDailyRate);
   const notAllowedProducts = useSelector(selectorNotAllowedProducts);
@@ -30,7 +30,7 @@ export const DailyRateModal = ({
   return (
     <Backdrop onClick={handleBackdropClose}>
       <Modal>
-        {!theme ? (
+        {!colorTheme ? (
           <CloseModalIconBlack
             onClick={handleClickOnCloseBtn}
             width="20px"
