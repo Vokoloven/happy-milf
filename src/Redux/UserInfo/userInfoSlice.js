@@ -9,9 +9,12 @@ export const getUserInfo = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getUserInfoApiService.pending, state => {})
+      .addCase(getUserInfoApiService.pending, state => {
+        state.isLoadedUserData = false;
+      })
       .addCase(getUserInfoApiService.fulfilled, (state, { payload }) => {
         state.userInfo = payload;
+        state.isLoadedUserData = true;
       });
   },
 });

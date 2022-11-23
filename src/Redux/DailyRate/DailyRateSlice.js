@@ -3,6 +3,8 @@ import { getDailyRate } from './DailyRate.service';
 import { postDailyRateById } from './DailyRate.service';
 
 const initialState = {
+  getUpdateDailyRateByID: false,
+
   user: {
     weight: null,
     height: null,
@@ -22,10 +24,15 @@ export const dailyRateSlice = createSlice({
       state.dailyRate = payload.dailyRate;
       state.notAllowedProducts = payload.notAllowedProducts;
     });
-    builder.addCase(postDailyRateById.fulfilled, (state, { payload }) => {
-      state.dailyRate = payload.dailyRate;
-      state.notAllowedProducts = payload.notAllowedProducts;
-    });
+    builder
+      .addCase(postDailyRateById.pending, state => {
+        state.getUpdateDailyRateByID = false;
+      })
+      .addCase(postDailyRateById.fulfilled, (state, { payload }) => {
+        state.getUpdateDailyRateByID = true;
+        // state.dailyRate = payload.dailyRate;
+        // state.notAllowedProducts = payload.notAllowedProducts;
+      });
   },
 });
 
